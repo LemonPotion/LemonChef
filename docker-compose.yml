@@ -1,0 +1,6 @@
+﻿services:
+  lemonchefapi:
+    image: lemonchefapi
+    build:
+      context: .
+      dockerfile: LemonChefApi/Dockerfile
