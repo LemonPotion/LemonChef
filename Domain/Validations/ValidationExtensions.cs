@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using Domain.Validations.Primitives;
+using FluentValidation;
 
 namespace Domain.Validations;
 

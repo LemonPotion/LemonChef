@@ -1,4 +1,4 @@
-﻿namespace Domain.Validations;
+﻿namespace Domain.Validations.Primitives;
 
 /// <summary>
 /// Класс содержащий сообщения об ошибках
