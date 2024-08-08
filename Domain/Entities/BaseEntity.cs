@@ -18,7 +18,7 @@ public abstract class BaseEntity
     /// <summary>
     /// Дата изменения.
     /// </summary>
-    public DateTime UpdateTime { get; set; } = DateTime.UtcNow;
+    public DateTime UpdateDate { get; set; } = DateTime.UtcNow;
 
     /// <summary>
     /// Переопределение метода для сравнения с другим объектом.

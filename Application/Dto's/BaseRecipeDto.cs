@@ -1,10 +1,10 @@
-﻿namespace Domain.Entities;
+﻿namespace Application.Dto_s;
 
-public class Recipe : BaseEntity
+public class BaseRecipeDto
 {
     public string Title { get; set; }
     public Uri Link { get; set; }
-    public ICollection<Ingredient> Ingredients { get; set; }
+    public ICollection<BaseIngredientDto> IngredientDtos { get; set; }
     public string Hash { get; set; }
     public int? PreparationTime { get; set; }
     public int? Servings { get; set; }

@@ -7,21 +7,24 @@ public class RecipeValidator : AbstractValidator<Recipe>
 {
     public RecipeValidator(string paramName)
     {
+        Include(new BaseEntityValidator<Recipe>(paramName));
+
         RuleFor(param => param.Title)
-            .NotNull().WithMessage(ExceptionMessages.NullException(paramName))
-            .NotEmpty().WithMessage(ExceptionMessages.EmptyException(paramName));
+            .NotNullOrEmptyWithMessage(paramName);
+        
         RuleFor(param => param.Link)
-            .NotNull().WithMessage(ExceptionMessages.NullException(paramName))
-            .NotEmpty().WithMessage(ExceptionMessages.EmptyException(paramName));
-        RuleForEach(param => param.Ingredient)
-            .NotNull().WithMessage(ExceptionMessages.NullException(paramName))
-            .NotEmpty().WithMessage(ExceptionMessages.EmptyException(paramName));
+            .NotNullOrEmptyWithMessage(paramName);
+        
+        RuleForEach(param => param.Ingredients)
+            .NotNullOrEmptyWithMessage(paramName);
+        
         RuleFor(param => param.Hash)
-            .NotNull().WithMessage(ExceptionMessages.NullException(paramName))
-            .NotEmpty().WithMessage(ExceptionMessages.EmptyException(paramName));
+            .NotNullOrEmptyWithMessage(paramName);
+        
         RuleFor(param=> param.Servings)
-            .NotEmpty().When(param=> param.Servings is not null).WithMessage(ExceptionMessages.EmptyException(paramName));
+            .NotEmptyIfNotNullWithMessage(paramName);
+        
         RuleFor(param=>param.PreparationTime)
-            .NotEmpty().When(param=> param.PreparationTime is not null).WithMessage(ExceptionMessages.EmptyException(paramName));
+            .NotEmptyIfNotNullWithMessage(paramName);
     }
 }

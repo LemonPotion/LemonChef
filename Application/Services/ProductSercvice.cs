@@ -1,8 +1,8 @@
-﻿using Application.Intrerfaces.Repositories;
+﻿using Application.Intrefaces.Repositories;
 
 namespace Application.Services;
 
 public class ProductSercvice
 {
-    private readonly IProductRepository _productRepository;
+    private readonly IIngredientRepository _ingredientRepository;
 }

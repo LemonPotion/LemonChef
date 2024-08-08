@@ -1,6 +1,6 @@
 ﻿using Domain.Entities;
 
-namespace Application.Intrerfaces.Repositories;
+namespace Application.Intrefaces.Repositories;
 
 /// <summary>
 /// Репозиторий для хранения всех базовых CRUD 

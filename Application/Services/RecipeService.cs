@@ -1,4 +1,4 @@
-﻿using Application.Intrerfaces.Repositories;
+﻿using Application.Intrefaces.Repositories;
 
 namespace Application.Services;
 
