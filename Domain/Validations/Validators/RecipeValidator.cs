@@ -22,9 +22,9 @@ public class RecipeValidator : AbstractValidator<Recipe>
             .NotNullOrEmptyWithMessage(paramName);
         
         RuleFor(param=> param.Servings)
-            .NotEmptyIfNotNullWithMessage(paramName);
+            .NotEmptyIfNullableWithMessage(paramName);
         
         RuleFor(param=>param.PreparationTime)
-            .NotEmptyIfNotNullWithMessage(paramName);
+            .NotEmptyIfNullableWithMessage(paramName);
     }
 }

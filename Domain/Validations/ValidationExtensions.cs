@@ -13,7 +13,7 @@ public static class ValidationExtensions
             .NotEmpty().WithMessage(ExceptionMessages.EmptyException(paramName));
     }
 
-    public static IRuleBuilderOptions<T, TProperty> NotEmptyIfNotNullWithMessage<T, TProperty>(
+    public static IRuleBuilderOptions<T, TProperty> NotEmptyIfNullableWithMessage<T, TProperty>(
         this IRuleBuilder<T,TProperty> ruleBuilder,
         string paramName)
     {
