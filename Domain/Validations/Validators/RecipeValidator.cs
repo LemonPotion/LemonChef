@@ -10,7 +10,8 @@ public class RecipeValidator : AbstractValidator<Recipe>
         Include(new BaseEntityValidator<Recipe>(paramName));
 
         RuleFor(param => param.Title)
-            .NotNullOrEmptyWithMessage(paramName);
+            .NotNullOrEmptyWithMessage(paramName)
+            .Length(1,250);
         
         RuleFor(param => param.Link)
             .NotNullOrEmptyWithMessage(paramName);
@@ -18,13 +19,12 @@ public class RecipeValidator : AbstractValidator<Recipe>
         RuleForEach(param => param.Ingredients)
             .NotNullOrEmptyWithMessage(paramName);
         
-        RuleFor(param => param.Hash)
-            .NotNullOrEmptyWithMessage(paramName);
-        
         RuleFor(param=> param.Servings)
-            .NotEmptyIfNullableWithMessage(paramName);
+            .NotEmptyIfNullableWithMessage(paramName)
+            .GreaterThan(0);
         
         RuleFor(param=>param.PreparationTime)
-            .NotEmptyIfNullableWithMessage(paramName);
+            .NotEmptyIfNullableWithMessage(paramName)
+            .GreaterThan(0);
     }
 }

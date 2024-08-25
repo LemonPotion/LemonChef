@@ -2,7 +2,6 @@
 
 /// <summary>
 /// Класс содержащий сообщения об ошибках
-/// Используйте string.Format() для вызова сообщений
 /// </summary>
 public abstract class ExceptionMessages
 {

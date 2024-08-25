@@ -9,6 +9,6 @@ public class IngredientValidator :AbstractValidator<Ingredient>
     {
         Include(new BaseEntityValidator<Ingredient>(paramName));
         RuleFor(param => param.Name)
-            .NotNullOrEmptyWithMessage(paramName);
+            .NotNullOrEmptyWithMessage(paramName).Length(1,250);
     }
 }
