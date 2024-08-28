@@ -18,6 +18,9 @@ public class RecipeValidator : AbstractValidator<Recipe>
         
         RuleForEach(param => param.Ingredients)
             .NotNullOrEmptyWithMessage(paramName);
+
+        RuleFor(param => param.Description)
+            .NotNullOrEmptyWithMessage(paramName).Length(1,50000);
         
         RuleFor(param=> param.Servings)
             .NotEmptyIfNullableWithMessage(paramName)

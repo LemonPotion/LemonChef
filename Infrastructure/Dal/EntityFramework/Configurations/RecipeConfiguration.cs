@@ -27,6 +27,9 @@ public class RecipeConfiguration : IEntityTypeConfiguration<Recipe>
         builder.Property(x => x.Link)
             .IsRequired();
         
+        builder.Property(x => x.Description)
+            .IsRequired();
+        
         builder.Property(x => x.PreparationTime);
         
         builder.Property(x => x.Servings);
