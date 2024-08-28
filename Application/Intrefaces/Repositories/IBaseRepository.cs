@@ -47,4 +47,6 @@ public interface IBaseRepository<TEntity> where TEntity: BaseEntity
     /// <returns>List содержащий все сущности</returns>
     public Task<List<TEntity>> GetAllListAsync(CancellationToken cancellationToken);
     
+    public Task SaveChangesAsync();
+    
 }

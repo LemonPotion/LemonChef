@@ -1,6 +1,6 @@
 ﻿namespace Domain.Validations.Primitives;
 
-public enum Unit
+public enum UnitsOfMeasure
 {
     Gram,
     Kilogram,

@@ -1,8 +1,9 @@
 ﻿using Application.Intrefaces.Repositories;
+using Domain.Entities;
 
 namespace Application.Services;
 
 public class RecipeService
 {
-    private readonly IRecipeRepository _recipeRepository;
+    private readonly IRecipeRepository _repository;
 }
