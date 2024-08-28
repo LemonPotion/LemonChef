@@ -7,6 +7,5 @@ public class Recipe : BaseEntity
     public ICollection<Ingredient> Ingredients { get; set; }
     public int? PreparationTime { get; set; }
     public int? Servings { get; set; }
-    
     public string Description { get; set; }
 }
