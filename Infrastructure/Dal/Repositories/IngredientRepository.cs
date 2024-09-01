@@ -9,4 +9,5 @@ public class IngredientRepository :BaseRepository<Ingredient>, IIngredientReposi
     public IngredientRepository(RecipiesDbContext dbContext) : base(dbContext)
     {
     }
+    
 }

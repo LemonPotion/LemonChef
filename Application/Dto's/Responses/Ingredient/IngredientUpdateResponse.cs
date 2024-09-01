@@ -1,6 +1,6 @@
 ﻿namespace Application.Dto_s.Responses;
 
-public class CreateIngredientResponse : BaseIngredientDto
+public class IngredientUpdateResponse : BaseIngredientDto
 {
     public Guid Id { get; set; }
 }

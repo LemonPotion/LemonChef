@@ -13,13 +13,13 @@ public static class ValidationExtensions
             .NotNull().WithMessage(ExceptionMessages.NullException(paramName))
             .NotEmpty().WithMessage(ExceptionMessages.EmptyException(paramName));
     }
-
-    public static IRuleBuilderOptions<T, TProperty> NotEmptyIfNullableWithMessage<T, TProperty>(
-        this IRuleBuilder<T,TProperty> ruleBuilder,
+    
+    public static IRuleBuilderOptions<T, string?> IsValidUrlWithMessage<T>(
+        this IRuleBuilder<T, string?> ruleBuilder, 
         string paramName)
     {
-        return ruleBuilder.NotEmpty()
-            .When(param=> param is not null)
-            .WithMessage(ExceptionMessages.EmptyException(paramName));
+        return ruleBuilder
+            .Must(param => Uri.IsWellFormedUriString(param, UriKind.Absolute))
+            .WithMessage(ExceptionMessages.InvalidFormat(paramName));
     }
 }

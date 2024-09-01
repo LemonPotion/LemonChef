@@ -6,11 +6,11 @@ using Domain.Entities;
 
 namespace Application.Services;
 
-public class IngredientService : BaseService<Ingredient, CreateIngredientRequest, UpdateIngredientRequest, GetIngredientResponse, CreateIngredientResponse, UpdateIngredientResponse>
+public class IngredientService : BaseService<Ingredient, IngredientCreateRequest, IngredientUpdateRequest, IngredientGetResponse, IngredientCreateResponse, IngredientUpdateResponse>
 {
-    private readonly IIngredientRepository _repository;
-    public IngredientService(IIngredientRepository repository, IMapper mapper) : base(repository, mapper)
+    private readonly IIngredientRepository _ingredientRepository;
+    public IngredientService(IIngredientRepository ingredientRepository, IMapper mapper, IRecipeRepository recipeRepository) : base(ingredientRepository, mapper)
     {
-        _repository = repository;
+        _ingredientRepository = ingredientRepository;
     }
 }

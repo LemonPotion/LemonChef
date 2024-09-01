@@ -13,12 +13,12 @@ public abstract class BaseEntity
     /// <summary>
     /// Дата создания.
     /// </summary>
-    public DateTime CreationDate { get; set; } = DateTime.UtcNow;
+    public DateTime CreationDate { get; set; }
 
     /// <summary>
     /// Дата изменения.
     /// </summary>
-    public DateTime UpdateDate { get; set; } = DateTime.UtcNow;
+    public DateTime? ModifiedDate { get; set; }
 
     /// <summary>
     /// Переопределение метода для сравнения с другим объектом.
