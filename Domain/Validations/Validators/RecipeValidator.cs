@@ -9,7 +9,7 @@ public class RecipeValidator : AbstractValidator<Recipe>
     {
         RuleFor(param => param.Title)
             .NotNullOrEmptyWithMessage(nameof(Recipe.Title))
-            .Length(1,250)
+            .Length(2,250)
             .WithMessage(ExceptionMessages.InvalidFormat(nameof(Recipe.Title)));
 
         RuleFor(param => param.Link)
@@ -20,17 +20,15 @@ public class RecipeValidator : AbstractValidator<Recipe>
 
         RuleFor(param => param.Description)
             .NotNullOrEmptyWithMessage(nameof(Recipe.Description))
-            .Length(1,50000)
+            .Length(2,5000)
             .WithMessage(ExceptionMessages.InvalidFormat(nameof(Recipe.Description)));
         
         RuleFor(param=> param.Servings)
             .GreaterThan(0)
-            .When(param=> param.Servings is not null)
             .WithMessage(ExceptionMessages.TooLowNumber(nameof(Recipe.Servings)));
         
         RuleFor(param=>param.PreparationTime)
             .GreaterThan(0)
-            .When(param=> param.PreparationTime is not null)
             .WithMessage(ExceptionMessages.TooLowNumber(nameof(Recipe.PreparationTime)));
         
         RuleFor(param => param.TelegramUserId)

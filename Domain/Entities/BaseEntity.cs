@@ -13,12 +13,12 @@ public abstract class BaseEntity
     /// <summary>
     /// Дата создания.
     /// </summary>
-    public DateTime CreationDate { get; set; }
+    public DateTime CreatedOn { get; set; }
 
     /// <summary>
     /// Дата изменения.
     /// </summary>
-    public DateTime? ModifiedDate { get; set; }
+    public DateTime? ModifiedOn { get; set; }
 
     /// <summary>
     /// Переопределение метода для сравнения с другим объектом.
@@ -43,5 +43,12 @@ public abstract class BaseEntity
     public override int GetHashCode()
     {
         return Id.GetHashCode();
+    }
+
+    public override string ToString()
+    {
+        var props = this.GetType().GetProperties();
+        var values = props.Select(prop => $"{prop.Name}: {prop.GetValue(this) ?? "null"}");
+        return string.Join(" ", values);
     }
 }

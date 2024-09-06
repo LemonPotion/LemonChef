@@ -26,13 +26,13 @@ public class RecipiesDbContext : DbContext
                 switch (changedEntity.State)
                 {
                     case EntityState.Added:
-                        entity.CreationDate= now;
-                        entity.ModifiedDate = now;
+                        entity.CreatedOn= now;
+                        entity.ModifiedOn = now;
                         break;
 
                     case EntityState.Modified:
-                        Entry(entity).Property(x => x.CreationDate).IsModified = false;
-                        entity.ModifiedDate= now;
+                        Entry(entity).Property(x => x.CreatedOn).IsModified = false;
+                        entity.ModifiedOn= now;
                         break;
                 }
             }
@@ -50,13 +50,13 @@ public class RecipiesDbContext : DbContext
                 switch (changedEntity.State)
                 {
                     case EntityState.Added:
-                        entity.CreationDate= utcNow;
-                        entity.ModifiedDate = utcNow;
+                        entity.CreatedOn= utcNow;
+                        entity.ModifiedOn = utcNow;
                         break;
 
                     case EntityState.Modified:
-                        Entry(entity).Property(x => x.CreationDate).IsModified = false;
-                        entity.ModifiedDate= utcNow;
+                        Entry(entity).Property(x => x.CreatedOn).IsModified = false;
+                        entity.ModifiedOn= utcNow;
                         break;
                     case EntityState.Detached:
                         break;

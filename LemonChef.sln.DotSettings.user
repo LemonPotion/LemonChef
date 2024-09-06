@@ -1,0 +1,17 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d65696ba_002D8906_002D4f93_002D93eb_002D3d1c3a7dcecd/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Add" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::1D73A501-4A7F-462D-9EDE-6CF75F8E43AF::net8.0::Tests.ValidationTests.RecipeValidatorTests.Title_ShouldHaveInvalidFormatMessageValidationErrors_WhenInvalidLength&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::1D73A501-4A7F-462D-9EDE-6CF75F8E43AF::net8.0::Tests.ValidationTests.IngredientValidatorTests.Name_ShouldHaveInvalidFormatMessageValidationErrors_WhenInvalidLength&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::1D73A501-4A7F-462D-9EDE-6CF75F8E43AF::net8.0::Tests.ValidationTests.RecipeValidatorTests.Link_ShouldNotHaveValidationErrors_WhenValid&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::1D73A501-4A7F-462D-9EDE-6CF75F8E43AF::net8.0::Tests.ValidationTests.RecipeValidatorTests.Description_ShouldHaveNullMessageValidationErrors_WhenNull&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::1D73A501-4A7F-462D-9EDE-6CF75F8E43AF::net8.0::Tests.ValidationTests.RecipeValidatorTests.Description_ShouldHaveEmptyMessageValidationErrors_WhenEmpty&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::1D73A501-4A7F-462D-9EDE-6CF75F8E43AF::net8.0::Tests.ValidationTests.RecipeValidatorTests.Description_ShouldHaveInvalidFormatMessageValidationErrors_WhenInvalidLength&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::1D73A501-4A7F-462D-9EDE-6CF75F8E43AF::net8.0::Tests.ValidationTests.RecipeValidatorTests.Servings_ShouldNotHaveValidationErrors_WhenValid&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::1D73A501-4A7F-462D-9EDE-6CF75F8E43AF::net8.0::Tests.ValidationTests.RecipeValidatorTests.Servings_ShouldHaveValidationErrors_WhenInvalid&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::1D73A501-4A7F-462D-9EDE-6CF75F8E43AF::net8.0::Tests.ValidationTests.RecipeValidatorTests.PreparationTime_ShouldNotHaveValidationErrors_WhenValid&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::1D73A501-4A7F-462D-9EDE-6CF75F8E43AF::net8.0::Tests.ValidationTests.RecipeValidatorTests.PreparationTime_ShouldHaveValidationErrors_WhenInvalid&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::1D73A501-4A7F-462D-9EDE-6CF75F8E43AF::net8.0::Tests.ValidationTests.RecipeValidatorTests.TelegramUserId_ShouldNotHaveValidationErrors_WhenValid&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::1D73A501-4A7F-462D-9EDE-6CF75F8E43AF::net8.0::Tests.ValidationTests.RecipeValidatorTests.TelegramUserId_ShouldHaveValidationErrors_WhenInvalid&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

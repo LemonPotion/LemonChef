@@ -1,4 +1,6 @@
-﻿namespace Application.Dto_s.Responses.Recipe;
+﻿using Application.Dto_s.Responses.Ingredient;
+
+namespace Application.Dto_s.Responses.Recipe;
 
 public class RecipeGetResponse : BaseRecipeDto
 {

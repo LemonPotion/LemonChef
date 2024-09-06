@@ -12,11 +12,11 @@ public class IngredientConfiguration : IEntityTypeConfiguration<Ingredient>
         builder.HasKey(i => i.Id)
             .HasName("ingredient_id");
         
-        builder.Property(r => r.CreationDate)
+        builder.Property(r => r.CreatedOn)
             .IsRequired()
             .HasColumnName("date_created");
 
-        builder.Property(r => r.ModifiedDate)
+        builder.Property(r => r.ModifiedOn)
             .HasColumnName("date_modified");
         
         builder.Property(i => i.Name)

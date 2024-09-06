@@ -19,11 +19,11 @@ public class RecipeConfiguration : IEntityTypeConfiguration<Recipe>
         builder.HasIndex(r => r.TelegramUserId)
             .HasDatabaseName("idx_telegram_user_id");
         
-        builder.Property(r => r.CreationDate)
+        builder.Property(r => r.CreatedOn)
             .IsRequired()
             .HasColumnName("date_created");
 
-        builder.Property(r => r.ModifiedDate)
+        builder.Property(r => r.ModifiedOn)
             .HasColumnName("date_modified");
         
         builder.Property(r => r.Title)

@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace Domain.Validations;
+namespace Domain.Validations.Primitives;
 
 /// <summary>
 /// Класс хранящи Regex паттерны 

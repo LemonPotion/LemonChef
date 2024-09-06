@@ -1,6 +1,7 @@
 ﻿using Application.Dto_s;
 using Application.Dto_s.Requests.Recipe;
 using Application.Dto_s.Responses;
+using Application.Dto_s.Responses.Ingredient;
 using Application.Dto_s.Responses.Recipe;
 using AutoMapper;
 using Domain.Entities;

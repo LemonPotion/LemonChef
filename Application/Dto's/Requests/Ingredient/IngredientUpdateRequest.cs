@@ -1,4 +1,4 @@
-﻿namespace Application.Dto_s.Requests;
+﻿namespace Application.Dto_s.Requests.Ingredient;
 
 public class IngredientUpdateRequest : BaseIngredientDto
 {

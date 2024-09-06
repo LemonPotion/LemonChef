@@ -9,12 +9,11 @@ public class IngredientValidator :AbstractValidator<Ingredient>
     {
         RuleFor(param => param.Name)
             .NotNullOrEmptyWithMessage(nameof(Ingredient.Name))
-            .Length(1,250)
+            .Length(2,250)
             .WithMessage(ExceptionMessages.InvalidFormat(nameof(Ingredient.Name)));
         
         RuleFor(param => param.Quantity)
             .GreaterThan(0)
-            .When(param=> param.Quantity is not null)
             .WithMessage(ExceptionMessages.TooLowNumber(nameof(Ingredient.Quantity)));
         
         RuleFor(param => param.Unit)
