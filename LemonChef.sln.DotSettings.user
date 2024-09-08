@@ -13,5 +13,8 @@
     &lt;TestId&gt;xUnit::1D73A501-4A7F-462D-9EDE-6CF75F8E43AF::net8.0::Tests.ValidationTests.RecipeValidatorTests.PreparationTime_ShouldHaveValidationErrors_WhenInvalid&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::1D73A501-4A7F-462D-9EDE-6CF75F8E43AF::net8.0::Tests.ValidationTests.RecipeValidatorTests.TelegramUserId_ShouldNotHaveValidationErrors_WhenValid&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::1D73A501-4A7F-462D-9EDE-6CF75F8E43AF::net8.0::Tests.ValidationTests.RecipeValidatorTests.TelegramUserId_ShouldHaveValidationErrors_WhenInvalid&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::1D73A501-4A7F-462D-9EDE-6CF75F8E43AF::net8.0::Tests.MappingTests.IngredientMappingProfileTests.MappingConfiguration_IsValid&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::1D73A501-4A7F-462D-9EDE-6CF75F8E43AF::net8.0::Tests.MappingTests.IngredientMappingProfileTests.Should_Map_IngredientToIngredientCreateResponse&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::1D73A501-4A7F-462D-9EDE-6CF75F8E43AF::net8.0::Tests.MappingTests.IngredientMappingProfileTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
