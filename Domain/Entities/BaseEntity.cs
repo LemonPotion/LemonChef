@@ -47,7 +47,7 @@ public abstract class BaseEntity
 
     public override string ToString()
     {
-        var props = this.GetType().GetProperties();
+        var props = GetType().GetProperties();
         var values = props.Select(prop => $"{prop.Name}: {prop.GetValue(this) ?? "null"}");
         return string.Join(" ", values);
     }

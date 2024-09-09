@@ -22,10 +22,15 @@ public class RecipeMappingProfile : Profile
                 dto.Servings,
                 dto.Description,
                 dto.TelegramUserId
-                ));
+                ))
+            .ForMember(dest=> dest.Ingredients, opt=> opt.Ignore())
+            .ForMember(dest=> dest.Id, opt => opt.Ignore())
+            .ForMember(dest => dest.CreatedOn, opt=> opt.Ignore())
+            .ForMember(dest => dest.ModifiedOn, opt => opt.Ignore());
+        
         CreateMap<RecipeUpdateRequest, Recipe>()
             .ConstructUsing(dto=> new Recipe(
-            Guid.NewGuid(),
+            dto.Id,
             dto.Title,
             dto.Link,
             null,
@@ -33,7 +38,11 @@ public class RecipeMappingProfile : Profile
             dto.Servings,
             dto.Description,
             dto.TelegramUserId
-        ));
+            ))
+            .ForMember(dest=> dest.Ingredients, opt=> opt.Ignore())
+            .ForMember(dest => dest.CreatedOn, opt=> opt.Ignore())
+            .ForMember(dest => dest.ModifiedOn, opt => opt.Ignore());;
+        
         CreateMap<Recipe, RecipeCreateResponse>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
             .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
@@ -42,6 +51,7 @@ public class RecipeMappingProfile : Profile
             .ForMember(dest => dest.Link, opt => opt.MapFrom(src => src.Link))
             .ForMember(dest=> dest.Servings, opt=> opt.MapFrom(src=>src.Servings))
             .ForMember(dest=> dest.Title, opt=> opt.MapFrom(src=>src.Title));
+        
         CreateMap<Recipe, RecipeUpdateResponse>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
             .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
@@ -51,6 +61,7 @@ public class RecipeMappingProfile : Profile
             .ForMember(dest=> dest.Servings, opt=> opt.MapFrom(src=>src.Servings))
             .ForMember(dest=> dest.Title, opt=> opt.MapFrom(src=>src.Title))
             .ForMember(dest => dest.Ingredients, opt => opt.MapFrom(src => src.Ingredients));
+        
         CreateMap<Recipe, RecipeGetResponse>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
             .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))

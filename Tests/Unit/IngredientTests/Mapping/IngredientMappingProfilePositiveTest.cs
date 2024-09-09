@@ -2,23 +2,23 @@
 using Application.Dto_s.Responses.Ingredient;
 using Application.Mapping;
 using AutoMapper;
+using Bogus;
 using Domain.Entities;
 using Domain.Validations.Primitives;
 using FluentAssertions;
 
-namespace Tests.MappingTests;
+namespace Tests.Unit.IngredientTests.Mapping;
 
-public class IngredientMappingProfileTests
+public class IngredientMappingProfilePositiveTest
 {
     private readonly IMapper _mapper;
     private readonly MapperConfiguration _configuration ;
+    private readonly Faker _faker = new Faker();
 
-    public IngredientMappingProfileTests()
+    public IngredientMappingProfilePositiveTest()
     {
         var config = new MapperConfiguration(cfg =>
-        {
-            cfg.AddProfile<IngredientMappingProfile>();
-        });
+            cfg.AddProfile<IngredientMappingProfile>());
         _configuration = config;
         _mapper = config.CreateMapper();
     }
@@ -34,14 +34,15 @@ public class IngredientMappingProfileTests
     {
         var ingredient = new Ingredient
         {
-            Id = Guid.NewGuid(),
-            CreatedOn = DateTime.UtcNow,
-            ModifiedOn = null,
-            Name = "Tomato",
-            Quantity = null,
-            RecipeId = Guid.NewGuid(),
-            Unit = null
+            Id = _faker.Random.Guid(),
+            CreatedOn = _faker.Date.Past(),
+            ModifiedOn = _faker.Date.Recent(),
+            Name = _faker.Commerce.Product(),
+            Quantity = _faker.Random.Int(1),
+            RecipeId = _faker.Random.Guid(),
+            Unit = UnitsOfMeasure.Gram
         };
+        
         var response = _mapper.Map<IngredientCreateResponse>(ingredient);
 
         response.Should().BeEquivalentTo(ingredient, cfg => cfg
@@ -57,10 +58,10 @@ public class IngredientMappingProfileTests
     {
         var request = new IngredientCreateRequest
         {
-            Name = "Tomato",
-            Quantity = null,
-            RecipeId = Guid.NewGuid(),
-            Unit = null
+            Name = _faker.Commerce.Product(),
+            Quantity = _faker.Random.Int(1),
+            RecipeId = _faker.Random.Guid(),
+            Unit = UnitsOfMeasure.Gram
         };
         var response = _mapper.Map<Ingredient>(request);
         
@@ -74,13 +75,13 @@ public class IngredientMappingProfileTests
     {
         var ingredient = new Ingredient
         {
-            Id = Guid.NewGuid(),
-            CreatedOn = DateTime.UtcNow,
-            ModifiedOn = null,
-            Name = "Tomato",
-            Quantity = null,
-            RecipeId = Guid.NewGuid(),
-            Unit = null
+            Id = _faker.Random.Guid(),
+            CreatedOn = _faker.Date.Past(),
+            ModifiedOn = _faker.Date.Recent(),
+            Name = _faker.Commerce.Product(),
+            Quantity = _faker.Random.Int(1),
+            RecipeId = _faker.Random.Guid(),
+            Unit = UnitsOfMeasure.Gram
         };
         
         var response = _mapper.Map<IngredientUpdateResponse>(ingredient);
@@ -98,11 +99,11 @@ public class IngredientMappingProfileTests
     {
         var request = new IngredientUpdateRequest
         {
-            Name = "Tomato",
-            Quantity = null,
-            RecipeId = Guid.NewGuid(),
-            Unit = null,
-            Id = Guid.NewGuid()
+            Name = _faker.Commerce.Product(),
+            Quantity = _faker.Random.Int(1),
+            RecipeId = _faker.Random.Guid(),
+            Unit = UnitsOfMeasure.Gram,
+            Id = _faker.Random.Guid()
         };
 
         var response = _mapper.Map<Ingredient>(request);
@@ -117,13 +118,13 @@ public class IngredientMappingProfileTests
     {
         var ingredient = new Ingredient
         {
-            Id = Guid.NewGuid(),
-            CreatedOn = DateTime.UtcNow,
-            ModifiedOn = null,
-            Name = "Tomato",
-            Quantity = null,
-            RecipeId = Guid.NewGuid(),
-            Unit = null
+            Id = _faker.Random.Guid(),
+            CreatedOn = _faker.Date.Past(),
+            ModifiedOn = _faker.Date.Recent(),
+            Name = _faker.Commerce.Product(),
+            Quantity = _faker.Random.Int(1),
+            RecipeId = _faker.Random.Guid(),
+            Unit = UnitsOfMeasure.Gram
         };
 
         var response = _mapper.Map<IngredientGetResponse>(ingredient);
