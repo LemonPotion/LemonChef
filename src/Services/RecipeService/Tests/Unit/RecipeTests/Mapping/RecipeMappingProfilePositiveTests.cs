@@ -13,9 +13,8 @@ public class RecipeMappingProfilePositiveTests
 {
     private readonly IMapper _mapper;
     private readonly MapperConfiguration _mapperConfiguration ;
-
     private readonly Faker _faker = new Faker();
-    //TODO: доделать
+    
     public RecipeMappingProfilePositiveTests()
     {
         var config = new MapperConfiguration(cfg =>
