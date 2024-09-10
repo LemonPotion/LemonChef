@@ -34,6 +34,12 @@ public class RecipiesDbContext : DbContext
                         Entry(entity).Property(x => x.CreatedOn).IsModified = false;
                         entity.ModifiedOn= now;
                         break;
+                    case EntityState.Detached:
+                        break;
+                    case EntityState.Unchanged:
+                        break;
+                    case EntityState.Deleted:
+                        break;
                 }
             }
         }

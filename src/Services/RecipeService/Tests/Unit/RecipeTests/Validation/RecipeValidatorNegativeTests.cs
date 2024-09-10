@@ -6,7 +6,7 @@ using FluentValidation.TestHelper;
 
 namespace Tests.Unit.RecipeTests.Validation;
 
-public class RecipeValidatorTests
+public class RecipeValidatorNegativeTests
 {
     private readonly RecipeValidator _recipeValidator = new(nameof(Recipe));
     private readonly Faker _faker = new Faker();
@@ -18,7 +18,9 @@ public class RecipeValidatorTests
         {
             Title = null
         };
+        
         var result = _recipeValidator.TestValidate(recipe);
+        
         result.ShouldHaveValidationErrorFor(x => x.Title)
             .WithErrorMessage(ExceptionMessages.NullException(nameof(Recipe.Title)));
     }
@@ -30,7 +32,9 @@ public class RecipeValidatorTests
         {
             Title = string.Empty
         };
+        
         var result = _recipeValidator.TestValidate(recipe);
+        
         result.ShouldHaveValidationErrorFor(x => x.Title)
             .WithErrorMessage(ExceptionMessages.EmptyException(nameof(Recipe.Title)));
     }
@@ -42,7 +46,9 @@ public class RecipeValidatorTests
         {
             Title = _faker.Lorem.Letter(6000)
         };
+        
         var result = _recipeValidator.TestValidate(recipe);
+        
         result.ShouldHaveValidationErrorFor(x => x.Title)
             .WithErrorMessage(ExceptionMessages.InvalidFormat(nameof(Recipe.Title)));
     }
@@ -54,7 +60,9 @@ public class RecipeValidatorTests
         {
             Link = _faker.Lorem.Letter(1)
         };
+        
         var result = _recipeValidator.TestValidate(recipe);
+        
         result.ShouldHaveValidationErrorFor(x => x.Link)
             .WithErrorMessage(ExceptionMessages.InvalidFormat(nameof(Recipe.Link)));
     }
@@ -66,7 +74,9 @@ public class RecipeValidatorTests
         {
             Description = null
         };
+        
         var result = _recipeValidator.TestValidate(recipe);
+        
         result.ShouldHaveValidationErrorFor(x => x.Description)
             .WithErrorMessage(ExceptionMessages.NullException(nameof(Recipe.Description)));
     }
@@ -78,7 +88,9 @@ public class RecipeValidatorTests
         {
             Description = string.Empty
         };
+        
         var result = _recipeValidator.TestValidate(recipe);
+        
         result.ShouldHaveValidationErrorFor(x => x.Description)
             .WithErrorMessage(ExceptionMessages.EmptyException(nameof(Recipe.Description)));
     }
@@ -90,7 +102,9 @@ public class RecipeValidatorTests
         {
             Description = _faker.Lorem.Letter(6000)
         };
+        
         var result = _recipeValidator.TestValidate(recipe);
+        
         result.ShouldHaveValidationErrorFor(x => x.Description)
             .WithErrorMessage(ExceptionMessages.InvalidFormat(nameof(Recipe.Description)));
     }
@@ -102,7 +116,9 @@ public class RecipeValidatorTests
         {
             Servings = _faker.Random.Int(max:0)
         };
+        
         var result = _recipeValidator.TestValidate(recipe);
+        
         result.ShouldHaveValidationErrorFor(x => x.Servings)
             .WithErrorMessage(ExceptionMessages.TooLowNumber(nameof(Recipe.Servings)));
     }
@@ -114,7 +130,9 @@ public class RecipeValidatorTests
         {
             PreparationTime = _faker.Random.Int(max:0)
         };
+        
         var result = _recipeValidator.TestValidate(recipe);
+        
         result.ShouldHaveValidationErrorFor(x => x.PreparationTime)
             .WithErrorMessage(ExceptionMessages.TooLowNumber(nameof(Recipe.PreparationTime)));
     }
@@ -126,7 +144,9 @@ public class RecipeValidatorTests
         {
             TelegramUserId = _faker.Random.Int(max:0)
         };
+        
         var result = _recipeValidator.TestValidate(recipe);
+        
         result.ShouldHaveValidationErrorFor(x => x.TelegramUserId)
             .WithErrorMessage(ExceptionMessages.InvalidFormat(nameof(Recipe.TelegramUserId)));
     }

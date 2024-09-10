@@ -6,42 +6,36 @@ using Bogus;
 using Domain.Entities;
 using Domain.Validations.Primitives;
 using FluentAssertions;
+using Tests.Unit.Data;
 
 namespace Tests.Unit.IngredientTests.Mapping;
 
-public class IngredientMappingProfilePositiveTest
+public class IngredientMappingProfilePositiveTests
 {
     private readonly IMapper _mapper;
-    private readonly MapperConfiguration _configuration ;
+    private readonly MapperConfiguration _mapperConfiguration ;
     private readonly Faker _faker = new Faker();
 
-    public IngredientMappingProfilePositiveTest()
+    public IngredientMappingProfilePositiveTests()
     {
         var config = new MapperConfiguration(cfg =>
             cfg.AddProfile<IngredientMappingProfile>());
-        _configuration = config;
+        
+        _mapperConfiguration = config;
+        
         _mapper = config.CreateMapper();
     }
 
     [Fact]
     public void Ingredient_MappingConfiguration_IsValid()
     {
-        _configuration.AssertConfigurationIsValid();
+        _mapperConfiguration.AssertConfigurationIsValid();
     }
 
     [Fact]
     public void Should_Map_IngredientToIngredientCreateResponse()
     {
-        var ingredient = new Ingredient
-        {
-            Id = _faker.Random.Guid(),
-            CreatedOn = _faker.Date.Past(),
-            ModifiedOn = _faker.Date.Recent(),
-            Name = _faker.Commerce.Product(),
-            Quantity = _faker.Random.Int(1),
-            RecipeId = _faker.Random.Guid(),
-            Unit = UnitsOfMeasure.Gram
-        };
+        var ingredient = TestDataValidGenerator.GetIngredientValid();
         
         var response = _mapper.Map<IngredientCreateResponse>(ingredient);
 
@@ -63,6 +57,7 @@ public class IngredientMappingProfilePositiveTest
             RecipeId = _faker.Random.Guid(),
             Unit = UnitsOfMeasure.Gram
         };
+        
         var response = _mapper.Map<Ingredient>(request);
         
         response.Should().BeEquivalentTo(request, cfg => cfg
@@ -73,16 +68,7 @@ public class IngredientMappingProfilePositiveTest
     [Fact]
     public void Should_Map_IngredientToIngredientUpdateResponse()
     {
-        var ingredient = new Ingredient
-        {
-            Id = _faker.Random.Guid(),
-            CreatedOn = _faker.Date.Past(),
-            ModifiedOn = _faker.Date.Recent(),
-            Name = _faker.Commerce.Product(),
-            Quantity = _faker.Random.Int(1),
-            RecipeId = _faker.Random.Guid(),
-            Unit = UnitsOfMeasure.Gram
-        };
+        var ingredient = TestDataValidGenerator.GetIngredientValid();
         
         var response = _mapper.Map<IngredientUpdateResponse>(ingredient);
 
@@ -116,16 +102,7 @@ public class IngredientMappingProfilePositiveTest
     [Fact]
     public void Should_Map_IngredientToIngredientGetResponse()
     {
-        var ingredient = new Ingredient
-        {
-            Id = _faker.Random.Guid(),
-            CreatedOn = _faker.Date.Past(),
-            ModifiedOn = _faker.Date.Recent(),
-            Name = _faker.Commerce.Product(),
-            Quantity = _faker.Random.Int(1),
-            RecipeId = _faker.Random.Guid(),
-            Unit = UnitsOfMeasure.Gram
-        };
+        var ingredient = TestDataValidGenerator.GetIngredientValid();
 
         var response = _mapper.Map<IngredientGetResponse>(ingredient);
 

@@ -18,7 +18,9 @@ public class IngredientValidatorNegativeTests
         {
             Name = null
         };
+        
         var result = _ingredientValidator.TestValidate(ingredient);
+        
         result.ShouldHaveValidationErrorFor(x=> x.Name)
             .WithErrorMessage(ExceptionMessages.NullException(nameof(Ingredient.Name)));
     }
@@ -30,7 +32,9 @@ public class IngredientValidatorNegativeTests
         {
             Name = string.Empty
         };
+        
         var result = _ingredientValidator.TestValidate(ingredient);
+        
         result.ShouldHaveValidationErrorFor(x => x.Name)
             .WithErrorMessage(ExceptionMessages.EmptyException(nameof(Ingredient.Name)));
     }
@@ -42,7 +46,9 @@ public class IngredientValidatorNegativeTests
         {
             Name = _faker.Lorem.Letter(251) 
         };
+        
         var result = _ingredientValidator.TestValidate(ingredient);
+        
         result.ShouldHaveValidationErrorFor(x => x.Name)
             .WithErrorMessage(ExceptionMessages.InvalidFormat(nameof(Ingredient.Name)));
     }
@@ -54,7 +60,9 @@ public class IngredientValidatorNegativeTests
         {
             Quantity = _faker.Random.Int(max:0)
         };
+        
         var result = _ingredientValidator.TestValidate(ingredient);
+        
         result.ShouldHaveValidationErrorFor(x => x.Quantity)
             .WithErrorMessage(ExceptionMessages.TooLowNumber(nameof(Ingredient.Quantity)));
     }
@@ -67,7 +75,9 @@ public class IngredientValidatorNegativeTests
         {
             Unit = (UnitsOfMeasure) extremeValue
         };
+        
         var result = _ingredientValidator.TestValidate(ingredient);
+        
         result.ShouldHaveValidationErrorFor(x => x.Unit)
             .WithErrorMessage(ExceptionMessages.InvalidEnumValue(nameof(Ingredient.Unit)));
     }
@@ -76,7 +86,9 @@ public class IngredientValidatorNegativeTests
     public void RecipeId_ShouldHaveNullMessageValidationErrors_WhenNull()
     {
         var ingredient = new Ingredient();
+        
         var result = _ingredientValidator.TestValidate(ingredient);
+        
         result.ShouldHaveValidationErrorFor(x=> x.RecipeId);
     }
 
@@ -87,7 +99,9 @@ public class IngredientValidatorNegativeTests
         {
             RecipeId = Guid.Empty
         };
+        
         var result = _ingredientValidator.TestValidate(ingredient);
+        
         result.ShouldHaveValidationErrorFor(x => x.RecipeId)
             .WithErrorMessage(ExceptionMessages.EmptyException(nameof(Ingredient.RecipeId)));
     }
