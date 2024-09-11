@@ -1,4 +1,4 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d65696ba_002D8906_002D4f93_002D93eb_002D3d1c3a7dcecd/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Add" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;Project Location="D:\LemonChef\LemonChef\Tests" Presentation="&amp;lt;src&amp;gt;\&amp;lt;Tests&amp;gt;" /&gt;&#xD;
+  &lt;Project Location="D:\LemonChef\LemonChef\src\Services\RecipeService\Tests" Presentation="&amp;lt;src&amp;gt;\&amp;lt;Services&amp;gt;\&amp;lt;RecipeService&amp;gt;\&amp;lt;Tests&amp;gt;" /&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

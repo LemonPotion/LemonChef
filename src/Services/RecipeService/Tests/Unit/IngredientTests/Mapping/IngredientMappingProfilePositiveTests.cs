@@ -39,7 +39,8 @@ public class IngredientMappingProfilePositiveTests
         
         var response = _mapper.Map<IngredientCreateResponse>(ingredient);
 
-        response.Should().BeEquivalentTo(ingredient, cfg => cfg
+        response.Should()
+            .BeEquivalentTo(ingredient, cfg => cfg
             .Excluding(src => src.CreatedOn)
             .Excluding(src => src.ModifiedOn)
             .Excluding(src=> src.Recipe)
@@ -50,13 +51,7 @@ public class IngredientMappingProfilePositiveTests
     [Fact]
     public void Should_Map_IngredientCreateRequestToIngredient()
     {
-        var request = new IngredientCreateRequest
-        {
-            Name = _faker.Commerce.Product(),
-            Quantity = _faker.Random.Int(1),
-            RecipeId = _faker.Random.Guid(),
-            Unit = UnitsOfMeasure.Gram
-        };
+        var request = TestDataValidGenerator.GetIngredientCreateRequestValid();
         
         var response = _mapper.Map<Ingredient>(request);
         
@@ -83,14 +78,7 @@ public class IngredientMappingProfilePositiveTests
     [Fact]
     public void Should_Map_IngredientUpdateRequestToIngredient()
     {
-        var request = new IngredientUpdateRequest
-        {
-            Name = _faker.Commerce.Product(),
-            Quantity = _faker.Random.Int(1),
-            RecipeId = _faker.Random.Guid(),
-            Unit = UnitsOfMeasure.Gram,
-            Id = _faker.Random.Guid()
-        };
+        var request = TestDataValidGenerator.GetIngredientUpdateRequestValid();
 
         var response = _mapper.Map<Ingredient>(request);
 

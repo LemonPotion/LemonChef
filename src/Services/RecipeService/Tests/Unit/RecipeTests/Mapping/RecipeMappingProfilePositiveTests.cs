@@ -37,7 +37,8 @@ public class RecipeMappingProfilePositiveTests
         
         var response = _mapper.Map<RecipeCreateResponse>(recipe);
         
-        response.Should().BeEquivalentTo(recipe, cfg => cfg
+        response.Should()
+            .BeEquivalentTo(recipe, cfg => cfg
             .Excluding(src=>src.CreatedOn)
             .Excluding(src=> src.ModifiedOn)
             .Excluding(src=> src.Ingredients)
@@ -52,7 +53,8 @@ public class RecipeMappingProfilePositiveTests
         
         var response = _mapper.Map<RecipeGetResponse>(recipe);
         
-        response.Should().BeEquivalentTo(recipe, cfg => cfg
+        response.Should()
+            .BeEquivalentTo(recipe, cfg => cfg
             .Excluding(src=>src.CreatedOn)
             .Excluding(src=> src.ModifiedOn)
             .Excluding(src=> src.Ingredients)
@@ -67,7 +69,8 @@ public class RecipeMappingProfilePositiveTests
 
         var response = _mapper.Map<RecipeUpdateResponse>(recipe);
         
-        response.Should().BeEquivalentTo(recipe, cfg => cfg
+        response.Should()
+            .BeEquivalentTo(recipe, cfg => cfg
             .Excluding(src=>src.CreatedOn)
             .Excluding(src=> src.ModifiedOn)
             .Excluding(src=> src.Ingredients)
@@ -78,20 +81,12 @@ public class RecipeMappingProfilePositiveTests
     [Fact]
     public void Should_Map_RecipeCreateRequestToRecipe()
     {
-        var recipe = TestDataValidGenerator.GetRecipeValid();
-        var request = new RecipeCreateRequest()
-        {
-            Title = recipe.Title,
-            Description = recipe.Description,
-            Link = recipe.Link,
-            PreparationTime = recipe.PreparationTime,
-            Servings = recipe.Servings,
-            TelegramUserId = recipe.TelegramUserId
-        };
+        var request = TestDataValidGenerator.GetRecipeCreateRequestValid();
 
         var response = _mapper.Map<Recipe>(request);
         
-        response.Should().BeEquivalentTo(request, cfg => cfg
+        response.Should()
+            .BeEquivalentTo(request, cfg => cfg
             .ComparingByMembers<Recipe>()
             .ComparingByMembers<RecipeCreateRequest>());
     }
@@ -99,21 +94,12 @@ public class RecipeMappingProfilePositiveTests
     [Fact]
     public void Should_Map_RecipeUpdateRequestToRecipe()
     {
-        var recipe = TestDataValidGenerator.GetRecipeValid();
-        var request = new RecipeUpdateRequest()
-        {
-            Id = recipe.Id,
-            Title = recipe.Title,
-            Description = recipe.Description,
-            Link = recipe.Link,
-            PreparationTime = recipe.PreparationTime,
-            Servings = recipe.Servings,
-            TelegramUserId = recipe.TelegramUserId
-        };
+        var request = TestDataValidGenerator.GetRecipeUpdateRequestValid();
 
         var response = _mapper.Map<Recipe>(request);
         
-        response.Should().BeEquivalentTo(request, cfg => cfg
+        response.Should()
+            .BeEquivalentTo(request, cfg => cfg
             .ComparingByMembers<Recipe>()
             .ComparingByMembers<RecipeUpdateRequest>());
     }
