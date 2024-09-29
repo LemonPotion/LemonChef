@@ -1,10 +1,9 @@
-﻿using Application.Dto_s.Requests.Ingredient;
-using Application.Dto_s.Responses.Ingredient;
+﻿using Application.Dto_s.Ingredient.Requests;
+using Application.Dto_s.Ingredient.Responses;
 using Application.Mapping;
 using AutoMapper;
 using Bogus;
 using Domain.Entities;
-using Domain.Validations.Primitives;
 using FluentAssertions;
 using Tests.Unit.Data;
 

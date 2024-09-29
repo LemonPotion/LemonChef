@@ -1,51 +1,51 @@
-﻿using Application.Dto_s.Requests;
-using Application.Dto_s.Requests.Ingredient;
-using Application.Dto_s.Responses;
-using Application.Dto_s.Responses.Ingredient;
-using Application.Services;
+﻿using System.Security.Claims;
+using Application.Dto_s.Ingredient.Requests;
+using Application.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LemonChefApi.Controllers;
-
+[Authorize]
 [ApiController]
 [Route("/api/[controller]")]
-public class IngredientController : ControllerBase
+public class IngredientsController : ControllerBase
 {
     [HttpPost]
-    public async Task<IngredientCreateResponse> CreateAsync([FromBody] IngredientCreateRequest request, 
-        [FromServices] IngredientService service, CancellationToken cancellationToken)
+    public async Task<IActionResult> CreateAsync([FromBody] IngredientCreateRequest request, 
+        [FromServices] IIngredientService service, CancellationToken cancellationToken)
     {
         var result = await service.CreateAsync(request, cancellationToken);
-        return result;
+        return Ok(result);
     }
 
     [HttpGet("{id:guid}")]
-    public async Task<IngredientGetResponse> GetByIdAsync(Guid id, 
-        [FromServices] IngredientService service, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetByIdAsync(Guid id, 
+        [FromServices] IIngredientService service, CancellationToken cancellationToken)
     {
         var result = await service.GetByIdAsync(id, cancellationToken);
-        return result;
+        return Ok(result);
     }
 
     [HttpPut]
-    public async Task<IngredientUpdateResponse> UpdateAsync([FromBody] IngredientUpdateRequest request, [FromServices] IngredientService service, CancellationToken cancellationToken)
+    public async Task<IActionResult> UpdateAsync([FromBody] IngredientUpdateRequest request, [FromServices] IIngredientService service, CancellationToken cancellationToken)
     {
         var result = await service.UpdateAsync(request, cancellationToken);
-        return result;
+        return Ok(result);
     }
 
     [HttpDelete ("{id:guid}")]
 
-    public async Task<bool> DeleteAsync(Guid id, [FromServices] IngredientService service, CancellationToken cancellationToken)
+    public async Task<IActionResult> DeleteAsync(Guid id, [FromServices] IIngredientService service, CancellationToken cancellationToken)
     {
-        var result = await service.DeleteByIdAsync(id, cancellationToken);
-        return result;
+        var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+        var result = await service.DeleteByIdAsync(id, userId, cancellationToken);
+        return Ok(result);
     }
     
     [HttpGet]
-    public async Task<List<IngredientGetResponse>> GetAsync([FromServices] IngredientService service, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetAllPagedAsync([FromQuery] IngredientGetAllPagedRequest pagedRequest ,[FromServices] IIngredientService service, CancellationToken cancellationToken)
     {
-        var result = await service.GetAllAsync(cancellationToken);
-        return result;
+        var result = await service.GetAllPagedAsync(pagedRequest.PageNumber,pagedRequest.PageSize,cancellationToken);
+        return Ok(result);
     }
 }

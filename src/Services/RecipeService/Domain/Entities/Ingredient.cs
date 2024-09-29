@@ -1,11 +1,12 @@
-﻿using System.Text.Json.Serialization;
+﻿using Domain.Entities.Base;
+using Domain.Interfaces;
 using Domain.Validations.Primitives;
 using Domain.Validations.Validators;
 using FluentValidation;
 
 namespace Domain.Entities;
 
-public class Ingredient : BaseEntity
+public class Ingredient : BaseEntity, ITrackable
 {
     public string Name { get; set; }
     
@@ -15,6 +16,10 @@ public class Ingredient : BaseEntity
     
     public Recipe Recipe { get; set; }
     public Guid RecipeId { get; set; }
+    
+    public DateTime CreatedOn { get; set; }
+    
+    public DateTime? ModifiedOn { get; set; }
 
     public Ingredient()
     {
@@ -31,5 +36,4 @@ public class Ingredient : BaseEntity
         var validator = new IngredientValidator(nameof(Ingredient));
         validator.ValidateAndThrow(this);
     }
-    
 }

@@ -1,13 +1,24 @@
-﻿using Application.Intrefaces.Repositories;
-using Application.Intrefaces.Services;
+﻿using Application.Interfaces.Repositories;
+using Application.Interfaces.Services;
 using AutoMapper;
-using Domain.Entities;
+using Domain.Entities.Base;
 
 namespace Application.Services;
 
-public abstract class BaseService<TEntity, TCreateRequest, TUpdateRequest, TGetResponse, TCreateResponse, TUpdateResponse>
-    : IBaseService<TEntity, TCreateRequest, TUpdateRequest, TGetResponse, TCreateResponse, TUpdateResponse>
-    where TEntity : BaseEntity
+public abstract class BaseService<
+    TEntity, 
+    TCreateRequest, 
+    TUpdateRequest,
+    TGetResponse,
+    TCreateResponse,
+    TUpdateResponse>
+    : IBaseService<
+        TEntity,
+        TCreateRequest,
+        TUpdateRequest,
+        TGetResponse,
+        TCreateResponse,
+        TUpdateResponse> where TEntity : BaseEntity
 {
     private readonly IBaseRepository<TEntity> _baseRepository;
     private readonly IMapper _mapper;
@@ -32,18 +43,17 @@ public abstract class BaseService<TEntity, TCreateRequest, TUpdateRequest, TGetR
         return _mapper.Map<TGetResponse>(entity);
     }
 
-    public virtual async Task<List<TGetResponse>> GetAllAsync(CancellationToken cancellationToken)
+    public virtual async Task<List<TGetResponse>> GetAllPagedAsync(int pageNumber, int pageSize, CancellationToken cancellationToken)
     {
-        var entities = await _baseRepository.GetAllListAsync(cancellationToken);
+        var entities = await _baseRepository.GetAllListPagedAsync(pageNumber, pageSize,cancellationToken);
         return _mapper.Map<List<TGetResponse>>(entities);
     }
 
     public virtual async Task<TUpdateResponse> UpdateAsync(TUpdateRequest request, CancellationToken cancellationToken)
     {
         var entityToUpdate = _mapper.Map<TEntity>(request);
-        await _baseRepository.UpdateAsync(entityToUpdate, cancellationToken);
+        var updatedEntity=await _baseRepository.UpdateAsync(entityToUpdate, cancellationToken);
         await _baseRepository.SaveChangesAsync();
-        var updatedEntity = await _baseRepository.GetByIdAsync(entityToUpdate.Id, cancellationToken);
         return _mapper.Map<TUpdateResponse>(updatedEntity);
     }
 

@@ -1,4 +1,4 @@
-﻿using Application.Intrefaces.Repositories;
+﻿using Application.Interfaces.Repositories;
 using Domain.Entities;
 using Infrastructure.Dal.EntityFramework;
 
@@ -6,7 +6,7 @@ namespace Infrastructure.Dal.Repositories;
 
 public class IngredientRepository :BaseRepository<Ingredient>, IIngredientRepository
 {
-    public IngredientRepository(RecipiesDbContext dbContext) : base(dbContext)
+    public IngredientRepository(RecipesDbContext dbContext) : base(dbContext)
     {
     }
     

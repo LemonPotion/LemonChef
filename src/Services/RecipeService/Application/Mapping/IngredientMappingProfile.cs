@@ -1,7 +1,5 @@
-﻿using Application.Dto_s.Requests;
-using Application.Dto_s.Requests.Ingredient;
-using Application.Dto_s.Responses;
-using Application.Dto_s.Responses.Ingredient;
+﻿using Application.Dto_s.Ingredient.Requests;
+using Application.Dto_s.Ingredient.Responses;
 using AutoMapper;
 using Domain.Entities;
 

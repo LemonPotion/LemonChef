@@ -1,5 +1,5 @@
-﻿using Application.Dto_s.Requests.Recipe;
-using Application.Dto_s.Responses.Recipe;
+﻿using Application.Dto_s.Recipe.Requests;
+using Application.Dto_s.Recipe.Responses;
 using Application.Mapping;
 using AutoMapper;
 using Bogus;

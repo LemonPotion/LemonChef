@@ -1,15 +1,15 @@
-﻿using Application.Intrefaces.Repositories;
-using Domain.Entities;
+﻿using Application.Interfaces.Repositories;
+using Domain.Entities.Base;
 using Infrastructure.Dal.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Dal.Repositories;
 
-public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : BaseEntity 
+public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : BaseEntity
 {
-    private readonly RecipiesDbContext _dbContext;
+    private readonly RecipesDbContext _dbContext;
 
-    public BaseRepository(RecipiesDbContext dbContext)
+    public BaseRepository(RecipesDbContext dbContext)
     {
         _dbContext = dbContext;
     }
@@ -40,9 +40,11 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where T
         return true;
     }
 
-    public virtual async Task<List<TEntity>> GetAllListAsync(CancellationToken cancellationToken)
+    public virtual async Task<List<TEntity>> GetAllListPagedAsync(int pageNumber, int pageSize, CancellationToken cancellationToken)
     {
-        return await _dbContext.Set<TEntity>().ToListAsync(cancellationToken);
+        return await _dbContext.Set<TEntity>().Skip((pageNumber - 1) * pageSize)
+                             .Take(pageSize)
+                             .ToListAsync(cancellationToken);
     }
     public async Task SaveChangesAsync()
     {

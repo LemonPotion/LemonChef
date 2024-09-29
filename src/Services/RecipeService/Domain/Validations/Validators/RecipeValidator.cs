@@ -32,7 +32,6 @@ public class RecipeValidator : AbstractValidator<Recipe>
             .WithMessage(ExceptionMessages.TooLowNumber(nameof(Recipe.PreparationTime)));
         
         RuleFor(param => param.TelegramUserId)
-            .NotNullOrEmptyWithMessage(nameof(Recipe.TelegramUserId))
             .GreaterThan(0)
             .WithMessage(ExceptionMessages.InvalidFormat(nameof(Recipe.TelegramUserId)));
     }

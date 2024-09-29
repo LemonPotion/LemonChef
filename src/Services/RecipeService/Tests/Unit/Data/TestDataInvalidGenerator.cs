@@ -1,5 +1,5 @@
-﻿using Application.Dto_s.Requests.Ingredient;
-using Application.Dto_s.Requests.Recipe;
+﻿using Application.Dto_s.Ingredient.Requests;
+using Application.Dto_s.Recipe.Requests;
 using Bogus;
 using Domain.Entities;
 using Domain.Validations.Primitives;

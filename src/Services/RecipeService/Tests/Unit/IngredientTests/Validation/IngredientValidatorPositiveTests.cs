@@ -1,6 +1,5 @@
 ﻿using Bogus;
 using Domain.Entities;
-using Domain.Validations.Primitives;
 using Domain.Validations.Validators;
 using FluentValidation.TestHelper;
 using Tests.Unit.Data;

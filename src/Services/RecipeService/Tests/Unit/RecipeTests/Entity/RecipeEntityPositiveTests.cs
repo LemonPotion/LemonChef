@@ -19,7 +19,8 @@ public class RecipeEntityPositiveTests
             recipe.PreparationTime,
             recipe.Servings,
             recipe.Description,
-            recipe.TelegramUserId
+            recipe.TelegramUserId,
+            Guid.Empty
             );
 
         recipeResponse.Should()

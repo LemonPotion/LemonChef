@@ -1,8 +1,15 @@
-using Application.Intrefaces.Repositories;
+using Application.Interfaces.Repositories;
+using Application.Interfaces.Services;
 using Application.Services;
+using Domain.Entities;
 using Infrastructure.Dal.EntityFramework;
 using Infrastructure.Dal.Repositories;
+using LemonChefApi.Identity;
+using LemonChefApi.Settings;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 
 namespace LemonChefApi;
 
@@ -13,23 +20,83 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
+        builder.Services.AddAuthentication();
         builder.Services.AddAuthorization();
         
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddControllers();
-        builder.Services.AddSwaggerGen();
-
-        builder.Services.AddTransient<IngredientService>();
+        builder.Services.Configure<IdentityOptions>(options =>
+        {
+            options.Password.RequireNonAlphanumeric = false;
+            options.Password.RequireUppercase = true;
+            options.Password.RequireDigit = true;
+            options.Password.RequiredLength = 6;
+            options.Password.RequiredUniqueChars = 1;
+            options.Password.RequireLowercase = true;
+            options.SignIn.RequireConfirmedEmail = false;
+            options.SignIn.RequireConfirmedPhoneNumber = false;
+            options.SignIn.RequireConfirmedAccount = true;
+            options.User.RequireUniqueEmail = true;
+        });
+        
+        builder.Services.AddSwaggerGen(options =>
+        {
+            options.SwaggerDoc("v1", new OpenApiInfo()
+            {
+                Title = "LemonChef",
+                Version = "v1",
+            });
+            options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+            {
+                In = ParameterLocation.Header,
+                Description = "Please paste your auth token",
+                Name = "Authorization",
+                Type = SecuritySchemeType.Http,
+                BearerFormat = "JWT",
+                Scheme = "bearer"
+            });
+            
+            options.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                        },
+                        Scheme = "bearer",
+                        Name = "Bearer",
+                        In = ParameterLocation.Header
+                    },
+                    new List<string>()
+                }
+            });
+        });
+        
+        builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection(nameof(EmailSettings)));
+        
+        builder.Services.AddTransient<IIngredientService,IngredientService>();
         builder.Services.AddTransient<IIngredientRepository, IngredientRepository>();
-
-        builder.Services.AddTransient<RecipeService>();
+        
+        builder.Services.AddTransient<IRecipeService,RecipeService>();
         builder.Services.AddTransient<IRecipeRepository, RecipeRepository>();
+        
+
+        builder.Services.AddScoped<ITimestampService, TimestampService>();
+        builder.Services.AddTransient<IEmailSender, EmailSender>();
         
         builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         
-        builder.Services.AddDbContext<RecipiesDbContext>
-            (options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+        builder.Services.AddIdentityApiEndpoints<User>()
+                .AddEntityFrameworkStores<RecipesDbContext>()
+                .AddDefaultTokenProviders();
+            
+        
+        builder.Services.AddDbContext<RecipesDbContext>
+            (options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")).UseCamelCaseNamingConvention());
         
         var app = builder.Build();
         
@@ -42,7 +109,9 @@ public class Program
 
         app.UseHttpsRedirection();
 
+        app.UseAuthentication();
         app.UseAuthorization();
+        app.MapIdentityApi<User>();
         
         app.MapControllers();
 

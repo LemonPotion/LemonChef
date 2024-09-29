@@ -1,8 +1,4 @@
 ﻿namespace Domain.Validations.Primitives;
-
-/// <summary>
-/// Класс содержащий сообщения об ошибках
-/// </summary>
 public abstract class ExceptionMessages
 {
     public static readonly Func<string, string> NullException = param => $"{param} is null";
