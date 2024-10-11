@@ -12,16 +12,16 @@ namespace Tests.Unit.IngredientTests.Mapping;
 public class IngredientMappingProfilePositiveTests
 {
     private readonly IMapper _mapper;
-    private readonly MapperConfiguration _mapperConfiguration ;
+    private readonly MapperConfiguration _mapperConfiguration;
     private readonly Faker _faker = new Faker();
 
     public IngredientMappingProfilePositiveTests()
     {
         var config = new MapperConfiguration(cfg =>
             cfg.AddProfile<IngredientMappingProfile>());
-        
+
         _mapperConfiguration = config;
-        
+
         _mapper = config.CreateMapper();
     }
 
@@ -35,25 +35,25 @@ public class IngredientMappingProfilePositiveTests
     public void Should_Map_IngredientToIngredientCreateResponse()
     {
         var ingredient = TestDataValidGenerator.GetIngredientValid();
-        
+
         var response = _mapper.Map<IngredientCreateResponse>(ingredient);
 
         response.Should()
             .BeEquivalentTo(ingredient, cfg => cfg
-            .Excluding(src => src.CreatedOn)
-            .Excluding(src => src.ModifiedOn)
-            .Excluding(src=> src.Recipe)
-            .ComparingByMembers<Ingredient>()
-            .ComparingByMembers<IngredientCreateResponse>());
+                .Excluding(src => src.CreatedOn)
+                .Excluding(src => src.ModifiedOn)
+                .Excluding(src => src.Recipe)
+                .ComparingByMembers<Ingredient>()
+                .ComparingByMembers<IngredientCreateResponse>());
     }
 
     [Fact]
     public void Should_Map_IngredientCreateRequestToIngredient()
     {
         var request = TestDataValidGenerator.GetIngredientCreateRequestValid();
-        
+
         var response = _mapper.Map<Ingredient>(request);
-        
+
         response.Should().BeEquivalentTo(request, cfg => cfg
             .ComparingByMembers<Ingredient>()
             .ComparingByMembers<IngredientCreateRequest>());
@@ -63,13 +63,13 @@ public class IngredientMappingProfilePositiveTests
     public void Should_Map_IngredientToIngredientUpdateResponse()
     {
         var ingredient = TestDataValidGenerator.GetIngredientValid();
-        
+
         var response = _mapper.Map<IngredientUpdateResponse>(ingredient);
 
         response.Should().BeEquivalentTo(ingredient, cfg => cfg
-            .Excluding(src=> src.CreatedOn)
-            .Excluding(src=> src.ModifiedOn)
-            .Excluding(src=> src.Recipe)
+            .Excluding(src => src.CreatedOn)
+            .Excluding(src => src.ModifiedOn)
+            .Excluding(src => src.Recipe)
             .ComparingByMembers<Ingredient>()
             .ComparingByMembers<IngredientUpdateResponse>());
     }

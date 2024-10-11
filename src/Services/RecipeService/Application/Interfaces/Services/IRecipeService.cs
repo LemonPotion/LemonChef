@@ -7,10 +7,10 @@ namespace Application.Interfaces.Services;
 
 public interface IRecipeService : IBaseService<
     Recipe,
-    RecipeCreateRequest, 
-    RecipeUpdateRequest, 
-    RecipeGetResponse, 
-    RecipeCreateResponse, 
+    RecipeCreateRequest,
+    RecipeUpdateRequest,
+    RecipeGetResponse,
+    RecipeCreateResponse,
     RecipeUpdateResponse>
 {
     public Task<List<RecipeGetResponse>> GetAllByTelegramIdAsync(int id, CancellationToken cancellationToken);
@@ -19,5 +19,6 @@ public interface IRecipeService : IBaseService<
 
     public Task<bool> DeleteByIdAsync(Guid id, Guid userId, CancellationToken cancellationToken);
 
-    public Task<List<IngredientGetResponse>> GetRecipeIngredientsByRecipeId(Guid recipeId, CancellationToken cancellationToken);
+    public Task<List<IngredientGetResponse>> GetRecipeIngredientsByRecipeId(Guid recipeId,
+        CancellationToken cancellationToken);
 }

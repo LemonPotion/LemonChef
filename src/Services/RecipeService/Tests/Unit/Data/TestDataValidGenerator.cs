@@ -10,7 +10,7 @@ namespace Tests.Unit.Data;
 public static class TestDataValidGenerator
 {
     private static readonly Faker Faker = new Faker();
-    
+
     public static Recipe GetRecipeValid()
     {
         return new Recipe()
@@ -53,7 +53,7 @@ public static class TestDataValidGenerator
             Title = Faker.Commerce.ProductName()
         };
     }
-    
+
     public static Ingredient GetIngredientValid()
     {
         return new Ingredient()

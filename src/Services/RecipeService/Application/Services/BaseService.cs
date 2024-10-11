@@ -6,8 +6,8 @@ using Domain.Entities.Base;
 namespace Application.Services;
 
 public abstract class BaseService<
-    TEntity, 
-    TCreateRequest, 
+    TEntity,
+    TCreateRequest,
     TUpdateRequest,
     TGetResponse,
     TCreateResponse,
@@ -43,16 +43,17 @@ public abstract class BaseService<
         return _mapper.Map<TGetResponse>(entity);
     }
 
-    public virtual async Task<List<TGetResponse>> GetAllPagedAsync(int pageNumber, int pageSize, CancellationToken cancellationToken)
+    public virtual async Task<List<TGetResponse>> GetAllPagedAsync(int pageNumber, int pageSize,
+        CancellationToken cancellationToken)
     {
-        var entities = await _baseRepository.GetAllListPagedAsync(pageNumber, pageSize,cancellationToken);
+        var entities = await _baseRepository.GetAllListPagedAsync(pageNumber, pageSize, cancellationToken);
         return _mapper.Map<List<TGetResponse>>(entities);
     }
 
     public virtual async Task<TUpdateResponse> UpdateAsync(TUpdateRequest request, CancellationToken cancellationToken)
     {
         var entityToUpdate = _mapper.Map<TEntity>(request);
-        var updatedEntity=await _baseRepository.UpdateAsync(entityToUpdate, cancellationToken);
+        var updatedEntity = await _baseRepository.UpdateAsync(entityToUpdate, cancellationToken);
         await _baseRepository.SaveChangesAsync();
         return _mapper.Map<TUpdateResponse>(updatedEntity);
     }

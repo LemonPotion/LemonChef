@@ -15,40 +15,39 @@ public class IngredientValidatorPositiveTests
     public void Name_ShouldNotHaveValidationErrors_WhenValid()
     {
         var ingredient = TestDataValidGenerator.GetIngredientValid();
-        
+
         var result = _ingredientValidator.TestValidate(ingredient);
-        
-        result.ShouldNotHaveValidationErrorFor(x=> x.Name);
-        
+
+        result.ShouldNotHaveValidationErrorFor(x => x.Name);
     }
-    
+
     [Fact]
     public void Quantity_ShouldNotHaveValidationErrors_WhenValid()
     {
         var ingredient = TestDataValidGenerator.GetIngredientValid();
-        
+
         var result = _ingredientValidator.TestValidate(ingredient);
-        
-        result.ShouldNotHaveValidationErrorFor(x=>x.Quantity);
+
+        result.ShouldNotHaveValidationErrorFor(x => x.Quantity);
     }
-    
+
     [Fact]
     public void Unit_ShouldNotHaveValidationErrors_WhenValid()
     {
         var ingredient = TestDataValidGenerator.GetIngredientValid();
-        
+
         var result = _ingredientValidator.TestValidate(ingredient);
-        
+
         result.ShouldNotHaveValidationErrorFor(x => x.Unit);
     }
-    
+
     [Fact]
     public void RecipeId_ShouldNotHaveValidationErrors_WhenValid()
     {
         var ingredient = TestDataValidGenerator.GetIngredientValid();
-        
+
         var result = _ingredientValidator.TestValidate(ingredient);
-        
-        result.ShouldNotHaveValidationErrorFor(x=> x.RecipeId);
+
+        result.ShouldNotHaveValidationErrorFor(x => x.RecipeId);
     }
 }

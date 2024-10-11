@@ -12,7 +12,7 @@ public class RecipesController : ControllerBase
 {
     [HttpPost]
     [Authorize]
-    public async Task<IActionResult> CreateAsync([FromBody] RecipeCreateRequest request, 
+    public async Task<IActionResult> CreateAsync([FromBody] RecipeCreateRequest request,
         [FromServices] IRecipeService service, CancellationToken cancellationToken)
     {
         var result = await service.CreateAsync(request, cancellationToken);
@@ -20,23 +20,23 @@ public class RecipesController : ControllerBase
     }
 
     [HttpGet("{id:guid}")]
-    public async Task<IActionResult> GetByIdAsync(Guid id, 
+    public async Task<IActionResult> GetByIdAsync(Guid id,
         [FromServices] IRecipeService service, CancellationToken cancellationToken)
     {
         var result = await service.GetByIdAsync(id, cancellationToken);
         return Ok(result);
     }
-    
+
     [HttpGet("{userId:guid}")]
-    public async Task<IActionResult> GetByUserIdAsync(Guid userId, 
+    public async Task<IActionResult> GetByUserIdAsync(Guid userId,
         [FromServices] IRecipeService service, CancellationToken cancellationToken)
     {
         var result = await service.GetAllByUserIdAsync(userId, cancellationToken);
         return Ok(result);
     }
-    
+
     [HttpGet("{recipeId:guid}/ingredients")]
-    public async Task<IActionResult> GetIngredientsByRecipeIdAsync(Guid recipeId, 
+    public async Task<IActionResult> GetIngredientsByRecipeIdAsync(Guid recipeId,
         [FromServices] IRecipeService service, CancellationToken cancellationToken)
     {
         var result = await service.GetRecipeIngredientsByRecipeId(recipeId, cancellationToken);
@@ -45,7 +45,8 @@ public class RecipesController : ControllerBase
 
     [HttpPut]
     [Authorize]
-    public async Task<IActionResult> UpdateAsync([FromBody] RecipeUpdateRequest request, [FromServices] IRecipeService service, CancellationToken cancellationToken)
+    public async Task<IActionResult> UpdateAsync([FromBody] RecipeUpdateRequest request,
+        [FromServices] IRecipeService service, CancellationToken cancellationToken)
     {
         var result = await service.UpdateAsync(request, cancellationToken);
         return Ok(result);
@@ -53,24 +54,27 @@ public class RecipesController : ControllerBase
 
     [HttpDelete("{id:guid}")]
     [Authorize]
-    public async Task<IActionResult> DeleteAsync(Guid id, [FromServices] IRecipeService service, CancellationToken cancellationToken)
+    public async Task<IActionResult> DeleteAsync(Guid id, [FromServices] IRecipeService service,
+        CancellationToken cancellationToken)
     {
         var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
         var result = await service.DeleteByIdAsync(id, userId, cancellationToken);
         return Ok(result);
     }
-    
+
     [HttpGet]
-    public async Task<IActionResult> GetAllPagedAsync([FromQuery] RecipeGetAllPagedRequest request,[FromServices] IRecipeService service, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetAllPagedAsync([FromQuery] RecipeGetAllPagedRequest request,
+        [FromServices] IRecipeService service, CancellationToken cancellationToken)
     {
-        var result = await service.GetAllPagedAsync(request.PageNumber, request.PageSize,cancellationToken);
+        var result = await service.GetAllPagedAsync(request.PageNumber, request.PageSize, cancellationToken);
         return Ok(result);
     }
 
     [HttpGet("tg/{id:int}")]
-    public async Task<IActionResult> GetAllByTelegramIdAsync(int id,[FromServices] IRecipeService service, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetAllByTelegramIdAsync(int id, [FromServices] IRecipeService service,
+        CancellationToken cancellationToken)
     {
-        var result = await service.GetAllByTelegramIdAsync(id,cancellationToken);
+        var result = await service.GetAllByTelegramIdAsync(id, cancellationToken);
         return Ok(result);
     }
 }

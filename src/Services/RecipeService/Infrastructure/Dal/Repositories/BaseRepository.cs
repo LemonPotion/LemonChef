@@ -13,7 +13,7 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where T
     {
         _dbContext = dbContext;
     }
-    
+
     public async Task<TEntity> CreateAsync(TEntity entity, CancellationToken cancellationToken)
     {
         await _dbContext.AddAsync(entity, cancellationToken);
@@ -40,12 +40,14 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where T
         return true;
     }
 
-    public virtual async Task<List<TEntity>> GetAllListPagedAsync(int pageNumber, int pageSize, CancellationToken cancellationToken)
+    public virtual async Task<List<TEntity>> GetAllListPagedAsync(int pageNumber, int pageSize,
+        CancellationToken cancellationToken)
     {
         return await _dbContext.Set<TEntity>().Skip((pageNumber - 1) * pageSize)
-                             .Take(pageSize)
-                             .ToListAsync(cancellationToken);
+            .Take(pageSize)
+            .ToListAsync(cancellationToken);
     }
+
     public async Task SaveChangesAsync()
     {
         await _dbContext.SaveChangesAsync();

@@ -14,7 +14,7 @@ public class EmailSender : IEmailSender
     public EmailSender(IOptions<EmailSettings> emailSettings)
     {
         _emailSettings = emailSettings.Value;
-        
+
         _smtpClient = new SmtpClient(_emailSettings.SmtpServer, _emailSettings.Port)
         {
             Credentials = new NetworkCredential(_emailSettings.From, _emailSettings.Password),

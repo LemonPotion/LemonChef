@@ -12,9 +12,9 @@ namespace Tests.Unit.RecipeTests.Mapping;
 public class RecipeMappingProfilePositiveTests
 {
     private readonly IMapper _mapper;
-    private readonly MapperConfiguration _mapperConfiguration ;
+    private readonly MapperConfiguration _mapperConfiguration;
     private readonly Faker _faker = new Faker();
-    
+
     public RecipeMappingProfilePositiveTests()
     {
         var config = new MapperConfiguration(cfg =>
@@ -23,7 +23,7 @@ public class RecipeMappingProfilePositiveTests
 
         _mapper = config.CreateMapper();
     }
-    
+
     [Fact]
     public void Recipe_MappingConfiguration_IsValid()
     {
@@ -34,32 +34,32 @@ public class RecipeMappingProfilePositiveTests
     public void Should_Map_RecipeToRecipeCreateResponse()
     {
         var recipe = TestDataValidGenerator.GetRecipeValid();
-        
+
         var response = _mapper.Map<RecipeCreateResponse>(recipe);
-        
+
         response.Should()
             .BeEquivalentTo(recipe, cfg => cfg
-            .Excluding(src=>src.CreatedOn)
-            .Excluding(src=> src.ModifiedOn)
-            .Excluding(src=> src.Ingredients)
-            .ComparingByMembers<Recipe>()
-            .ComparingByMembers<RecipeCreateResponse>());
+                .Excluding(src => src.CreatedOn)
+                .Excluding(src => src.ModifiedOn)
+                .Excluding(src => src.Ingredients)
+                .ComparingByMembers<Recipe>()
+                .ComparingByMembers<RecipeCreateResponse>());
     }
-    
+
     [Fact]
     public void Should_Map_RecipeToRecipeGetResponse()
     {
         var recipe = TestDataValidGenerator.GetRecipeValid();
-        
+
         var response = _mapper.Map<RecipeGetResponse>(recipe);
-        
+
         response.Should()
             .BeEquivalentTo(recipe, cfg => cfg
-            .Excluding(src=>src.CreatedOn)
-            .Excluding(src=> src.ModifiedOn)
-            .Excluding(src=> src.Ingredients)
-            .ComparingByMembers<Recipe>()
-            .ComparingByMembers<RecipeGetResponse>());
+                .Excluding(src => src.CreatedOn)
+                .Excluding(src => src.ModifiedOn)
+                .Excluding(src => src.Ingredients)
+                .ComparingByMembers<Recipe>()
+                .ComparingByMembers<RecipeGetResponse>());
     }
 
     [Fact]
@@ -68,14 +68,14 @@ public class RecipeMappingProfilePositiveTests
         var recipe = TestDataValidGenerator.GetRecipeValid();
 
         var response = _mapper.Map<RecipeUpdateResponse>(recipe);
-        
+
         response.Should()
             .BeEquivalentTo(recipe, cfg => cfg
-            .Excluding(src=>src.CreatedOn)
-            .Excluding(src=> src.ModifiedOn)
-            .Excluding(src=> src.Ingredients)
-            .ComparingByMembers<Recipe>()
-            .ComparingByMembers<RecipeUpdateResponse>());
+                .Excluding(src => src.CreatedOn)
+                .Excluding(src => src.ModifiedOn)
+                .Excluding(src => src.Ingredients)
+                .ComparingByMembers<Recipe>()
+                .ComparingByMembers<RecipeUpdateResponse>());
     }
 
     [Fact]
@@ -84,11 +84,11 @@ public class RecipeMappingProfilePositiveTests
         var request = TestDataValidGenerator.GetRecipeCreateRequestValid();
 
         var response = _mapper.Map<Recipe>(request);
-        
+
         response.Should()
             .BeEquivalentTo(request, cfg => cfg
-            .ComparingByMembers<Recipe>()
-            .ComparingByMembers<RecipeCreateRequest>());
+                .ComparingByMembers<Recipe>()
+                .ComparingByMembers<RecipeCreateRequest>());
     }
 
     [Fact]
@@ -97,10 +97,10 @@ public class RecipeMappingProfilePositiveTests
         var request = TestDataValidGenerator.GetRecipeUpdateRequestValid();
 
         var response = _mapper.Map<Recipe>(request);
-        
+
         response.Should()
             .BeEquivalentTo(request, cfg => cfg
-            .ComparingByMembers<Recipe>()
-            .ComparingByMembers<RecipeUpdateRequest>());
+                .ComparingByMembers<Recipe>()
+                .ComparingByMembers<RecipeUpdateRequest>());
     }
 }

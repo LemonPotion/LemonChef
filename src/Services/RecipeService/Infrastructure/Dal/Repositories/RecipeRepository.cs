@@ -8,6 +8,7 @@ namespace Infrastructure.Dal.Repositories;
 public class RecipeRepository : BaseRepository<Recipe>, IRecipeRepository
 {
     private readonly RecipesDbContext _dbContext;
+
     public RecipeRepository(RecipesDbContext dbContext) : base(dbContext)
     {
         _dbContext = dbContext;
@@ -15,11 +16,13 @@ public class RecipeRepository : BaseRepository<Recipe>, IRecipeRepository
 
     public override async Task<Recipe> GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
-        var entity = await _dbContext.Recipes.Include(x=>x.Ingredients).FirstOrDefaultAsync(x => x.Id==  id, cancellationToken);
+        var entity = await _dbContext.Recipes.Include(x => x.Ingredients)
+            .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
         return entity;
     }
 
-    public override async Task<List<Recipe>> GetAllListPagedAsync(int pageNumber, int pageSize,  CancellationToken cancellationToken)
+    public override async Task<List<Recipe>> GetAllListPagedAsync(int pageNumber, int pageSize,
+        CancellationToken cancellationToken)
     {
         var list = await _dbContext.Recipes.Include(x => x.Ingredients)
             .Skip((pageNumber - 1) * pageSize)
@@ -38,12 +41,13 @@ public class RecipeRepository : BaseRepository<Recipe>, IRecipeRepository
         return recipes;
     }
 
-    public async Task<List<Ingredient>> GetRecipeIngredientsByRecipeId(Guid recipeId, CancellationToken cancellationToken)
+    public async Task<List<Ingredient>> GetRecipeIngredientsByRecipeId(Guid recipeId,
+        CancellationToken cancellationToken)
     {
         var recipe = await GetByIdAsync(recipeId, cancellationToken);
         return recipe.Ingredients.ToList();
     }
-    
+
     public async Task<List<Recipe>> GetAllByUserIdAsync(Guid id, CancellationToken cancellationToken)
     {
         var recipes = await _dbContext.Recipes

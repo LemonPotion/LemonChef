@@ -9,7 +9,7 @@ namespace Tests.Unit.Data;
 public static class TestDataInvalidGenerator
 {
     private static readonly Faker Faker = new Faker();
-    
+
     public static Recipe GetRecipeInvalid()
     {
         return new Recipe()
@@ -25,7 +25,7 @@ public static class TestDataInvalidGenerator
             Title = Faker.Lorem.Sentence(6000)
         };
     }
-    
+
     public static RecipeCreateRequest GetRecipeCreateRequestValid()
     {
         return new RecipeCreateRequest()
@@ -66,7 +66,7 @@ public static class TestDataInvalidGenerator
             Unit = UnitsOfMeasure.Gram
         };
     }
-    
+
     public static IngredientCreateRequest GetIngredientCreateRequestValid()
     {
         return new IngredientCreateRequest()

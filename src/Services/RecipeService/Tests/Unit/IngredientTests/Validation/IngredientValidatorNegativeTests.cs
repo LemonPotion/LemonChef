@@ -10,7 +10,7 @@ public class IngredientValidatorNegativeTests
 {
     private readonly IngredientValidator _ingredientValidator = new(nameof(Ingredient));
     private readonly Faker _faker = new Faker();
-    
+
     [Fact]
     public void Name_ShouldHaveNullMessageValidationErrors_WhenNull()
     {
@@ -18,10 +18,10 @@ public class IngredientValidatorNegativeTests
         {
             Name = null
         };
-        
+
         var result = _ingredientValidator.TestValidate(ingredient);
-        
-        result.ShouldHaveValidationErrorFor(x=> x.Name)
+
+        result.ShouldHaveValidationErrorFor(x => x.Name)
             .WithErrorMessage(ExceptionMessages.NullException(nameof(Ingredient.Name)));
     }
 
@@ -32,23 +32,23 @@ public class IngredientValidatorNegativeTests
         {
             Name = string.Empty
         };
-        
+
         var result = _ingredientValidator.TestValidate(ingredient);
-        
+
         result.ShouldHaveValidationErrorFor(x => x.Name)
             .WithErrorMessage(ExceptionMessages.EmptyException(nameof(Ingredient.Name)));
     }
-    
+
     [Fact]
     public void Name_ShouldHaveInvalidFormatMessageValidationErrors_WhenInvalidLength()
     {
         var ingredient = new Ingredient
         {
-            Name = _faker.Lorem.Letter(251) 
+            Name = _faker.Lorem.Letter(251)
         };
-        
+
         var result = _ingredientValidator.TestValidate(ingredient);
-        
+
         result.ShouldHaveValidationErrorFor(x => x.Name)
             .WithErrorMessage(ExceptionMessages.InvalidFormat(nameof(Ingredient.Name)));
     }
@@ -58,26 +58,26 @@ public class IngredientValidatorNegativeTests
     {
         var ingredient = new Ingredient
         {
-            Quantity = _faker.Random.Int(max:0)
+            Quantity = _faker.Random.Int(max: 0)
         };
-        
+
         var result = _ingredientValidator.TestValidate(ingredient);
-        
+
         result.ShouldHaveValidationErrorFor(x => x.Quantity)
             .WithErrorMessage(ExceptionMessages.TooLowNumber(nameof(Ingredient.Quantity)));
     }
-    
+
     [Fact]
     public void Unit_ShouldHaveValidationErrors_WhenInvalid()
     {
         var extremeValue = _faker.Random.Bool() ? int.MinValue : int.MaxValue;
         var ingredient = new Ingredient
         {
-            Unit = (UnitsOfMeasure) extremeValue
+            Unit = (UnitsOfMeasure)extremeValue
         };
-        
+
         var result = _ingredientValidator.TestValidate(ingredient);
-        
+
         result.ShouldHaveValidationErrorFor(x => x.Unit)
             .WithErrorMessage(ExceptionMessages.InvalidEnumValue(nameof(Ingredient.Unit)));
     }
@@ -86,10 +86,10 @@ public class IngredientValidatorNegativeTests
     public void RecipeId_ShouldHaveNullMessageValidationErrors_WhenNull()
     {
         var ingredient = new Ingredient();
-        
+
         var result = _ingredientValidator.TestValidate(ingredient);
-        
-        result.ShouldHaveValidationErrorFor(x=> x.RecipeId);
+
+        result.ShouldHaveValidationErrorFor(x => x.RecipeId);
     }
 
     [Fact]
@@ -99,9 +99,9 @@ public class IngredientValidatorNegativeTests
         {
             RecipeId = Guid.Empty
         };
-        
+
         var result = _ingredientValidator.TestValidate(ingredient);
-        
+
         result.ShouldHaveValidationErrorFor(x => x.RecipeId)
             .WithErrorMessage(ExceptionMessages.EmptyException(nameof(Ingredient.RecipeId)));
     }

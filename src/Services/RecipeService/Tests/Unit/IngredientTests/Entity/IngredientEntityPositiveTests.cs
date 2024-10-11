@@ -13,15 +13,15 @@ public class IngredientEntityPositiveTests
 
         var ingredientResponse = new Ingredient(
             ingredient.Id
-            ,ingredient.Name
-            ,ingredient.Quantity,
+            , ingredient.Name
+            , ingredient.Quantity,
             ingredient.Unit,
             ingredient.RecipeId);
 
         ingredientResponse.Should()
             .BeEquivalentTo(ingredient, cfg => cfg
-            .Excluding(src=> src.CreatedOn)
-            .Excluding(src=> src.ModifiedOn));
+                .Excluding(src => src.CreatedOn)
+                .Excluding(src => src.ModifiedOn));
     }
 
     [Fact]
@@ -38,7 +38,7 @@ public class IngredientEntityPositiveTests
             .Should()
             .NotThrow();
     }
-    
+
     [Fact]
     public void Recipe_EmptyConstructor_Should_CreateObjectWithoutValidation()
     {

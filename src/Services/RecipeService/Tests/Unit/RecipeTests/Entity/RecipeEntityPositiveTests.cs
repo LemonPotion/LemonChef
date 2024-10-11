@@ -21,11 +21,11 @@ public class RecipeEntityPositiveTests
             recipe.Description,
             recipe.TelegramUserId,
             Guid.Empty
-            );
+        );
 
         recipeResponse.Should()
             .BeEquivalentTo(recipe, cfg => cfg
-            .Excluding(src=> src.CreatedOn)
-            .Excluding(src=> src.ModifiedOn));
+                .Excluding(src => src.CreatedOn)
+                .Excluding(src => src.ModifiedOn));
     }
 }

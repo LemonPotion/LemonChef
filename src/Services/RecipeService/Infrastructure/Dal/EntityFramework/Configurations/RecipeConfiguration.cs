@@ -28,19 +28,19 @@ public class RecipeConfiguration : IEntityTypeConfiguration<Recipe>
             .IsRequired();
 
         builder.Property(r => r.Link);
-        
+
         builder.Property(r => r.Description)
             .IsRequired();
-        
+
         builder.Property(r => r.PreparationTime);
-        
+
         builder.Property(r => r.Servings);
 
         builder.Property(r => r.TelegramUserId);
-        
+
         builder.HasMany(r => r.Ingredients)
             .WithOne(i => i.Recipe)
-            .HasForeignKey(i=> i.RecipeId);
+            .HasForeignKey(i => i.RecipeId);
 
         builder.HasOne(r => r.User)
             .WithMany(u => u.Recipes)
