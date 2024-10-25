@@ -1,4 +1,6 @@
 ﻿using Domain.Interfaces;
+using Domain.Validations.Validators;
+using FluentValidation;
 
 namespace Domain.Entities.Base;
 
@@ -17,4 +19,18 @@ public class Comment : BaseEntity, ITrackable
     public long LikeCount { get; set; }
     public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
     public DateTime? ModifiedOn { get; set; }
+
+    public Comment()
+    {
+        
+    }
+
+    public Comment(Guid userId, string text)
+    {
+        UserId = userId;
+        Text = text;
+        
+        var validator = new CommentValidator(nameof(Comment));
+        validator.ValidateAndThrow(this);
+    }
 }

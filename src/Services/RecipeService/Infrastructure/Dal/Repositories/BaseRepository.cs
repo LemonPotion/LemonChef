@@ -43,7 +43,6 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : 
         await SaveChangesAsync();
         return true;
     }
-    //TODO: добавить фильтрацию
     public virtual async Task<List<TEntity>> GetAllListPagedAsync(int pageNumber, int pageSize, Expression<Func<TEntity, bool>> filter,
         CancellationToken cancellationToken)
     { 

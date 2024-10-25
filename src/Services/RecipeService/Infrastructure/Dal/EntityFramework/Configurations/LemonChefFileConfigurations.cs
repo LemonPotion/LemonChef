@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Dal.EntityFramework.Configurations;
 
-//TODO: проверить конфигурации
 public class LemonChefFileConfigurations : IEntityTypeConfiguration<LemonChefFile>
 {
     public void Configure(EntityTypeBuilder<LemonChefFile> builder)
