@@ -17,8 +17,6 @@ public class RecipeValidator : AbstractValidator<Recipe>
             .IsValidUrlWithMessage(nameof(Recipe.Link))
             .When(param => param.Link is not null);
 
-        RuleForEach(param => param.Ingredients);
-
         RuleFor(param => param.Description)
             .NotNullOrEmptyWithMessage(nameof(Recipe.Description))
             .Length(2, 5000)
@@ -31,9 +29,5 @@ public class RecipeValidator : AbstractValidator<Recipe>
         RuleFor(param => param.PreparationTime)
             .GreaterThan(0)
             .WithMessage(ExceptionMessages.TooLowNumber(nameof(Recipe.PreparationTime)));
-
-        RuleFor(param => param.TelegramUserId)
-            .GreaterThan(0)
-            .WithMessage(ExceptionMessages.InvalidFormat(nameof(Recipe.TelegramUserId)));
     }
 }

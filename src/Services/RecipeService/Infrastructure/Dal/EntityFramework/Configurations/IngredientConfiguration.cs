@@ -11,19 +11,18 @@ public class IngredientConfiguration : IEntityTypeConfiguration<Ingredient>
     {
         builder.HasKey(i => i.Id);
 
-        builder.Property(r => r.CreatedOn)
+        builder.Property(c => c.CreatedOn)
+            .ValueGeneratedOnAdd()
             .IsRequired();
 
-
-        builder.Property(r => r.ModifiedOn);
-
+        builder.Property(c => c.ModifiedOn)
+            .ValueGeneratedOnUpdate();
 
         builder.Property(i => i.Name)
             .IsRequired();
 
-        //TODO: никто не захочет выбирать цифрами меру , сделать конверсию из string в enum и наоборот на уровне запросов
         builder.Property(i => i.Unit)
-            .HasConversion<string>()
+            .HasConversion<int>()
             .HasDefaultValue(UnitsOfMeasure.Gram);
 
         builder.Property(i => i.Quantity);

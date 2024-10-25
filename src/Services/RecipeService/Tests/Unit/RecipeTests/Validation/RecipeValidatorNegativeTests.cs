@@ -136,18 +136,4 @@ public class RecipeValidatorNegativeTests
         result.ShouldHaveValidationErrorFor(x => x.PreparationTime)
             .WithErrorMessage(ExceptionMessages.TooLowNumber(nameof(Recipe.PreparationTime)));
     }
-
-    [Fact]
-    public void TelegramUserId_ShouldHaveValidationErrors_WhenInvalid()
-    {
-        var recipe = new Recipe
-        {
-            TelegramUserId = _faker.Random.Int(max: 0)
-        };
-
-        var result = _recipeValidator.TestValidate(recipe);
-
-        result.ShouldHaveValidationErrorFor(x => x.TelegramUserId)
-            .WithErrorMessage(ExceptionMessages.InvalidFormat(nameof(Recipe.TelegramUserId)));
-    }
 }

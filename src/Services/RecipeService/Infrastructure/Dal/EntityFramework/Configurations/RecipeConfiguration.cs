@@ -12,17 +12,16 @@ public class RecipeConfiguration : IEntityTypeConfiguration<Recipe>
 
         builder.HasIndex(r => new
             {
-                r.PreparationTime, r.Servings, r.Title, r.Link, r.Description,
-                TelegramId = r.TelegramUserId
+                r.PreparationTime, r.Servings, r.Title, r.Link, r.Description
             })
             .IsUnique();
 
-        builder.HasIndex(r => r.TelegramUserId);
-
-        builder.Property(r => r.CreatedOn)
+        builder.Property(c => c.CreatedOn)
+            .ValueGeneratedOnAdd()
             .IsRequired();
 
-        builder.Property(r => r.ModifiedOn);
+        builder.Property(c => c.ModifiedOn)
+            .ValueGeneratedOnUpdate();
 
         builder.Property(r => r.Title)
             .IsRequired();
@@ -36,7 +35,11 @@ public class RecipeConfiguration : IEntityTypeConfiguration<Recipe>
 
         builder.Property(r => r.Servings);
 
-        builder.Property(r => r.TelegramUserId);
+        builder.Property(r => r.CommentCount);
+
+        builder.Property(r => r.LikeCount);
+
+        builder.Property(r => r.ViewCount);
 
         builder.HasMany(r => r.Ingredients)
             .WithOne(i => i.Recipe)
@@ -45,5 +48,17 @@ public class RecipeConfiguration : IEntityTypeConfiguration<Recipe>
         builder.HasOne(r => r.User)
             .WithMany(u => u.Recipes)
             .HasForeignKey(r => r.UserId);
+
+        builder.HasMany(r => r.Files)
+            .WithOne(f => f.Recipe)
+            .HasForeignKey(f => f.RecipeId);
+
+        builder.HasMany(r => r.Comments)
+            .WithOne(f => f.Recipe)
+            .HasForeignKey(f => f.RecipeId);
+
+        builder.HasMany(r => r.Likes)
+            .WithOne(l => l.Recipe)
+            .HasForeignKey(l => l.RecipeId);
     }
 }

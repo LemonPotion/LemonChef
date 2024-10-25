@@ -6,7 +6,7 @@ using FluentValidation;
 
 namespace Domain.Entities;
 
-public class Ingredient : BaseEntity, ITrackable, IRateable
+public class Ingredient : BaseEntity, ITrackable
 {
     public string Name { get; set; }
 
@@ -17,15 +17,11 @@ public class Ingredient : BaseEntity, ITrackable, IRateable
     public Recipe Recipe { get; set; }
     public Guid RecipeId { get; set; }
 
-    public DateTime CreatedOn { get; set; }
+    public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
 
     public DateTime? ModifiedOn { get; set; }
-
-    public string CreatedBy { get; set; }
-
-    public string ModifiedBy { get; set; }
-
-    public bool IsActive { get; set; }
+    
+    public ICollection<IngredientFile>? Files { get; set; }
 
     public Ingredient()
     {
@@ -42,9 +38,4 @@ public class Ingredient : BaseEntity, ITrackable, IRateable
         var validator = new IngredientValidator(nameof(Ingredient));
         validator.ValidateAndThrow(this);
     }
-
-    public long ViewCount { get; set; }
-    public long LikeCount { get; set; }
-    public long CommentCount { get; set; }
-    public long ShareCount { get; set; }
 }

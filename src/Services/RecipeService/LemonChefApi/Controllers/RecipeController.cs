@@ -58,10 +58,12 @@ public class RecipesController : ControllerBase
         CancellationToken cancellationToken)
     {
         var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
-        var result = await service.DeleteByIdAsync(id, userId, cancellationToken);
+        var result = await service.DeleteByIdAsync(id, cancellationToken);
         return Ok(result);
     }
 
+    //TODO: добавить выбор фильтра
+    /*
     [HttpGet]
     public async Task<IActionResult> GetAllPagedAsync([FromQuery] RecipeGetAllPagedRequest request,
         [FromServices] IRecipeService service, CancellationToken cancellationToken)
@@ -69,12 +71,5 @@ public class RecipesController : ControllerBase
         var result = await service.GetAllPagedAsync(request.PageNumber, request.PageSize, cancellationToken);
         return Ok(result);
     }
-
-    [HttpGet("tg/{id:int}")]
-    public async Task<IActionResult> GetAllByTelegramIdAsync(int id, [FromServices] IRecipeService service,
-        CancellationToken cancellationToken)
-    {
-        var result = await service.GetAllByTelegramIdAsync(id, cancellationToken);
-        return Ok(result);
-    }
+    */
 }

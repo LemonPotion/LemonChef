@@ -12,7 +12,5 @@ public class BaseRecipeDto
 
     public string Description { get; set; }
 
-    public int? TelegramUserId { get; set; }
-
     public Guid? UserId { get; set; }
 }

@@ -1,5 +1,7 @@
-﻿using Application.Interfaces.Services;
+﻿using System.Reflection;
+using Application.Interfaces.Services;
 using Domain.Entities;
+using Domain.Entities.Base;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -10,33 +12,25 @@ public class RecipesDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid
     IdentityUserClaim<Guid>, IdentityUserRole<Guid>, IdentityUserLogin<Guid>,
     IdentityRoleClaim<Guid>, IdentityUserToken<Guid>>
 {
-    private readonly ITimestampService _timestampService;
 
-    public DbSet<Ingredient> Ingredients { get; set; }
-    public DbSet<Recipe> Recipes { get; set; }
+    public DbSet<Ingredient> Ingredients => Set<Ingredient>();
+    public DbSet<Recipe> Recipes => Set<Recipe>();
 
-    public RecipesDbContext(DbContextOptions<RecipesDbContext> options, ITimestampService timestampService) :
+    public DbSet<LemonChefFile> Files => Set<LemonChefFile>();
+
+    public DbSet<Like> Likes => Set<Like>();
+
+    public DbSet<Comment> Comments => Set<Comment>();
+
+    public RecipesDbContext(DbContextOptions<RecipesDbContext> options) :
         base(options)
     {
-        _timestampService = timestampService;
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(RecipesDbContext).Assembly);
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
-
-    public override int SaveChanges(bool acceptAllChangesOnSuccess)
-    {
-        _timestampService.UpdateTimeStamps(ChangeTracker);
-        return base.SaveChanges(acceptAllChangesOnSuccess);
-    }
-
-    public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess,
-        CancellationToken cancellationToken = new CancellationToken())
-    {
-        _timestampService.UpdateTimeStamps(ChangeTracker);
-        return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
-    }
+    
 }

@@ -22,7 +22,6 @@ public static class TestDataValidGenerator
             Link = Faker.Internet.Url(),
             PreparationTime = Faker.Random.Int(1),
             Servings = Faker.Random.Int(1),
-            TelegramUserId = Faker.Random.Int(1),
             Title = Faker.Commerce.ProductName()
         };
     }
@@ -35,7 +34,6 @@ public static class TestDataValidGenerator
             Link = Faker.Internet.Url(),
             PreparationTime = Faker.Random.Int(1),
             Servings = Faker.Random.Int(1),
-            TelegramUserId = Faker.Random.Int(1),
             Title = Faker.Commerce.ProductName()
         };
     }
@@ -49,7 +47,6 @@ public static class TestDataValidGenerator
             Link = Faker.Internet.Url(),
             PreparationTime = Faker.Random.Int(1),
             Servings = Faker.Random.Int(1),
-            TelegramUserId = Faker.Random.Int(1),
             Title = Faker.Commerce.ProductName()
         };
     }

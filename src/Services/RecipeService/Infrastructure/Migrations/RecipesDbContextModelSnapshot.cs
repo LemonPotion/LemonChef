@@ -22,6 +22,151 @@ namespace Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("Domain.Entities.Base.Comment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on");
+
+                    b.Property<long>("LikeCount")
+                        .HasColumnType("bigint")
+                        .HasColumnName("like_count");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .ValueGeneratedOnUpdate()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("modified_on");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasMaxLength(10000)
+                        .HasColumnType("character varying(10000)")
+                        .HasColumnName("text");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("user_id");
+
+                    b.Property<string>("comment_type_discriminator")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("character varying(13)")
+                        .HasColumnName("comment_type_discriminator");
+
+                    b.HasKey("Id")
+                        .HasName("pk_comments");
+
+                    b.HasIndex("UserId")
+                        .HasDatabaseName("ix_comments_user_id");
+
+                    b.ToTable("comments", (string)null);
+
+                    b.HasDiscriminator<string>("comment_type_discriminator").HasValue("Comment");
+
+                    b.UseTphMappingStrategy();
+                });
+
+            modelBuilder.Entity("Domain.Entities.Base.LemonChefFile", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<long?>("Duration")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasColumnName("duration");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long?>("Duration"));
+
+                    b.Property<int>("FileFormat")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("file_format");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("FileFormat"));
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)")
+                        .HasColumnName("file_name");
+
+                    b.Property<string>("FilePath")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(1024)
+                        .HasColumnType("character varying(1024)")
+                        .HasColumnName("file_path");
+
+                    b.Property<int>("FileSizeInBytes")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("file_size_in_bytes");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("FileSizeInBytes"));
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("user_id");
+
+                    b.Property<string>("file_type_discriminator")
+                        .IsRequired()
+                        .HasMaxLength(21)
+                        .HasColumnType("character varying(21)")
+                        .HasColumnName("file_type_discriminator");
+
+                    b.HasKey("Id")
+                        .HasName("pk_files");
+
+                    b.HasIndex("UserId")
+                        .HasDatabaseName("ix_files_user_id");
+
+                    b.ToTable("files", (string)null);
+
+                    b.HasDiscriminator<string>("file_type_discriminator").HasValue("LemonChefFile");
+
+                    b.UseTphMappingStrategy();
+                });
+
+            modelBuilder.Entity("Domain.Entities.Base.Like", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("user_id");
+
+                    b.Property<string>("like_type_discriminator")
+                        .IsRequired()
+                        .HasMaxLength(21)
+                        .HasColumnType("character varying(21)")
+                        .HasColumnName("like_type_discriminator");
+
+                    b.HasKey("Id")
+                        .HasName("pk_likes");
+
+                    b.HasIndex("UserId")
+                        .HasDatabaseName("ix_likes_user_id");
+
+                    b.ToTable("likes", (string)null);
+
+                    b.HasDiscriminator<string>("like_type_discriminator").HasValue("Like");
+
+                    b.UseTphMappingStrategy();
+                });
+
             modelBuilder.Entity("Domain.Entities.Ingredient", b =>
                 {
                     b.Property<Guid>("Id")
@@ -30,12 +175,14 @@ namespace Infrastructure.Migrations
                         .HasColumnName("id");
 
                     b.Property<DateTime>("CreatedOn")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasColumnName("createdOn");
+                        .HasColumnName("created_on");
 
                     b.Property<DateTime?>("ModifiedOn")
+                        .ValueGeneratedOnUpdate()
                         .HasColumnType("timestamp with time zone")
-                        .HasColumnName("modifiedOn");
+                        .HasColumnName("modified_on");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -48,19 +195,19 @@ namespace Infrastructure.Migrations
 
                     b.Property<Guid>("RecipeId")
                         .HasColumnType("uuid")
-                        .HasColumnName("recipeId");
+                        .HasColumnName("recipe_id");
 
-                    b.Property<string>("Unit")
+                    b.Property<int?>("Unit")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("text")
-                        .HasDefaultValue("Gram")
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0)
                         .HasColumnName("unit");
 
                     b.HasKey("Id")
-                        .HasName("pK_ingredients");
+                        .HasName("pk_ingredients");
 
                     b.HasIndex("RecipeId")
-                        .HasDatabaseName("iX_ingredients_recipeId");
+                        .HasDatabaseName("ix_ingredients_recipe_id");
 
                     b.ToTable("ingredients", (string)null);
                 });
@@ -72,34 +219,40 @@ namespace Infrastructure.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
+                    b.Property<long>("CommentCount")
+                        .HasColumnType("bigint")
+                        .HasColumnName("comment_count");
+
                     b.Property<DateTime>("CreatedOn")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasColumnName("createdOn");
+                        .HasColumnName("created_on");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("description");
 
+                    b.Property<long>("LikeCount")
+                        .HasColumnType("bigint")
+                        .HasColumnName("like_count");
+
                     b.Property<string>("Link")
                         .HasColumnType("text")
                         .HasColumnName("link");
 
                     b.Property<DateTime?>("ModifiedOn")
+                        .ValueGeneratedOnUpdate()
                         .HasColumnType("timestamp with time zone")
-                        .HasColumnName("modifiedOn");
+                        .HasColumnName("modified_on");
 
                     b.Property<int?>("PreparationTime")
                         .HasColumnType("integer")
-                        .HasColumnName("preparationTime");
+                        .HasColumnName("preparation_time");
 
                     b.Property<int?>("Servings")
                         .HasColumnType("integer")
                         .HasColumnName("servings");
-
-                    b.Property<int?>("TelegramUserId")
-                        .HasColumnType("integer")
-                        .HasColumnName("telegramUserId");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -108,20 +261,21 @@ namespace Infrastructure.Migrations
 
                     b.Property<Guid?>("UserId")
                         .HasColumnType("uuid")
-                        .HasColumnName("userId");
+                        .HasColumnName("user_id");
+
+                    b.Property<long>("ViewCount")
+                        .HasColumnType("bigint")
+                        .HasColumnName("view_count");
 
                     b.HasKey("Id")
-                        .HasName("pK_recipes");
-
-                    b.HasIndex("TelegramUserId")
-                        .HasDatabaseName("iX_recipes_telegramUserId");
+                        .HasName("pk_recipes");
 
                     b.HasIndex("UserId")
-                        .HasDatabaseName("iX_recipes_userId");
+                        .HasDatabaseName("ix_recipes_user_id");
 
-                    b.HasIndex("PreparationTime", "Servings", "Title", "Link", "Description", "TelegramUserId")
+                    b.HasIndex("PreparationTime", "Servings", "Title", "Link", "Description")
                         .IsUnique()
-                        .HasDatabaseName("iX_recipes_preparationTime_servings_title_link_description_tel~");
+                        .HasDatabaseName("ix_recipes_preparation_time_servings_title_link_description");
 
                     b.ToTable("recipes", (string)null);
                 });
@@ -135,12 +289,17 @@ namespace Infrastructure.Migrations
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer")
-                        .HasColumnName("accessFailedCount");
+                        .HasColumnName("access_failed_count");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("text")
-                        .HasColumnName("concurrencyStamp");
+                        .HasColumnName("concurrency_stamp");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -149,53 +308,62 @@ namespace Infrastructure.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("boolean")
-                        .HasColumnName("emailConfirmed");
+                        .HasColumnName("email_confirmed");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("boolean")
-                        .HasColumnName("lockoutEnabled");
+                        .HasColumnName("lockout_enabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("timestamp with time zone")
-                        .HasColumnName("lockoutEnd");
+                        .HasColumnName("lockout_end");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .ValueGeneratedOnUpdate()
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("modified_on");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)")
-                        .HasColumnName("normalizedEmail");
+                        .HasColumnName("normalized_email");
 
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)")
-                        .HasColumnName("normalizedUserName");
+                        .HasColumnName("normalized_user_name");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("text")
-                        .HasColumnName("passwordHash");
+                        .HasColumnName("password_hash");
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("text")
-                        .HasColumnName("phoneNumber");
+                        .HasColumnName("phone_number");
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("boolean")
-                        .HasColumnName("phoneNumberConfirmed");
+                        .HasColumnName("phone_number_confirmed");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("text")
-                        .HasColumnName("securityStamp");
+                        .HasColumnName("security_stamp");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("boolean")
-                        .HasColumnName("twoFactorEnabled");
+                        .HasColumnName("two_factor_enabled");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)")
-                        .HasColumnName("userName");
+                        .HasColumnName("user_name");
+
+                    b.Property<long>("ViewCount")
+                        .HasColumnType("bigint")
+                        .HasColumnName("view_count");
 
                     b.HasKey("Id")
-                        .HasName("pK_users");
+                        .HasName("pk_users");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -217,7 +385,7 @@ namespace Infrastructure.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("text")
-                        .HasColumnName("concurrencyStamp");
+                        .HasColumnName("concurrency_stamp");
 
                     b.Property<string>("Name")
                         .HasMaxLength(256)
@@ -227,10 +395,10 @@ namespace Infrastructure.Migrations
                     b.Property<string>("NormalizedName")
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)")
-                        .HasColumnName("normalizedName");
+                        .HasColumnName("normalized_name");
 
                     b.HasKey("Id")
-                        .HasName("pK_roles");
+                        .HasName("pk_roles");
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
@@ -250,21 +418,21 @@ namespace Infrastructure.Migrations
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("text")
-                        .HasColumnName("claimType");
+                        .HasColumnName("claim_type");
 
                     b.Property<string>("ClaimValue")
                         .HasColumnType("text")
-                        .HasColumnName("claimValue");
+                        .HasColumnName("claim_value");
 
                     b.Property<Guid>("RoleId")
                         .HasColumnType("uuid")
-                        .HasColumnName("roleId");
+                        .HasColumnName("role_id");
 
                     b.HasKey("Id")
-                        .HasName("pK_roleClaims");
+                        .HasName("pk_role_claims");
 
                     b.HasIndex("RoleId")
-                        .HasDatabaseName("iX_roleClaims_roleId");
+                        .HasDatabaseName("ix_role_claims_role_id");
 
                     b.ToTable("roleClaims", (string)null);
                 });
@@ -280,21 +448,21 @@ namespace Infrastructure.Migrations
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("text")
-                        .HasColumnName("claimType");
+                        .HasColumnName("claim_type");
 
                     b.Property<string>("ClaimValue")
                         .HasColumnType("text")
-                        .HasColumnName("claimValue");
+                        .HasColumnName("claim_value");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid")
-                        .HasColumnName("userId");
+                        .HasColumnName("user_id");
 
                     b.HasKey("Id")
-                        .HasName("pK_userClaims");
+                        .HasName("pk_user_claims");
 
                     b.HasIndex("UserId")
-                        .HasDatabaseName("iX_userClaims_userId");
+                        .HasDatabaseName("ix_user_claims_user_id");
 
                     b.ToTable("userClaims", (string)null);
                 });
@@ -303,25 +471,25 @@ namespace Infrastructure.Migrations
                 {
                     b.Property<string>("LoginProvider")
                         .HasColumnType("text")
-                        .HasColumnName("loginProvider");
+                        .HasColumnName("login_provider");
 
                     b.Property<string>("ProviderKey")
                         .HasColumnType("text")
-                        .HasColumnName("providerKey");
+                        .HasColumnName("provider_key");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("text")
-                        .HasColumnName("providerDisplayName");
+                        .HasColumnName("provider_display_name");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid")
-                        .HasColumnName("userId");
+                        .HasColumnName("user_id");
 
                     b.HasKey("LoginProvider", "ProviderKey")
-                        .HasName("pK_userLogins");
+                        .HasName("pk_user_logins");
 
                     b.HasIndex("UserId")
-                        .HasDatabaseName("iX_userLogins_userId");
+                        .HasDatabaseName("ix_user_logins_user_id");
 
                     b.ToTable("userLogins", (string)null);
                 });
@@ -330,17 +498,17 @@ namespace Infrastructure.Migrations
                 {
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid")
-                        .HasColumnName("userId");
+                        .HasColumnName("user_id");
 
                     b.Property<Guid>("RoleId")
                         .HasColumnType("uuid")
-                        .HasColumnName("roleId");
+                        .HasColumnName("role_id");
 
                     b.HasKey("UserId", "RoleId")
-                        .HasName("pK_userRoles");
+                        .HasName("pk_user_roles");
 
                     b.HasIndex("RoleId")
-                        .HasDatabaseName("iX_userRoles_roleId");
+                        .HasDatabaseName("ix_user_roles_role_id");
 
                     b.ToTable("userRoles", (string)null);
                 });
@@ -349,11 +517,11 @@ namespace Infrastructure.Migrations
                 {
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid")
-                        .HasColumnName("userId");
+                        .HasColumnName("user_id");
 
                     b.Property<string>("LoginProvider")
                         .HasColumnType("text")
-                        .HasColumnName("loginProvider");
+                        .HasColumnName("login_provider");
 
                     b.Property<string>("Name")
                         .HasColumnType("text")
@@ -364,9 +532,165 @@ namespace Infrastructure.Migrations
                         .HasColumnName("value");
 
                     b.HasKey("UserId", "LoginProvider", "Name")
-                        .HasName("pK_userTokens");
+                        .HasName("pk_user_tokens");
 
                     b.ToTable("userTokens", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.RecipeComment", b =>
+                {
+                    b.HasBaseType("Domain.Entities.Base.Comment");
+
+                    b.Property<Guid>("RecipeId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("recipe_id");
+
+                    b.HasIndex("RecipeId")
+                        .HasDatabaseName("ix_comments_recipe_id");
+
+                    b.ToTable("comments", (string)null);
+
+                    b.HasDiscriminator().HasValue("RecipeComment");
+                });
+
+            modelBuilder.Entity("Domain.Entities.CommentFile", b =>
+                {
+                    b.HasBaseType("Domain.Entities.Base.LemonChefFile");
+
+                    b.Property<Guid>("CommentId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("comment_id");
+
+                    b.HasIndex("CommentId")
+                        .HasDatabaseName("ix_files_comment_id");
+
+                    b.ToTable("files", (string)null);
+
+                    b.HasDiscriminator().HasValue("CommentFile");
+                });
+
+            modelBuilder.Entity("Domain.Entities.IngredientFile", b =>
+                {
+                    b.HasBaseType("Domain.Entities.Base.LemonChefFile");
+
+                    b.Property<Guid>("IngredientId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("ingredient_id");
+
+                    b.HasIndex("IngredientId")
+                        .HasDatabaseName("ix_files_ingredient_id");
+
+                    b.ToTable("files", (string)null);
+
+                    b.HasDiscriminator().HasValue("IngredientFile");
+                });
+
+            modelBuilder.Entity("Domain.Entities.RecipeFile", b =>
+                {
+                    b.HasBaseType("Domain.Entities.Base.LemonChefFile");
+
+                    b.Property<Guid>("RecipeId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("recipe_id");
+
+                    b.HasIndex("RecipeId")
+                        .HasDatabaseName("ix_files_recipe_id");
+
+                    b.ToTable("files", (string)null);
+
+                    b.HasDiscriminator().HasValue("RecipeFile");
+                });
+
+            modelBuilder.Entity("Domain.Entities.CommentLike", b =>
+                {
+                    b.HasBaseType("Domain.Entities.Base.Like");
+
+                    b.Property<Guid>("CommentId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("comment_id");
+
+                    b.HasIndex("CommentId")
+                        .HasDatabaseName("ix_likes_comment_id");
+
+                    b.ToTable("likes", (string)null);
+
+                    b.HasDiscriminator().HasValue("CommentLike");
+                });
+
+            modelBuilder.Entity("Domain.Entities.RecipeLike", b =>
+                {
+                    b.HasBaseType("Domain.Entities.Base.Like");
+
+                    b.Property<Guid>("RecipeId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("recipe_id");
+
+                    b.HasIndex("RecipeId")
+                        .HasDatabaseName("ix_likes_recipe_id");
+
+                    b.HasIndex("UserId", "RecipeId")
+                        .IsUnique()
+                        .HasDatabaseName("ix_likes_user_id_recipe_id");
+
+                    b.ToTable("likes", (string)null);
+
+                    b.HasDiscriminator().HasValue("RecipeLike");
+                });
+
+            modelBuilder.Entity("Domain.Entities.RecipeCommentLike", b =>
+                {
+                    b.HasBaseType("Domain.Entities.CommentLike");
+
+                    b.Property<Guid>("RecipeCommentId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("recipe_comment_id");
+
+                    b.HasIndex("RecipeCommentId")
+                        .HasDatabaseName("ix_likes_recipe_comment_id");
+
+                    b.HasIndex("UserId", "RecipeCommentId")
+                        .IsUnique()
+                        .HasDatabaseName("ix_likes_user_id_recipe_comment_id");
+
+                    b.ToTable("likes", (string)null);
+
+                    b.HasDiscriminator().HasValue("RecipeCommentLike");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Base.Comment", b =>
+                {
+                    b.HasOne("Domain.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_comments_users_user_id");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Base.LemonChefFile", b =>
+                {
+                    b.HasOne("Domain.Entities.User", "User")
+                        .WithMany("UserFiles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_files_users_user_id");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Base.Like", b =>
+                {
+                    b.HasOne("Domain.Entities.User", "User")
+                        .WithMany("Likes")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_likes_users_user_id");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Domain.Entities.Ingredient", b =>
@@ -376,7 +700,7 @@ namespace Infrastructure.Migrations
                         .HasForeignKey("RecipeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("fK_ingredients_recipes_recipeId");
+                        .HasConstraintName("fk_ingredients_recipes_recipe_id");
 
                     b.Navigation("Recipe");
                 });
@@ -386,7 +710,7 @@ namespace Infrastructure.Migrations
                     b.HasOne("Domain.Entities.User", "User")
                         .WithMany("Recipes")
                         .HasForeignKey("UserId")
-                        .HasConstraintName("fK_recipes_users_userId");
+                        .HasConstraintName("fk_recipes_users_user_id");
 
                     b.Navigation("User");
                 });
@@ -398,7 +722,7 @@ namespace Infrastructure.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("fK_roleClaims_AspNetRoles_roleId");
+                        .HasConstraintName("fk_role_claims_asp_net_roles_role_id");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
@@ -408,7 +732,7 @@ namespace Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("fK_userClaims_AspNetUsers_userId");
+                        .HasConstraintName("fk_user_claims_asp_net_users_user_id");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
@@ -418,7 +742,7 @@ namespace Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("fK_userLogins_AspNetUsers_userId");
+                        .HasConstraintName("fk_user_logins_asp_net_users_user_id");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
@@ -428,14 +752,14 @@ namespace Infrastructure.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("fK_userRoles_roles_roleId");
+                        .HasConstraintName("fk_user_roles_roles_role_id");
 
                     b.HasOne("Domain.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("fK_userRoles_AspNetUsers_userId");
+                        .HasConstraintName("fk_user_roles_asp_net_users_user_id");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
@@ -445,17 +769,128 @@ namespace Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("fK_userTokens_AspNetUsers_userId");
+                        .HasConstraintName("fk_user_tokens_asp_net_users_user_id");
+                });
+
+            modelBuilder.Entity("Domain.Entities.RecipeComment", b =>
+                {
+                    b.HasOne("Domain.Entities.Recipe", "Recipe")
+                        .WithMany("Comments")
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_comments_recipes_recipe_id");
+
+                    b.Navigation("Recipe");
+                });
+
+            modelBuilder.Entity("Domain.Entities.CommentFile", b =>
+                {
+                    b.HasOne("Domain.Entities.Base.Comment", "Comment")
+                        .WithMany("Files")
+                        .HasForeignKey("CommentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_files_comments_comment_id");
+
+                    b.Navigation("Comment");
+                });
+
+            modelBuilder.Entity("Domain.Entities.IngredientFile", b =>
+                {
+                    b.HasOne("Domain.Entities.Ingredient", "Ingredient")
+                        .WithMany("Files")
+                        .HasForeignKey("IngredientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_files_ingredients_ingredient_id");
+
+                    b.Navigation("Ingredient");
+                });
+
+            modelBuilder.Entity("Domain.Entities.RecipeFile", b =>
+                {
+                    b.HasOne("Domain.Entities.Recipe", "Recipe")
+                        .WithMany("Files")
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_files_recipes_recipe_id");
+
+                    b.Navigation("Recipe");
+                });
+
+            modelBuilder.Entity("Domain.Entities.CommentLike", b =>
+                {
+                    b.HasOne("Domain.Entities.Base.Comment", "Comment")
+                        .WithMany("Likes")
+                        .HasForeignKey("CommentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_likes_comments_comment_id");
+
+                    b.Navigation("Comment");
+                });
+
+            modelBuilder.Entity("Domain.Entities.RecipeLike", b =>
+                {
+                    b.HasOne("Domain.Entities.Recipe", "Recipe")
+                        .WithMany("Likes")
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_likes_recipes_recipe_id");
+
+                    b.Navigation("Recipe");
+                });
+
+            modelBuilder.Entity("Domain.Entities.RecipeCommentLike", b =>
+                {
+                    b.HasOne("Domain.Entities.RecipeComment", "RecipeComment")
+                        .WithMany("RecipeCommentLikes")
+                        .HasForeignKey("RecipeCommentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_likes_comments_recipe_comment_id");
+
+                    b.Navigation("RecipeComment");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Base.Comment", b =>
+                {
+                    b.Navigation("Files");
+
+                    b.Navigation("Likes");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Ingredient", b =>
+                {
+                    b.Navigation("Files");
                 });
 
             modelBuilder.Entity("Domain.Entities.Recipe", b =>
                 {
+                    b.Navigation("Comments");
+
+                    b.Navigation("Files");
+
                     b.Navigation("Ingredients");
+
+                    b.Navigation("Likes");
                 });
 
             modelBuilder.Entity("Domain.Entities.User", b =>
                 {
+                    b.Navigation("Likes");
+
                     b.Navigation("Recipes");
+
+                    b.Navigation("UserFiles");
+                });
+
+            modelBuilder.Entity("Domain.Entities.RecipeComment", b =>
+                {
+                    b.Navigation("RecipeCommentLikes");
                 });
 #pragma warning restore 612, 618
         }

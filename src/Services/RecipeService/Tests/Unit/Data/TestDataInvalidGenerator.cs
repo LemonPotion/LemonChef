@@ -21,7 +21,6 @@ public static class TestDataInvalidGenerator
             Link = Faker.Lorem.Sentence(),
             PreparationTime = int.MinValue,
             Servings = int.MinValue,
-            TelegramUserId = int.MinValue,
             Title = Faker.Lorem.Sentence(6000)
         };
     }
@@ -34,7 +33,6 @@ public static class TestDataInvalidGenerator
             Link = Faker.Lorem.Sentence(),
             PreparationTime = int.MinValue,
             Servings = int.MinValue,
-            TelegramUserId = int.MinValue,
             Title = Faker.Lorem.Sentence(6000)
         };
     }
@@ -48,7 +46,6 @@ public static class TestDataInvalidGenerator
             Link = Faker.Lorem.Sentence(),
             PreparationTime = int.MinValue,
             Servings = int.MinValue,
-            TelegramUserId = int.MinValue,
             Title = Faker.Lorem.Sentence(6000)
         };
     }

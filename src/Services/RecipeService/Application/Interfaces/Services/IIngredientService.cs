@@ -12,5 +12,5 @@ public interface IIngredientService : IBaseService<
     IngredientCreateResponse,
     IngredientUpdateResponse>
 {
-    public Task<bool> DeleteByIdAsync(Guid id, Guid userId, CancellationToken cancellationToken);
+
 }

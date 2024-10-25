@@ -1,4 +1,5 @@
-﻿using Application.Interfaces.Repositories;
+﻿using System.Linq.Expressions;
+using Application.Interfaces.Repositories;
 using Domain.Entities;
 using Infrastructure.Dal.EntityFramework;
 using Microsoft.EntityFrameworkCore;
@@ -20,25 +21,16 @@ public class RecipeRepository : BaseRepository<Recipe>, IRecipeRepository
             .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
         return entity;
     }
-
-    public override async Task<List<Recipe>> GetAllListPagedAsync(int pageNumber, int pageSize,
+    
+    public override async Task<List<Recipe>> GetAllListPagedAsync(int pageNumber, int pageSize, Expression<Func<Recipe, bool>> filter,
         CancellationToken cancellationToken)
     {
         var list = await _dbContext.Recipes.Include(x => x.Ingredients)
             .Skip((pageNumber - 1) * pageSize)
             .Take(pageSize)
+            .Where(filter)
             .ToListAsync(cancellationToken);
         return list;
-    }
-
-    public async Task<List<Recipe>> GetAllByTelegramIdAsync(int id, CancellationToken cancellationToken)
-    {
-        var recipes = await _dbContext.Recipes
-            .Include(x => x.Ingredients)
-            .Where(x => x.TelegramUserId == id)
-            .ToListAsync(cancellationToken);
-
-        return recipes;
     }
 
     public async Task<List<Ingredient>> GetRecipeIngredientsByRecipeId(Guid recipeId,
@@ -47,7 +39,7 @@ public class RecipeRepository : BaseRepository<Recipe>, IRecipeRepository
         var recipe = await GetByIdAsync(recipeId, cancellationToken);
         return recipe.Ingredients.ToList();
     }
-
+    
     public async Task<List<Recipe>> GetAllByUserIdAsync(Guid id, CancellationToken cancellationToken)
     {
         var recipes = await _dbContext.Recipes

@@ -1,4 +1,5 @@
-﻿using Application.Interfaces.Repositories;
+﻿using System.Linq.Expressions;
+using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
 using AutoMapper;
 using Domain.Entities.Base;
@@ -33,7 +34,6 @@ public abstract class BaseService<
     {
         var entity = _mapper.Map<TEntity>(request);
         var createdEntity = await _baseRepository.CreateAsync(entity, cancellationToken);
-        await _baseRepository.SaveChangesAsync();
         return _mapper.Map<TCreateResponse>(createdEntity);
     }
 
@@ -43,10 +43,10 @@ public abstract class BaseService<
         return _mapper.Map<TGetResponse>(entity);
     }
 
-    public virtual async Task<List<TGetResponse>> GetAllPagedAsync(int pageNumber, int pageSize,
+    public virtual async Task<List<TGetResponse>> GetAllPagedAsync(int pageNumber, int pageSize, Expression<Func<TEntity, bool>> filter,
         CancellationToken cancellationToken)
     {
-        var entities = await _baseRepository.GetAllListPagedAsync(pageNumber, pageSize, cancellationToken);
+        var entities = await _baseRepository.GetAllListPagedAsync(pageNumber, pageSize, filter, cancellationToken);
         return _mapper.Map<List<TGetResponse>>(entities);
     }
 
@@ -54,14 +54,12 @@ public abstract class BaseService<
     {
         var entityToUpdate = _mapper.Map<TEntity>(request);
         var updatedEntity = await _baseRepository.UpdateAsync(entityToUpdate, cancellationToken);
-        await _baseRepository.SaveChangesAsync();
         return _mapper.Map<TUpdateResponse>(updatedEntity);
     }
 
     public virtual async Task<bool> DeleteByIdAsync(Guid id, CancellationToken cancellationToken)
     {
         var isDeleted = await _baseRepository.DeleteByIdAsync(id, cancellationToken);
-        await _baseRepository.SaveChangesAsync();
         return isDeleted;
     }
 }

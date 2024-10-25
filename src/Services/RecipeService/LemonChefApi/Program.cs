@@ -83,9 +83,7 @@ public class Program
 
         builder.Services.AddTransient<IRecipeService, RecipeService>();
         builder.Services.AddTransient<IRecipeRepository, RecipeRepository>();
-
-
-        builder.Services.AddScoped<ITimestampService, TimestampService>();
+        
         builder.Services.AddTransient<IEmailSender, EmailSender>();
 
         builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -97,7 +95,7 @@ public class Program
 
         builder.Services.AddDbContext<RecipesDbContext>
         (options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
-            .UseCamelCaseNamingConvention());
+            .UseSnakeCaseNamingConvention());
 
         var app = builder.Build();
 

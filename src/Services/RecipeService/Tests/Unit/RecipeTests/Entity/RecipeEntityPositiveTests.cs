@@ -15,11 +15,9 @@ public class RecipeEntityPositiveTests
             recipe.Id,
             recipe.Title,
             recipe.Link,
-            recipe.Ingredients,
             recipe.PreparationTime,
             recipe.Servings,
             recipe.Description,
-            recipe.TelegramUserId,
             Guid.Empty
         );
 

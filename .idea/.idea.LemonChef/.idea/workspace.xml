@@ -10,7 +10,49 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a68c2f1-83e5-4d0a-be73-c99751520227" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/Base/Comment.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/Base/LemonChefFile.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/Base/Like.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/CommentFile.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/IngredientFile.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/RecipeComment.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/RecipeCommentLike.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/RecipeFile.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/RecipeLike.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Interfaces/ICommentable.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Interfaces/ILikeable.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Interfaces/IShareable.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Interfaces/IViewable.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Validations/Validators/LemonChefFileValidator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/EntityFramework/Configurations/CommentConfiguration.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/EntityFramework/Configurations/CommentFileConfiguration.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/EntityFramework/Configurations/IngredientFileConfiguration.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/EntityFramework/Configurations/LemonChefFileConfigurations.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/EntityFramework/Configurations/LikeConfiguration.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/EntityFramework/Configurations/RecipeCommentConfiguration.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/EntityFramework/Configurations/RecipeCommentLikeConfiguration.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/EntityFramework/Configurations/RecipeFileConfiguration.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/EntityFramework/Configurations/RecipeLikeConfiguration.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LemonChef/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LemonChef/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Repositories/IBaseRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Repositories/IBaseRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Services/BaseService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Services/BaseService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Services/IngredientService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Services/IngredientService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Services/TimestampService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Services/TimestampService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/Base/BaseEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/Base/BaseEntity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/Ingredient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/Ingredient.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/Recipe.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/Recipe.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Interfaces/IRateable.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Interfaces/ITrackable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Interfaces/ITrackable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/EntityFramework/Configurations/IngredientConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/EntityFramework/Configurations/IngredientConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/EntityFramework/Configurations/RecipeConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/EntityFramework/Configurations/RecipeConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/EntityFramework/Configurations/UserConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/EntityFramework/Configurations/UserConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/EntityFramework/RecipesDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/EntityFramework/RecipesDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/BaseRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/BaseRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/RecipeRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/RecipeRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Migrations/20240929124512_Initial.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Migrations/20240929124512_Initial.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Migrations/RecipesDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Migrations/RecipesDbContextModelSnapshot.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +85,7 @@
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/efcore/90d079985f33ae91c05b98ecf65e0ce38270ba55/src/EFCore/DbContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/06c046bf69aa4f768c77e50706275b1b26a820/a7/bb145563/IEntityTypeConfiguration`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/4a5e95709b753d3bbaae5db3f6118e89cc26533d03a8295f2611f9c502a9ded/SelfReferenceEquivalencyAssertionOptions.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://D:/LemonChef/LemonChef/src/Services/RecipeService/Infrastructure/Dal/EntityFramework/RecipiesDbContext.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/Base/Comment.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -149,6 +191,16 @@
       <workItem from="1727600154249" duration="814000" />
       <workItem from="1727601897505" duration="11715000" />
       <workItem from="1727953307857" duration="1087000" />
+      <workItem from="1728636220221" duration="2492000" />
+      <workItem from="1728806419280" duration="1000" />
+      <workItem from="1729284815487" duration="3954000" />
+      <workItem from="1729288840735" duration="23000" />
+      <workItem from="1729342335655" duration="8395000" />
+      <workItem from="1729351314029" duration="1861000" />
+      <workItem from="1729353534542" duration="1100000" />
+      <workItem from="1729624950272" duration="539000" />
+      <workItem from="1729706540542" duration="682000" />
+      <workItem from="1729711822144" duration="5594000" />
     </task>
     <task id="LOCAL-00001" summary="refactor: moved files correctly;">
       <option name="closed" value="true" />
@@ -174,7 +226,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727614094773</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="feat: Domain.csproj added IRateable.cs, new properties in ITrackable.cs;&#10;refactor: fixed code style issues;">
+      <option name="closed" value="true" />
+      <created>1728638721699</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1728638721699</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -187,7 +247,8 @@
     <MESSAGE value="refactor: moved files correctly;" />
     <MESSAGE value="feat: added: IngredientEntityNegativeTests.cs, IngredientEntityPositiveTests.cs, RecipeEntityPositiveTests.cs, methods for generating dto's to TestDataGenerator.cs;&#10;refactor: replaced new with TestDataValidGenerator.Get();" />
     <MESSAGE value="feat:added Identity provider, some api endpoints for RecipesController;" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat:added Identity provider, some api endpoints for RecipesController;" />
+    <MESSAGE value="feat: Domain.csproj added IRateable.cs, new properties in ITrackable.cs;&#10;refactor: fixed code style issues;" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Domain.csproj added IRateable.cs, new properties in ITrackable.cs;&#10;refactor: fixed code style issues;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

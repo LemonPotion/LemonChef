@@ -9,6 +9,20 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
     public void Configure(EntityTypeBuilder<User> builder)
     {
         builder.ToTable("users");
+
+        builder.Property(c => c.CreatedOn)
+            .ValueGeneratedOnAdd()
+            .IsRequired();
+
+        builder.Property(c => c.ModifiedOn)
+            .ValueGeneratedOnUpdate();
+
+        builder.Property(u => u.ViewCount);
+
+        builder.HasMany(u => u.UserFiles)
+            .WithOne(f => f.User)
+            .HasForeignKey(f => f.UserId);
+
         builder.HasMany(u => u.Recipes)
             .WithOne(r => r.User)
             .HasForeignKey(r => r.UserId);

@@ -1,4 +1,6 @@
-﻿namespace Application.Interfaces.Repositories;
+﻿using System.Linq.Expressions;
+
+namespace Application.Interfaces.Repositories;
 
 public interface IBaseRepository<TEntity>
 {
@@ -10,7 +12,5 @@ public interface IBaseRepository<TEntity>
 
     public Task<bool> DeleteByIdAsync(Guid id, CancellationToken cancellationToken);
 
-    public Task<List<TEntity>> GetAllListPagedAsync(int pageNumber, int pageSize, CancellationToken cancellationToken);
-
-    public Task SaveChangesAsync();
+    public Task<List<TEntity>> GetAllListPagedAsync(int pageNumber, int pageSize, Expression<Func<TEntity, bool>> filter, CancellationToken cancellationToken);
 }

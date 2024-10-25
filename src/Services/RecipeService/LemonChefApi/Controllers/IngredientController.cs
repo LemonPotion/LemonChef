@@ -40,10 +40,11 @@ public class IngredientsController : ControllerBase
         CancellationToken cancellationToken)
     {
         var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
-        var result = await service.DeleteByIdAsync(id, userId, cancellationToken);
+        var result = await service.DeleteByIdAsync(id, cancellationToken);
         return Ok(result);
     }
-
+    //TODO: добавить выбор фильтра
+/*
     [HttpGet]
     public async Task<IActionResult> GetAllPagedAsync([FromQuery] IngredientGetAllPagedRequest pagedRequest,
         [FromServices] IIngredientService service, CancellationToken cancellationToken)
@@ -51,4 +52,5 @@ public class IngredientsController : ControllerBase
         var result = await service.GetAllPagedAsync(pagedRequest.PageNumber, pagedRequest.PageSize, cancellationToken);
         return Ok(result);
     }
+    */
 }

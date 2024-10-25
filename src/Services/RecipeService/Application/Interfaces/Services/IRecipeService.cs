@@ -13,11 +13,7 @@ public interface IRecipeService : IBaseService<
     RecipeCreateResponse,
     RecipeUpdateResponse>
 {
-    public Task<List<RecipeGetResponse>> GetAllByTelegramIdAsync(int id, CancellationToken cancellationToken);
-
     public Task<List<RecipeGetResponse>> GetAllByUserIdAsync(Guid id, CancellationToken cancellationToken);
-
-    public Task<bool> DeleteByIdAsync(Guid id, Guid userId, CancellationToken cancellationToken);
 
     public Task<List<IngredientGetResponse>> GetRecipeIngredientsByRecipeId(Guid recipeId,
         CancellationToken cancellationToken);

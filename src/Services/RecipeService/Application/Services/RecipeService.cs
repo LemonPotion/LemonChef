@@ -25,12 +25,6 @@ public class RecipeService : BaseService<
         _mapper = mapper;
     }
 
-    public async Task<List<RecipeGetResponse>> GetAllByTelegramIdAsync(int id, CancellationToken cancellationToken)
-    {
-        var recipes = await _recipeRepository.GetAllByTelegramIdAsync(id, cancellationToken);
-        return _mapper.Map<List<RecipeGetResponse>>(recipes);
-    }
-
     public async Task<List<RecipeGetResponse>> GetAllByUserIdAsync(Guid id, CancellationToken cancellationToken)
     {
         var recipes = await _recipeRepository.GetAllByUserIdAsync(id, cancellationToken);

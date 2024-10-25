@@ -60,14 +60,4 @@ public class RecipeValidatorPositiveTests
 
         result.ShouldNotHaveValidationErrorFor(x => x.PreparationTime);
     }
-
-    [Fact]
-    public void TelegramUserId_ShouldNotHaveValidationErrors_WhenValid()
-    {
-        var recipe = TestDataValidGenerator.GetRecipeValid();
-
-        var result = _recipeValidator.TestValidate(recipe);
-
-        result.ShouldNotHaveValidationErrorFor(x => x.TelegramUserId);
-    }
 }

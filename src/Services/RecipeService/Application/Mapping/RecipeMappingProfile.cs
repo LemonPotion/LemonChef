@@ -15,11 +15,9 @@ public class RecipeMappingProfile : Profile
                 Guid.NewGuid(),
                 dto.Title,
                 dto.Link,
-                null,
                 dto.PreparationTime,
                 dto.Servings,
                 dto.Description,
-                dto.TelegramUserId,
                 dto.UserId
             ))
             .ForMember(dest => dest.Ingredients, opt => opt.Ignore())
@@ -32,11 +30,9 @@ public class RecipeMappingProfile : Profile
                 dto.Id,
                 dto.Title,
                 dto.Link,
-                null,
                 dto.PreparationTime,
                 dto.Servings,
                 dto.Description,
-                dto.TelegramUserId,
                 dto.UserId
             ))
             .ForMember(dest => dest.Ingredients, opt => opt.Ignore())
@@ -48,7 +44,6 @@ public class RecipeMappingProfile : Profile
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
             .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
             .ForMember(dest => dest.PreparationTime, opt => opt.MapFrom(src => src.PreparationTime))
-            .ForMember(dest => dest.TelegramUserId, opt => opt.MapFrom(src => src.TelegramUserId))
             .ForMember(dest => dest.Link, opt => opt.MapFrom(src => src.Link))
             .ForMember(dest => dest.Servings, opt => opt.MapFrom(src => src.Servings))
             .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Title))
@@ -58,7 +53,6 @@ public class RecipeMappingProfile : Profile
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
             .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
             .ForMember(dest => dest.PreparationTime, opt => opt.MapFrom(src => src.PreparationTime))
-            .ForMember(dest => dest.TelegramUserId, opt => opt.MapFrom(src => src.TelegramUserId))
             .ForMember(dest => dest.Link, opt => opt.MapFrom(src => src.Link))
             .ForMember(dest => dest.Servings, opt => opt.MapFrom(src => src.Servings))
             .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Title))
@@ -69,7 +63,6 @@ public class RecipeMappingProfile : Profile
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
             .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
             .ForMember(dest => dest.PreparationTime, opt => opt.MapFrom(src => src.PreparationTime))
-            .ForMember(dest => dest.TelegramUserId, opt => opt.MapFrom(src => src.TelegramUserId))
             .ForMember(dest => dest.Link, opt => opt.MapFrom(src => src.Link))
             .ForMember(dest => dest.Servings, opt => opt.MapFrom(src => src.Servings))
             .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Title))
