@@ -6,5 +6,4 @@ public record RecipeUpdateRequest(
     string? Link,
     int? PreparationTime,
     int? Servings,
-    string Description,
-    Guid? UserId);
+    string Description);

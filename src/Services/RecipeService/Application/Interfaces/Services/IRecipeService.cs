@@ -19,7 +19,7 @@ public interface IRecipeService
         Expression<Func<Recipe, bool>> filter,
         CancellationToken cancellationToken);
 
-    Task<RecipeUpdateResponse> UpdateAsync(RecipeUpdateRequest request, CancellationToken cancellationToken);
+    Task<RecipeUpdateResponse> UpdateAsync(RecipeUpdateRequest request, Guid userId, CancellationToken cancellationToken);
 
     Task DeleteByIdAsync(Guid id, CancellationToken cancellationToken);
 

@@ -16,8 +16,7 @@ public class RecipeMappingProfile : Profile
                 dto.Link,
                 dto.PreparationTime,
                 dto.Servings,
-                dto.Description,
-                dto.UserId
+                dto.Description
             ))
             .ForMember(dest => dest.Ingredients, opt => opt.Ignore())
             .ForMember(dest => dest.Id, opt => opt.Ignore())
@@ -30,8 +29,7 @@ public class RecipeMappingProfile : Profile
                 dto.Link,
                 dto.PreparationTime,
                 dto.Servings,
-                dto.Description,
-                dto.UserId
+                dto.Description
             ))
             .ForMember(dest => dest.Ingredients, opt => opt.Ignore())
             .ForMember(dest => dest.CreatedOn, opt => opt.Ignore())

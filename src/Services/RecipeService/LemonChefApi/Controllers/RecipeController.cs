@@ -16,6 +16,7 @@ public class RecipesController : ControllerBase
     public async Task<IActionResult> CreateAsync([FromBody] RecipeCreateRequest request,
         [FromServices] IRecipeService service, CancellationToken cancellationToken)
     {
+        //TODO: добавить проверки и возвращение нужных кодов
         var userClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
         TryParse(userClaim, out var userId);
 
@@ -23,7 +24,7 @@ public class RecipesController : ControllerBase
         return Ok(result);
     }
 
-    [HttpGet("{id:guid}")]
+    [HttpGet("{id}")]
     public async Task<IActionResult> GetByIdAsync(Guid id,
         [FromServices] IRecipeService service, CancellationToken cancellationToken)
     {
@@ -31,7 +32,7 @@ public class RecipesController : ControllerBase
         return Ok(result);
     }
 
-    [HttpGet("{userId:guid}")]
+    [HttpGet("{userId}")]
     public async Task<IActionResult> GetByUserIdAsync(Guid userId,
         [FromServices] IRecipeService service, CancellationToken cancellationToken)
     {
@@ -52,7 +53,11 @@ public class RecipesController : ControllerBase
     public async Task<IActionResult> UpdateAsync([FromBody] RecipeUpdateRequest request,
         [FromServices] IRecipeService service, CancellationToken cancellationToken)
     {
-        var result = await service.UpdateAsync(request, cancellationToken);
+        
+        var userClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        TryParse(userClaim, out var userId);
+        
+        var result = await service.UpdateAsync(request, userId, cancellationToken);
         return Ok(result);
     }
 

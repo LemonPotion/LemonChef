@@ -47,10 +47,13 @@ public class RecipeService : IRecipeService
         return _mapper.Map<List<RecipeGetResponse>>(recipes);
     }
 
-    public async Task<RecipeUpdateResponse> UpdateAsync(RecipeUpdateRequest request,
+    public async Task<RecipeUpdateResponse> UpdateAsync(RecipeUpdateRequest request, Guid userId,
         CancellationToken cancellationToken)
     {
         var recipeToUpdate = _mapper.Map<Recipe>(request);
+        
+        recipeToUpdate.UserId = userId;
+        
         var updatedRecipe = await _recipeRepository.UpdateAsync(recipeToUpdate, cancellationToken);
         return _mapper.Map<RecipeUpdateResponse>(updatedRecipe);
     }

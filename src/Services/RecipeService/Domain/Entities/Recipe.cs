@@ -46,14 +46,13 @@ public class Recipe : BaseEntity, ITrackable, ILikeable, IViewable, ICommentable
     }
 
     public Recipe(string title, string? link, int? preparationTime,
-        int? servings, string description, Guid? userId)
+        int? servings, string description)
     {
         Title = title;
         Link = link;
         PreparationTime = preparationTime;
         Servings = servings;
         Description = description;
-        UserId = userId;
 
         var validator = new RecipeValidator(nameof(Recipe));
         validator.ValidateAndThrow(this);
