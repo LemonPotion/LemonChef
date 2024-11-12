@@ -19,7 +19,8 @@ public class RecipeCommentService : IRecipeCommentService
         _mapper = mapper;
     }
 
-    public async Task<RecipeCommentCreateResponse> CreateAsync(RecipeCommentCreateRequest request, CancellationToken cancellationToken)
+    public async Task<RecipeCommentCreateResponse> CreateAsync(RecipeCommentCreateRequest request,
+        CancellationToken cancellationToken)
     {
         var recipeComment = _mapper.Map<RecipeComment>(request);
         var createdRecipeComment = await _repository.CreateAsync(recipeComment, cancellationToken);
@@ -32,13 +33,15 @@ public class RecipeCommentService : IRecipeCommentService
         return recipeComment == null ? null : _mapper.Map<RecipeCommentGetResponse>(recipeComment);
     }
 
-    public async Task<List<RecipeCommentGetResponse>> GetAllPagedAsync(int pageNumber, int pageSize, Expression<Func<RecipeComment, bool>> filter, CancellationToken cancellationToken)
+    public async Task<List<RecipeCommentGetResponse>> GetAllPagedAsync(int pageNumber, int pageSize,
+        Expression<Func<RecipeComment, bool>> filter, CancellationToken cancellationToken)
     {
         var recipeComments = await _repository.GetAllListPagedAsync(pageNumber, pageSize, filter, cancellationToken);
         return _mapper.Map<List<RecipeCommentGetResponse>>(recipeComments);
     }
 
-    public async Task<RecipeCommentUpdateResponse> UpdateAsync(RecipeCommentUpdateRequest request, CancellationToken cancellationToken)
+    public async Task<RecipeCommentUpdateResponse> UpdateAsync(RecipeCommentUpdateRequest request,
+        CancellationToken cancellationToken)
     {
         var recipeCommentToUpdate = _mapper.Map<RecipeComment>(request);
         var updatedRecipeComment = await _repository.UpdateAsync(recipeCommentToUpdate, cancellationToken);

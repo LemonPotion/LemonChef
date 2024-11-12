@@ -19,7 +19,8 @@ public class RecipeLikeService : IRecipeLikeService
         _mapper = mapper;
     }
 
-    public async Task<RecipeLikeCreateResponse> CreateAsync(RecipeLikeCreateRequest request, CancellationToken cancellationToken)
+    public async Task<RecipeLikeCreateResponse> CreateAsync(RecipeLikeCreateRequest request,
+        CancellationToken cancellationToken)
     {
         var recipeLike = _mapper.Map<RecipeLike>(request);
         var createdRecipeLike = await _repository.CreateAsync(recipeLike, cancellationToken);
@@ -32,13 +33,15 @@ public class RecipeLikeService : IRecipeLikeService
         return recipeLike == null ? null : _mapper.Map<RecipeLikeGetResponse>(recipeLike);
     }
 
-    public async Task<List<RecipeLikeGetResponse>> GetAllPagedAsync(int pageNumber, int pageSize, Expression<Func<RecipeLike, bool>> filter, CancellationToken cancellationToken)
+    public async Task<List<RecipeLikeGetResponse>> GetAllPagedAsync(int pageNumber, int pageSize,
+        Expression<Func<RecipeLike, bool>> filter, CancellationToken cancellationToken)
     {
         var recipeLikes = await _repository.GetAllListPagedAsync(pageNumber, pageSize, filter, cancellationToken);
         return _mapper.Map<List<RecipeLikeGetResponse>>(recipeLikes);
     }
 
-    public async Task<RecipeLikeUpdateResponse> UpdateAsync(RecipeLikeUpdateRequest request, CancellationToken cancellationToken)
+    public async Task<RecipeLikeUpdateResponse> UpdateAsync(RecipeLikeUpdateRequest request,
+        CancellationToken cancellationToken)
     {
         var recipeLikeToUpdate = _mapper.Map<RecipeLike>(request);
         var updatedRecipeLike = await _repository.UpdateAsync(recipeLikeToUpdate, cancellationToken);
@@ -46,7 +49,7 @@ public class RecipeLikeService : IRecipeLikeService
     }
 
     public async Task DeleteByIdAsync(Guid id, CancellationToken cancellationToken)
-    { 
+    {
         await _repository.DeleteByIdAsync(id, cancellationToken);
     }
 }

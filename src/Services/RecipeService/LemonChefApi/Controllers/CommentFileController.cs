@@ -37,7 +37,7 @@ public class CommentFilesController : ControllerBase
     [HttpDelete("{id:guid}")]
     public async Task<IActionResult> DeleteAsync(Guid id, [FromServices] ICommentFileService service,
         CancellationToken cancellationToken)
-    { 
+    {
         await service.DeleteByIdAsync(id, cancellationToken);
         return NoContent();
     }

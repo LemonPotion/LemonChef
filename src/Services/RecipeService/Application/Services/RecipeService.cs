@@ -20,12 +20,13 @@ public class RecipeService : IRecipeService
         _mapper = mapper;
     }
 
-    public async Task<RecipeCreateResponse> CreateAsync(RecipeCreateRequest request, Guid userId, CancellationToken cancellationToken)
+    public async Task<RecipeCreateResponse> CreateAsync(RecipeCreateRequest request, Guid userId,
+        CancellationToken cancellationToken)
     {
         var recipeEntity = _mapper.Map<Recipe>(request);
 
         recipeEntity.UserId = userId;
-        
+
         var createdRecipe = await _recipeRepository.CreateAsync(recipeEntity, cancellationToken);
         return _mapper.Map<RecipeCreateResponse>(createdRecipe);
     }
@@ -46,13 +47,14 @@ public class RecipeService : IRecipeService
         return _mapper.Map<List<RecipeGetResponse>>(recipes);
     }
 
-    public async Task<RecipeUpdateResponse> UpdateAsync(RecipeUpdateRequest request, CancellationToken cancellationToken)
+    public async Task<RecipeUpdateResponse> UpdateAsync(RecipeUpdateRequest request,
+        CancellationToken cancellationToken)
     {
         var recipeToUpdate = _mapper.Map<Recipe>(request);
         var updatedRecipe = await _recipeRepository.UpdateAsync(recipeToUpdate, cancellationToken);
         return _mapper.Map<RecipeUpdateResponse>(updatedRecipe);
     }
-    
+
 
     public async Task<List<RecipeGetResponse>> GetAllByUserIdAsync(Guid id, CancellationToken cancellationToken)
     {

@@ -19,7 +19,8 @@ public class IngredientService : IIngredientService
         _mapper = mapper;
     }
 
-    public async Task<IngredientCreateResponse> CreateAsync(IngredientCreateRequest request, CancellationToken cancellationToken)
+    public async Task<IngredientCreateResponse> CreateAsync(IngredientCreateRequest request,
+        CancellationToken cancellationToken)
     {
         var ingredient = _mapper.Map<Ingredient>(request);
         var createdIngredient = await _repository.CreateAsync(ingredient, cancellationToken);
@@ -33,16 +34,19 @@ public class IngredientService : IIngredientService
         {
             return null;
         }
+
         return _mapper.Map<IngredientGetResponse>(ingredient);
     }
 
-    public async Task<List<IngredientGetResponse>> GetAllPagedAsync(int pageNumber, int pageSize, Expression<Func<Ingredient, bool>> filter, CancellationToken cancellationToken)
+    public async Task<List<IngredientGetResponse>> GetAllPagedAsync(int pageNumber, int pageSize,
+        Expression<Func<Ingredient, bool>> filter, CancellationToken cancellationToken)
     {
         var ingredients = await _repository.GetAllListPagedAsync(pageNumber, pageSize, filter, cancellationToken);
         return _mapper.Map<List<IngredientGetResponse>>(ingredients);
     }
 
-    public async Task<IngredientUpdateResponse> UpdateAsync(IngredientUpdateRequest request, CancellationToken cancellationToken)
+    public async Task<IngredientUpdateResponse> UpdateAsync(IngredientUpdateRequest request,
+        CancellationToken cancellationToken)
     {
         var ingredientToUpdate = _mapper.Map<Ingredient>(request);
         var updatedIngredient = await _repository.UpdateAsync(ingredientToUpdate, cancellationToken);

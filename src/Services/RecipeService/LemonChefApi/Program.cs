@@ -18,10 +18,10 @@ public class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-        
+
         builder.Services.AddAuthentication();
         builder.Services.AddAuthorization();
-        
+
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddControllers();
         builder.Services.Configure<IdentityOptions>(options =>
@@ -57,8 +57,8 @@ public class Program
                     {
                         Reference = new OpenApiReference
                         {
-                            Type=ReferenceType.SecurityScheme,
-                            Id="Bearer"
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
                         }
                     },
                     Array.Empty<string>()
@@ -106,7 +106,7 @@ public class Program
             .UseSnakeCaseNamingConvention());
 
         var app = builder.Build();
-        
+
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
@@ -117,7 +117,7 @@ public class Program
 
         app.UseAuthentication();
         app.UseAuthorization();
-        
+
         app.MapGroup("api/auth")
             .MapIdentityApi<User>();
 

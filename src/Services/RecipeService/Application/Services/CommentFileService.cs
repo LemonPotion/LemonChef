@@ -20,7 +20,8 @@ public class CommentFileService : ICommentFileService
         _mapper = mapper;
     }
 
-    public async Task<CommentFileCreateResponse> CreateAsync(CommentFileCreateRequest request, CancellationToken cancellationToken)
+    public async Task<CommentFileCreateResponse> CreateAsync(CommentFileCreateRequest request,
+        CancellationToken cancellationToken)
     {
         var commentFile = _mapper.Map<CommentFile>(request);
         var createdCommentFile = await _repository.CreateAsync(commentFile, cancellationToken);
@@ -33,13 +34,15 @@ public class CommentFileService : ICommentFileService
         return commentFile == null ? null : _mapper.Map<CommentFileGetResponse>(commentFile);
     }
 
-    public async Task<List<CommentFileGetResponse>> GetAllPagedAsync(int pageNumber, int pageSize, Expression<Func<CommentFile, bool>> filter, CancellationToken cancellationToken)
+    public async Task<List<CommentFileGetResponse>> GetAllPagedAsync(int pageNumber, int pageSize,
+        Expression<Func<CommentFile, bool>> filter, CancellationToken cancellationToken)
     {
         var commentFiles = await _repository.GetAllListPagedAsync(pageNumber, pageSize, filter, cancellationToken);
         return _mapper.Map<List<CommentFileGetResponse>>(commentFiles);
     }
 
-    public async Task<CommentFileUpdateResponse> UpdateAsync(CommentFileUpdateRequest request, CancellationToken cancellationToken)
+    public async Task<CommentFileUpdateResponse> UpdateAsync(CommentFileUpdateRequest request,
+        CancellationToken cancellationToken)
     {
         var commentFileToUpdate = _mapper.Map<CommentFile>(request);
         var updatedCommentFile = await _repository.UpdateAsync(commentFileToUpdate, cancellationToken);

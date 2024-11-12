@@ -19,7 +19,8 @@ public class RecipeFileService : IRecipeFileService
         _mapper = mapper;
     }
 
-    public async Task<RecipeFileCreateResponse> CreateAsync(RecipeFileCreateRequest request, CancellationToken cancellationToken)
+    public async Task<RecipeFileCreateResponse> CreateAsync(RecipeFileCreateRequest request,
+        CancellationToken cancellationToken)
     {
         var recipeFile = _mapper.Map<RecipeFile>(request);
         var createdRecipeFile = await _repository.CreateAsync(recipeFile, cancellationToken);
@@ -32,13 +33,15 @@ public class RecipeFileService : IRecipeFileService
         return recipeFile == null ? null : _mapper.Map<RecipeFileGetResponse>(recipeFile);
     }
 
-    public async Task<List<RecipeFileGetResponse>> GetAllPagedAsync(int pageNumber, int pageSize, Expression<Func<RecipeFile, bool>> filter, CancellationToken cancellationToken)
+    public async Task<List<RecipeFileGetResponse>> GetAllPagedAsync(int pageNumber, int pageSize,
+        Expression<Func<RecipeFile, bool>> filter, CancellationToken cancellationToken)
     {
         var recipeFiles = await _repository.GetAllListPagedAsync(pageNumber, pageSize, filter, cancellationToken);
         return _mapper.Map<List<RecipeFileGetResponse>>(recipeFiles);
     }
 
-    public async Task<RecipeFileUpdateResponse> UpdateAsync(RecipeFileUpdateRequest request, CancellationToken cancellationToken)
+    public async Task<RecipeFileUpdateResponse> UpdateAsync(RecipeFileUpdateRequest request,
+        CancellationToken cancellationToken)
     {
         var recipeFileToUpdate = _mapper.Map<RecipeFile>(request);
         var updatedRecipeFile = await _repository.UpdateAsync(recipeFileToUpdate, cancellationToken);
@@ -46,7 +49,7 @@ public class RecipeFileService : IRecipeFileService
     }
 
     public async Task DeleteByIdAsync(Guid id, CancellationToken cancellationToken)
-    { 
+    {
         await _repository.DeleteByIdAsync(id, cancellationToken);
     }
 }

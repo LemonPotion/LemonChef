@@ -10,7 +10,6 @@ namespace Application.Services;
 
 public class RecipeCommentLikeService : IRecipeCommentLikeService
 {
-    
     private readonly IRepository<RecipeCommentLike> _repository;
     private readonly IMapper _mapper;
 
@@ -20,7 +19,8 @@ public class RecipeCommentLikeService : IRecipeCommentLikeService
         _mapper = mapper;
     }
 
-    public async Task<RecipeCommentLikeCreateResponse> CreateAsync(RecipeCommentLikeCreateRequest request, CancellationToken cancellationToken)
+    public async Task<RecipeCommentLikeCreateResponse> CreateAsync(RecipeCommentLikeCreateRequest request,
+        CancellationToken cancellationToken)
     {
         var recipeCommentLike = _mapper.Map<RecipeCommentLike>(request);
         var createdRecipeCommentLike = await _repository.CreateAsync(recipeCommentLike, cancellationToken);
@@ -33,13 +33,16 @@ public class RecipeCommentLikeService : IRecipeCommentLikeService
         return recipeCommentLike == null ? null : _mapper.Map<RecipeCommentLikeGetResponse>(recipeCommentLike);
     }
 
-    public async Task<List<RecipeCommentLikeGetResponse>> GetAllPagedAsync(int pageNumber, int pageSize, Expression<Func<RecipeCommentLike, bool>> filter, CancellationToken cancellationToken)
+    public async Task<List<RecipeCommentLikeGetResponse>> GetAllPagedAsync(int pageNumber, int pageSize,
+        Expression<Func<RecipeCommentLike, bool>> filter, CancellationToken cancellationToken)
     {
-        var recipeCommentLikes = await _repository.GetAllListPagedAsync(pageNumber, pageSize, filter, cancellationToken);
+        var recipeCommentLikes =
+            await _repository.GetAllListPagedAsync(pageNumber, pageSize, filter, cancellationToken);
         return _mapper.Map<List<RecipeCommentLikeGetResponse>>(recipeCommentLikes);
     }
 
-    public async Task<RecipeCommentLikeUpdateResponse> UpdateAsync(RecipeCommentLikeUpdateRequest request, CancellationToken cancellationToken)
+    public async Task<RecipeCommentLikeUpdateResponse> UpdateAsync(RecipeCommentLikeUpdateRequest request,
+        CancellationToken cancellationToken)
     {
         var recipeCommentLikeToUpdate = _mapper.Map<RecipeCommentLike>(request);
         var updatedRecipeCommentLike = await _repository.UpdateAsync(recipeCommentLikeToUpdate, cancellationToken);
@@ -47,7 +50,7 @@ public class RecipeCommentLikeService : IRecipeCommentLikeService
     }
 
     public async Task DeleteByIdAsync(Guid id, CancellationToken cancellationToken)
-    { 
+    {
         await _repository.DeleteByIdAsync(id, cancellationToken);
     }
 }

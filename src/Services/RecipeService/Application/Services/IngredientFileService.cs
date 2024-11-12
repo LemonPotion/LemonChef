@@ -19,7 +19,8 @@ public class IngredientFileService : IIngredientFileService
         _mapper = mapper;
     }
 
-    public async Task<IngredientFileCreateResponse> CreateAsync(IngredientFileCreateRequest request, CancellationToken cancellationToken)
+    public async Task<IngredientFileCreateResponse> CreateAsync(IngredientFileCreateRequest request,
+        CancellationToken cancellationToken)
     {
         var ingredientFile = _mapper.Map<IngredientFile>(request);
         var createdIngredientFile = await _repository.CreateAsync(ingredientFile, cancellationToken);
@@ -32,13 +33,15 @@ public class IngredientFileService : IIngredientFileService
         return ingredientFile == null ? null : _mapper.Map<IngredientFileGetResponse>(ingredientFile);
     }
 
-    public async Task<List<IngredientFileGetResponse>> GetAllPagedAsync(int pageNumber, int pageSize, Expression<Func<IngredientFile, bool>> filter, CancellationToken cancellationToken)
+    public async Task<List<IngredientFileGetResponse>> GetAllPagedAsync(int pageNumber, int pageSize,
+        Expression<Func<IngredientFile, bool>> filter, CancellationToken cancellationToken)
     {
         var ingredientFiles = await _repository.GetAllListPagedAsync(pageNumber, pageSize, filter, cancellationToken);
         return _mapper.Map<List<IngredientFileGetResponse>>(ingredientFiles);
     }
 
-    public async Task<IngredientFileUpdateResponse> UpdateAsync(IngredientFileUpdateRequest request, CancellationToken cancellationToken)
+    public async Task<IngredientFileUpdateResponse> UpdateAsync(IngredientFileUpdateRequest request,
+        CancellationToken cancellationToken)
     {
         var ingredientFileToUpdate = _mapper.Map<IngredientFile>(request);
         var updatedIngredientFile = await _repository.UpdateAsync(ingredientFileToUpdate, cancellationToken);

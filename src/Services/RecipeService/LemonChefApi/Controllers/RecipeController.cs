@@ -16,9 +16,9 @@ public class RecipesController : ControllerBase
     public async Task<IActionResult> CreateAsync([FromBody] RecipeCreateRequest request,
         [FromServices] IRecipeService service, CancellationToken cancellationToken)
     {
-        var userClaim = User.FindFirstValue(ClaimTypes.NameIdentifier); 
-        TryParse(userClaim, out var userId); 
-        
+        var userClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        TryParse(userClaim, out var userId);
+
         var result = await service.CreateAsync(request, userId, cancellationToken);
         return Ok(result);
     }

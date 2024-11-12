@@ -33,7 +33,7 @@ public class RecipeCommentsController : ControllerBase
         var result = await service.UpdateAsync(request, cancellationToken);
         return Ok(result);
     }
-    
+
     [HttpDelete("{id:guid}")]
     public async Task<IActionResult> DeleteAsync(Guid id, [FromServices] IRecipeCommentService service,
         CancellationToken cancellationToken)

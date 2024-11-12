@@ -8,22 +8,23 @@ namespace Application.Interfaces.Services;
 
 public interface IRecipeService
 {
-    Task<RecipeCreateResponse> CreateAsync(RecipeCreateRequest request, Guid userId, CancellationToken cancellationToken);
-    
+    Task<RecipeCreateResponse> CreateAsync(RecipeCreateRequest request, Guid userId,
+        CancellationToken cancellationToken);
+
     Task<RecipeGetResponse> GetByIdAsync(Guid id, CancellationToken cancellationToken);
-    
+
     Task<List<RecipeGetResponse>> GetAllPagedAsync(
         int pageNumber,
         int pageSize,
         Expression<Func<Recipe, bool>> filter,
         CancellationToken cancellationToken);
-    
+
     Task<RecipeUpdateResponse> UpdateAsync(RecipeUpdateRequest request, CancellationToken cancellationToken);
-    
+
     Task DeleteByIdAsync(Guid id, CancellationToken cancellationToken);
-    
+
     Task<List<RecipeGetResponse>> GetAllByUserIdAsync(Guid id, CancellationToken cancellationToken);
-    
+
     Task<List<IngredientGetResponse>> GetRecipeIngredientsByRecipeId(
         Guid recipeId,
         CancellationToken cancellationToken);
