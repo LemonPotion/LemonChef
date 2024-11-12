@@ -1,6 +1,5 @@
-﻿namespace Application.Dto_s.Ingredient.Responses;
+﻿using Domain.Validations.Primitives;
 
-public class IngredientUpdateResponse : BaseIngredientDto
-{
-    public Guid Id { get; set; }
-}
+namespace Application.Dto_s.Ingredient.Responses;
+
+public record IngredientUpdateResponse(Guid Id, Guid RecipeId, string Name, int? Quantity, UnitsOfMeasure? Unit);

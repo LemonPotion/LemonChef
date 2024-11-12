@@ -4,7 +4,7 @@ using Infrastructure.Dal.EntityFramework;
 
 namespace Infrastructure.Dal.Repositories;
 
-public class LemonChefFileRepository : BaseRepository<LemonChefFile>, ILemonChefFileRepository
+public class LemonChefFileRepository : Repository<LemonChefFile>, IRepository<LemonChefFile>
 {
     public LemonChefFileRepository(RecipesDbContext dbContext) : base(dbContext)
     {

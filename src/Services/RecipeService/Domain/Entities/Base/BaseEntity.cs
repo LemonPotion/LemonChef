@@ -8,7 +8,7 @@ public abstract class BaseEntity
     /// <summary>
     /// Уникальный идентификатор сущности.
     /// </summary>
-    public Guid Id { get; set; }
+    public Guid Id { get; protected set; }
 
     /// <summary>
     /// Переопределение метода для сравнения с другим объектом.

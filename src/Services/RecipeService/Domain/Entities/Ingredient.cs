@@ -19,17 +19,16 @@ public class Ingredient : BaseEntity, ITrackable
 
     public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
 
-    public DateTime? ModifiedOn { get; set; }
-    
+    public DateTime? ModifiedOn { get; set; } = DateTime.UtcNow;
+
     public ICollection<IngredientFile>? Files { get; set; }
 
     public Ingredient()
     {
     }
 
-    public Ingredient(Guid id, string name, int? quantity, UnitsOfMeasure? unit, Guid recipeId)
+    public Ingredient(string name, int? quantity, UnitsOfMeasure? unit, Guid recipeId)
     {
-        Id = id;
         Name = name;
         Quantity = quantity;
         Unit = unit;

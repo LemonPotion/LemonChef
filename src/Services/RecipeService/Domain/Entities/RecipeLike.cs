@@ -12,13 +12,12 @@ public class RecipeLike : Like
 
     public RecipeLike()
     {
-        
     }
 
     public RecipeLike(Guid userId, Guid recipeId) : base(userId)
     {
         RecipeId = recipeId;
-        
+
         var validator = new RecipeLikeValidator(nameof(RecipeLike));
         validator.ValidateAndThrow(this);
     }

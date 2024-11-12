@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Dal.Repositories;
 
-public class RecipeRepository : BaseRepository<Recipe>, IRecipeRepository
+public class RecipeRepository : Repository<Recipe>, IRecipeRepository
 {
     private readonly RecipesDbContext _dbContext;
 
@@ -21,8 +21,9 @@ public class RecipeRepository : BaseRepository<Recipe>, IRecipeRepository
             .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
         return entity;
     }
-    
-    public override async Task<List<Recipe>> GetAllListPagedAsync(int pageNumber, int pageSize, Expression<Func<Recipe, bool>> filter,
+
+    public override async Task<List<Recipe>> GetAllListPagedAsync(int pageNumber, int pageSize,
+        Expression<Func<Recipe, bool>> filter,
         CancellationToken cancellationToken)
     {
         var list = await _dbContext.Recipes.Include(x => x.Ingredients)
@@ -39,7 +40,7 @@ public class RecipeRepository : BaseRepository<Recipe>, IRecipeRepository
         var recipe = await GetByIdAsync(recipeId, cancellationToken);
         return recipe.Ingredients.ToList();
     }
-    
+
     public async Task<List<Recipe>> GetAllByUserIdAsync(Guid id, CancellationToken cancellationToken)
     {
         var recipes = await _dbContext.Recipes

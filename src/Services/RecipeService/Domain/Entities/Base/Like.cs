@@ -11,9 +11,8 @@ public class Like : BaseEntity
 
     public Like()
     {
-        
     }
-    
+
     public Like(Guid userId)
     {
         UserId = userId;

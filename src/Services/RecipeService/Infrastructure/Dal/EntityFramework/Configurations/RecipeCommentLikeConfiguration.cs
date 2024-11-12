@@ -13,7 +13,7 @@ public class RecipeCommentLikeConfiguration : IEntityTypeConfiguration<RecipeCom
                 l.UserId, l.RecipeCommentId
             })
             .IsUnique();
-        
+
         builder.HasOne(l => l.RecipeComment)
             .WithMany(c => c.RecipeCommentLikes)
             .HasForeignKey(c => c.RecipeCommentId);

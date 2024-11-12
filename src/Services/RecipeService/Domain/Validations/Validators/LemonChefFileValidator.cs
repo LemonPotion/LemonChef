@@ -10,7 +10,7 @@ public class LemonChefFileValidator : AbstractValidator<LemonChefFile>
     {
         RuleFor(param => param.UserId)
             .NotNullOrEmptyWithMessage(nameof(LemonChefFile.UserId));
-        
+
         RuleFor(param => param.FilePath)
             .NotNullOrEmptyWithMessage(nameof(LemonChefFile.FilePath))
             .Must(Path.IsPathFullyQualified);
@@ -25,6 +25,6 @@ public class LemonChefFileValidator : AbstractValidator<LemonChefFile>
 
         RuleFor(param => param.FileSizeInBytes)
             .NotNullOrEmptyWithMessage(nameof(LemonChefFile.FileSizeInBytes))
-            .LessThanOrEqualTo(300 * 1024 * 1024);//TODO: добавить конфигурационный файл
+            .LessThanOrEqualTo(300 * 1024 * 1024); //TODO: добавить конфигурационный файл
     }
 }

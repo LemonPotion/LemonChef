@@ -18,12 +18,10 @@ public class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-
-        // Add services to the container.
+        
         builder.Services.AddAuthentication();
         builder.Services.AddAuthorization();
-
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+        
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddControllers();
         builder.Services.Configure<IdentityOptions>(options =>
@@ -36,42 +34,34 @@ public class Program
             options.Password.RequireLowercase = true;
             options.SignIn.RequireConfirmedEmail = false;
             options.SignIn.RequireConfirmedPhoneNumber = false;
-            options.SignIn.RequireConfirmedAccount = true;
+            options.SignIn.RequireConfirmedAccount = false;
             options.User.RequireUniqueEmail = true;
         });
 
-        builder.Services.AddSwaggerGen(options =>
+        builder.Services.AddSwaggerGen(opt =>
         {
-            options.SwaggerDoc("v1", new OpenApiInfo()
-            {
-                Title = "LemonChef",
-                Version = "v1",
-            });
-            options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+            opt.SwaggerDoc("v1", new OpenApiInfo { Title = "ExamApi", Version = "v1" });
+            opt.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
             {
                 In = ParameterLocation.Header,
-                Description = "Please paste your auth token",
+                Description = "Please enter token",
                 Name = "Authorization",
                 Type = SecuritySchemeType.Http,
                 BearerFormat = "JWT",
                 Scheme = "bearer"
             });
-
-            options.AddSecurityRequirement(new OpenApiSecurityRequirement
+            opt.AddSecurityRequirement(new OpenApiSecurityRequirement
             {
                 {
                     new OpenApiSecurityScheme
                     {
                         Reference = new OpenApiReference
                         {
-                            Type = ReferenceType.SecurityScheme,
-                            Id = "Bearer"
-                        },
-                        Scheme = "bearer",
-                        Name = "Bearer",
-                        In = ParameterLocation.Header
+                            Type=ReferenceType.SecurityScheme,
+                            Id="Bearer"
+                        }
                     },
-                    new List<string>()
+                    Array.Empty<string>()
                 }
             });
         });
@@ -79,11 +69,29 @@ public class Program
         builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection(nameof(EmailSettings)));
 
         builder.Services.AddTransient<IIngredientService, IngredientService>();
-        builder.Services.AddTransient<IIngredientRepository, IngredientRepository>();
+        builder.Services.AddTransient<IRepository<Ingredient>, IngredientRepository>();
+
+        builder.Services.AddTransient<ICommentFileService, CommentFileService>();
+        builder.Services.AddTransient<IRepository<CommentFile>, CommentFileRepository>();
+
+        builder.Services.AddTransient<IIngredientFileService, IngredientFileService>();
+        builder.Services.AddTransient<IRepository<IngredientFile>, IngredientFileRepository>();
+
+        builder.Services.AddTransient<IRecipeCommentLikeService, RecipeCommentLikeService>();
+        builder.Services.AddTransient<IRepository<RecipeCommentLike>, RecipeCommentLikeRepository>();
+
+        builder.Services.AddTransient<IRecipeCommentService, RecipeCommentService>();
+        builder.Services.AddTransient<IRepository<RecipeComment>, RecipeCommentRepository>();
+
+        builder.Services.AddTransient<IRecipeFileService, RecipeFileService>();
+        builder.Services.AddTransient<IRepository<RecipeFile>, RecipeFileRepository>();
+
+        builder.Services.AddTransient<IRecipeLikeService, RecipeLikeService>();
+        builder.Services.AddTransient<IRepository<RecipeLike>, RecipeLikeRepository>();
 
         builder.Services.AddTransient<IRecipeService, RecipeService>();
         builder.Services.AddTransient<IRecipeRepository, RecipeRepository>();
-        
+
         builder.Services.AddTransient<IEmailSender, EmailSender>();
 
         builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -98,8 +106,7 @@ public class Program
             .UseSnakeCaseNamingConvention());
 
         var app = builder.Build();
-
-        // Configure the HTTP request pipeline.
+        
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
@@ -110,7 +117,9 @@ public class Program
 
         app.UseAuthentication();
         app.UseAuthorization();
-        app.MapIdentityApi<User>();
+        
+        app.MapGroup("api/auth")
+            .MapIdentityApi<User>();
 
         app.MapControllers();
 

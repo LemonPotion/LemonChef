@@ -86,12 +86,11 @@ namespace Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long?>("Duration"));
 
-                    b.Property<int>("FileFormat")
+                    b.Property<string>("FileFormat")
+                        .IsRequired()
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
+                        .HasColumnType("text")
                         .HasColumnName("file_format");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("FileFormat"));
 
                     b.Property<string>("FileName")
                         .IsRequired()
@@ -107,12 +106,12 @@ namespace Infrastructure.Migrations
                         .HasColumnType("character varying(1024)")
                         .HasColumnName("file_path");
 
-                    b.Property<int>("FileSizeInBytes")
+                    b.Property<long>("FileSizeInBytes")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
+                        .HasColumnType("bigint")
                         .HasColumnName("file_size_in_bytes");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("FileSizeInBytes"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("FileSizeInBytes"));
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid")

@@ -1,8 +1,5 @@
 ﻿namespace Application.Dto_s.Ingredient.Requests;
 
-public class IngredientGetAllPagedRequest
-{
-    public int PageNumber { get; set; }
-
-    public int PageSize { get; set; }
-}
+//TODO: очень много однотипных классов get all 
+//TODO: придумать как добавить фильтр (маппинг через запрос фильтра)
+public record IngredientGetAllPagedRequest(int PageNumber, int PageSize);

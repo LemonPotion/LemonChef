@@ -4,7 +4,7 @@ using Infrastructure.Dal.EntityFramework;
 
 namespace Infrastructure.Dal.Repositories;
 
-public class LikeRepository : BaseRepository<Like>, ILikeRepository
+public class LikeRepository : Repository<Like>, IRepository<Like>
 {
     public LikeRepository(RecipesDbContext dbContext) : base(dbContext)
     {

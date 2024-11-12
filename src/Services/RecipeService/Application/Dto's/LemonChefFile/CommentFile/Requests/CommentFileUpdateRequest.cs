@@ -1,8 +1,3 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿namespace Application.Dto_s.LemonChefFile.CommentFile.Requests;
 
-namespace Application.Dto_s.LemonChefFile.CommentFile.Requests;
-
-public class CommentFileUpdateRequest : BaseLemonChefFileDto
-{
-    public Guid Id { get; set; }
-}
+public record CommentFileUpdateRequest(Guid Id, Guid CommentId, Guid UserId, string FileName, string FileFormat, long FileSizeInBytes, long? Duration);

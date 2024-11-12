@@ -2,9 +2,4 @@
 
 namespace Application.Dto_s.Recipe.Responses;
 
-public class RecipeCreateResponse : BaseRecipeDto
-{
-    public Guid Id { get; set; }
-
-    public ICollection<IngredientGetResponse>? Ingredients { get; set; }
-}
+public record RecipeCreateResponse(Guid Id, string Title, string? Link, int? PreparationTime, int? Servings, string Description, Guid? UserId, ICollection<IngredientGetResponse>? Ingredients);

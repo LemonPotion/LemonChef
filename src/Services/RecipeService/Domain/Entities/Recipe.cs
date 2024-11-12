@@ -34,21 +34,20 @@ public class Recipe : BaseEntity, ITrackable, ILikeable, IViewable, ICommentable
     public ICollection<RecipeComment>? Comments { get; set; }
 
     public ICollection<RecipeFile>? Files { get; set; }
-    
+
     public long ViewCount { get; set; }
-    
+
     public long LikeCount { get; set; }
-    
+
     public long CommentCount { get; set; }
 
     public Recipe()
     {
     }
-    
-    public Recipe(Guid id, string title, string? link, int? preparationTime,
+
+    public Recipe(string title, string? link, int? preparationTime,
         int? servings, string description, Guid? userId)
     {
-        Id = id;
         Title = title;
         Link = link;
         PreparationTime = preparationTime;

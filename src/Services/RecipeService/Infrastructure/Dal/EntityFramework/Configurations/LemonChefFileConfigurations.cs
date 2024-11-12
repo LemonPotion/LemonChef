@@ -22,7 +22,6 @@ public class LemonChefFileConfigurations : IEntityTypeConfiguration<LemonChefFil
             .ValueGeneratedOnAdd();
 
         builder.Property(f => f.FileFormat)
-            .HasConversion<int>()
             .ValueGeneratedOnAdd()
             .IsRequired();
 

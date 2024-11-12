@@ -11,7 +11,6 @@ public class IngredientMappingProfile : Profile
     {
         CreateMap<IngredientCreateRequest, Ingredient>()
             .ConstructUsing(dto => new Ingredient(
-                Guid.NewGuid(),
                 dto.Name,
                 dto.Quantity,
                 dto.Unit,
@@ -24,7 +23,6 @@ public class IngredientMappingProfile : Profile
 
         CreateMap<IngredientUpdateRequest, Ingredient>()
             .ConstructUsing(dto => new Ingredient(
-                dto.Id,
                 dto.Name,
                 dto.Quantity,
                 dto.Unit,

@@ -4,10 +4,9 @@ using Infrastructure.Dal.EntityFramework;
 
 namespace Infrastructure.Dal.Repositories;
 
-public class CommentFileRepository : BaseRepository<CommentFile>, ICommentFileRepository
+public class CommentFileRepository : Repository<CommentFile>, IRepository<CommentFile>
 {
     public CommentFileRepository(RecipesDbContext dbContext) : base(dbContext)
     {
-        
     }
 }

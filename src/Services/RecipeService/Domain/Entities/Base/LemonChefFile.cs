@@ -1,12 +1,11 @@
-﻿using Domain.Interfaces;
-using Domain.Validations.Primitives;
-using Domain.Validations.Validators;
+﻿using Domain.Validations.Validators;
 using FluentValidation;
 
 namespace Domain.Entities.Base;
 
 public class LemonChefFile : BaseEntity
 {
+    //TODO: придумать ограничение по формату файла
     public Guid UserId { get; set; }
 
     public User User { get; set; }
@@ -15,7 +14,7 @@ public class LemonChefFile : BaseEntity
 
     public string FilePath { get; set; }
 
-    public FileFormats FileFormat { get; set; }
+    public string FileFormat { get; set; }
 
     public long FileSizeInBytes { get; set; }
 
@@ -23,10 +22,10 @@ public class LemonChefFile : BaseEntity
 
     public LemonChefFile()
     {
-        
     }
 
-    public LemonChefFile(Guid userId, string fileName, string filePath, FileFormats fileFormat, int fileSizeInBytes, long? duration)
+    public LemonChefFile(Guid userId, string fileName, string filePath, string fileFormat, int fileSizeInBytes,
+        long? duration)
     {
         UserId = userId;
         FileName = fileName;
@@ -34,7 +33,7 @@ public class LemonChefFile : BaseEntity
         FileFormat = fileFormat;
         FileSizeInBytes = fileSizeInBytes;
         Duration = duration;
-        
+
         var validator = new LemonChefFileValidator(nameof(LemonChefFile));
         validator.ValidateAndThrow(this);
     }

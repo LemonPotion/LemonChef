@@ -12,7 +12,6 @@ public class RecipeMappingProfile : Profile
     {
         CreateMap<RecipeCreateRequest, Recipe>()
             .ConstructUsing(dto => new Recipe(
-                Guid.NewGuid(),
                 dto.Title,
                 dto.Link,
                 dto.PreparationTime,
@@ -27,7 +26,6 @@ public class RecipeMappingProfile : Profile
 
         CreateMap<RecipeUpdateRequest, Recipe>()
             .ConstructUsing(dto => new Recipe(
-                dto.Id,
                 dto.Title,
                 dto.Link,
                 dto.PreparationTime,

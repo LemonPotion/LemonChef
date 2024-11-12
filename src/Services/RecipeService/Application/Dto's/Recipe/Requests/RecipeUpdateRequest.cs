@@ -1,6 +1,3 @@
 ﻿namespace Application.Dto_s.Recipe.Requests;
 
-public class RecipeUpdateRequest : BaseRecipeDto
-{
-    public Guid Id { get; set; }
-}
+public record RecipeUpdateRequest(Guid Id, string Title, string? Link, int? PreparationTime, int? Servings, string Description, Guid? UserId);

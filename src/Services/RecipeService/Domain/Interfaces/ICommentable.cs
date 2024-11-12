@@ -1,8 +1,6 @@
-﻿using Domain.Entities;
-
-namespace Domain.Interfaces;
+﻿namespace Domain.Interfaces;
 
 public interface ICommentable
 {
-    public long CommentCount { get; }
+    public long CommentCount { get; set; }
 }

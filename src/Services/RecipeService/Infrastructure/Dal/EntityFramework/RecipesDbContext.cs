@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using Application.Interfaces.Services;
 using Domain.Entities;
 using Domain.Entities.Base;
 using Microsoft.AspNetCore.Identity;
@@ -12,7 +11,6 @@ public class RecipesDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid
     IdentityUserClaim<Guid>, IdentityUserRole<Guid>, IdentityUserLogin<Guid>,
     IdentityRoleClaim<Guid>, IdentityUserToken<Guid>>
 {
-
     public DbSet<Ingredient> Ingredients => Set<Ingredient>();
     public DbSet<Recipe> Recipes => Set<Recipe>();
 
@@ -32,5 +30,4 @@ public class RecipesDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid
         base.OnModelCreating(modelBuilder);
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
-    
 }

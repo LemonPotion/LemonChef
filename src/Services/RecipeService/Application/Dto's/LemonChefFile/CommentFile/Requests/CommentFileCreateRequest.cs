@@ -1,8 +1,3 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿namespace Application.Dto_s.LemonChefFile.CommentFile.Requests;
 
-namespace Application.Dto_s.LemonChefFile.CommentFile.Requests;
-
-public class CommentFileCreateRequest : BaseLemonChefFileDto
-{
-    public IFormFile File { get; set; }
-}
+public record CommentFileCreateRequest(Guid CommentId, Guid UserId, string FileName, string FileFormat, long FileSizeInBytes, long? Duration);

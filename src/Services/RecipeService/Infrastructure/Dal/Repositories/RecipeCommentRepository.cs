@@ -4,7 +4,7 @@ using Infrastructure.Dal.EntityFramework;
 
 namespace Infrastructure.Dal.Repositories;
 
-public class RecipeCommentRepository : BaseRepository<RecipeComment>, IRecipeCommentRepository
+public class RecipeCommentRepository : Repository<RecipeComment>, IRepository<RecipeComment>
 {
     public RecipeCommentRepository(RecipesDbContext dbContext) : base(dbContext)
     {

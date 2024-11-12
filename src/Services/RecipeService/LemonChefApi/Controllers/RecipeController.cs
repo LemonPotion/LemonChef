@@ -3,6 +3,7 @@ using Application.Dto_s.Recipe.Requests;
 using Application.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using static System.Guid;
 
 namespace LemonChefApi.Controllers;
 
@@ -15,7 +16,10 @@ public class RecipesController : ControllerBase
     public async Task<IActionResult> CreateAsync([FromBody] RecipeCreateRequest request,
         [FromServices] IRecipeService service, CancellationToken cancellationToken)
     {
-        var result = await service.CreateAsync(request, cancellationToken);
+        var userClaim = User.FindFirstValue(ClaimTypes.NameIdentifier); 
+        TryParse(userClaim, out var userId); 
+        
+        var result = await service.CreateAsync(request, userId, cancellationToken);
         return Ok(result);
     }
 
@@ -57,19 +61,9 @@ public class RecipesController : ControllerBase
     public async Task<IActionResult> DeleteAsync(Guid id, [FromServices] IRecipeService service,
         CancellationToken cancellationToken)
     {
-        var userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
-        var result = await service.DeleteByIdAsync(id, cancellationToken);
-        return Ok(result);
+        await service.DeleteByIdAsync(id, cancellationToken);
+        return NoContent();
     }
-
-    //TODO: добавить выбор фильтра
-    /*
-    [HttpGet]
-    public async Task<IActionResult> GetAllPagedAsync([FromQuery] RecipeGetAllPagedRequest request,
-        [FromServices] IRecipeService service, CancellationToken cancellationToken)
-    {
-        var result = await service.GetAllPagedAsync(request.PageNumber, request.PageSize, cancellationToken);
-        return Ok(result);
-    }
-    */
 }
+
+//TODO: добавить выбор фильтра для всех контроллеров

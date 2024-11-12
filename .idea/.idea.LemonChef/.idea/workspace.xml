@@ -10,53 +10,160 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7a68c2f1-83e5-4d0a-be73-c99751520227" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Comment/BaseCommentDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Comment/RecipeComment/Requests/RecipeCommentCreateRequest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Comment/RecipeComment/Requests/RecipeCommentGetAllPagedRequest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Comment/RecipeComment/Requests/RecipeCommentUpdateRequest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Comment/RecipeComment/Responses/RecipeCommentCreateResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Comment/RecipeComment/Responses/RecipeCommentGetResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Comment/RecipeComment/Responses/RecipeCommentUpdateResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/LemonChefFile/BaseLemonChefFileDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/LemonChefFile/CommentFile/Requests/CommentFileCreateRequest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/LemonChefFile/CommentFile/Requests/CommentFileGetAllPagedRequest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/LemonChefFile/CommentFile/Requests/CommentFileUpdateRequest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/LemonChefFile/CommentFile/Responses/CommentFileCreateResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Repositories/ICommentFileRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Repositories/ICommentLikeRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Repositories/ICommentRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Repositories/IFileRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Repositories/IIngredientFileRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Repositories/ILemonChefFileRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Repositories/ILikeRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Repositories/IRecipeCommentLikeRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Repositories/IRecipeCommentRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Repositories/IRecipeFileRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Repositories/IRecipeLikeRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/CommentFileRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/CommentLikeRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/CommentRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/IngredientFileRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/LemonChefFileRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/LikeRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/RecipeCommentLikeRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/RecipeCommentRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/RecipeFileRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/RecipeLikeRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/LemonChefFile/CommentFile/Responses/CommentFileGetResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/LemonChefFile/CommentFile/Responses/CommentFileUpdateResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/LemonChefFile/IngredientFile/Requests/IngredientFileCreateRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/LemonChefFile/IngredientFile/Requests/IngredientFileGetAllPagedRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/LemonChefFile/IngredientFile/Requests/IngredientFileUpdateRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/LemonChefFile/IngredientFile/Response/IngredientFileCreateResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/LemonChefFile/IngredientFile/Response/IngredientFileGetResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/LemonChefFile/IngredientFile/Response/IngredientFileUpdateResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/LemonChefFile/RecipeFile/Requests/RecipeFileCreateRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/LemonChefFile/RecipeFile/Requests/RecipeFileGetAllPagedRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/LemonChefFile/RecipeFile/Requests/RecipeFileUpdateRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/LemonChefFile/RecipeFile/Responses/RecipeFileCreateResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/LemonChefFile/RecipeFile/Responses/RecipeFileGetResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/LemonChefFile/RecipeFile/Responses/RecipeFileUpdateResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Like/RecipeCommentLike/Requests/RecipeCommentLikeCreateRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Like/RecipeCommentLike/Requests/RecipeCommentLikeUpdateRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Like/RecipeCommentLike/Requests/RecipecommentLikeGetAllPagedRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Like/RecipeCommentLike/Responses/RecipeCommentLikeCreateResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Like/RecipeCommentLike/Responses/RecipeCommentLikeGetResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Like/RecipeCommentLike/Responses/RecipeCommentLikeUpdateResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Like/RecipeLike/Requests/RecipeLikeCreateRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Like/RecipeLike/Requests/RecipeLikeGetAllPagedRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Like/RecipeLike/Requests/RecipeLikeUpdateRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Like/RecipeLike/Responses/RecipeLikeCreateResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Like/RecipeLike/Responses/RecipeLikeGetResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Like/RecipeLike/Responses/RecipeLikeUpdateResponse.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Services/ICommentFileService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Services/IIngredientFileService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Services/IRecipeCommentLikeService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Services/IRecipeCommentService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Services/IRecipeFileService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Services/IRecipeLikeService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Mapping/CommentFileMappingProfile.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Mapping/IngredientFileMappingProfile.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Mapping/RecipeCommentLikeMappingProfile.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Mapping/RecipeCommentMappingProfile.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Mapping/RecipeFileMappingProfile.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Mapping/RecipeLikeMappingProfile.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Services/CommentFileService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Services/IngredientFileService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Services/RecipeCommentLikeService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Services/RecipeCommentService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Services/RecipeFileService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Services/RecipeLikeService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/LemonChefApi/Controllers/CommentFileController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/LemonChefApi/Controllers/IngredientFileController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/LemonChefApi/Controllers/RecipeCommentController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/LemonChefApi/Controllers/RecipeCommentLikeController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/LemonChefApi/Controllers/RecipeFileController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Services/RecipeService/LemonChefApi/Controllers/RecipeLikeController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LemonChef/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LemonChef/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LemonChef.sln" beforeDir="false" afterPath="$PROJECT_DIR$/LemonChef.sln" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Application.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Comment/BaseCommentDto.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Comment/RecipeComment/Requests/RecipeCommentCreateRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Comment/RecipeComment/Requests/RecipeCommentCreateRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Comment/RecipeComment/Requests/RecipeCommentGetAllPagedRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Comment/RecipeComment/Requests/RecipeCommentGetAllPagedRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Comment/RecipeComment/Requests/RecipeCommentUpdateRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Comment/RecipeComment/Requests/RecipeCommentUpdateRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Comment/RecipeComment/Responses/RecipeCommentCreateResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Comment/RecipeComment/Responses/RecipeCommentCreateResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Comment/RecipeComment/Responses/RecipeCommentGetResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Comment/RecipeComment/Responses/RecipeCommentGetResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Comment/RecipeComment/Responses/RecipeCommentUpdateResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Comment/RecipeComment/Responses/RecipeCommentUpdateResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Ingredient/BaseIngredientDto.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Ingredient/Requests/IngredientCreateRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Ingredient/Requests/IngredientCreateRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Ingredient/Requests/IngredientGetAllPagedRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Ingredient/Requests/IngredientGetAllPagedRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Ingredient/Requests/IngredientUpdateRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Ingredient/Requests/IngredientUpdateRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Ingredient/Responses/IngredientCreateResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Ingredient/Responses/IngredientCreateResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Ingredient/Responses/IngredientGetResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Ingredient/Responses/IngredientGetResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Ingredient/Responses/IngredientUpdateResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Ingredient/Responses/IngredientUpdateResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/LemonChefFile/BaseLemonChefFileDto.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/LemonChefFile/CommentFile/Requests/CommentFileCreateRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/LemonChefFile/CommentFile/Requests/CommentFileCreateRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/LemonChefFile/CommentFile/Requests/CommentFileGetAllPagedRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/LemonChefFile/CommentFile/Requests/CommentFileGetAllPagedRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/LemonChefFile/CommentFile/Requests/CommentFileUpdateRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/LemonChefFile/CommentFile/Requests/CommentFileUpdateRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/LemonChefFile/CommentFile/Responses/CommentFileCreateResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/LemonChefFile/CommentFile/Responses/CommentFileCreateResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Recipe/BaseRecipeDto.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Recipe/Requests/RecipeCreateRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Recipe/Requests/RecipeCreateRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Recipe/Requests/RecipeGetAllPagedRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Recipe/Requests/RecipeGetAllPagedRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Recipe/Requests/RecipeUpdateRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Recipe/Requests/RecipeUpdateRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Recipe/Responses/RecipeCreateResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Recipe/Responses/RecipeCreateResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Recipe/Responses/RecipeGetResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Recipe/Responses/RecipeGetResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Recipe/Responses/RecipeUpdateResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Recipe/Responses/RecipeUpdateResponse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Repositories/IBaseRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Repositories/IRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Repositories/ICommentFileRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Repositories/ICommentLikeRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Repositories/ICommentRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Repositories/IFileRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Repositories/IIngredientFileRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Repositories/IIngredientRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Repositories/ILemonChefFileRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Repositories/ILikeRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Repositories/IRecipeCommentLikeRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Repositories/IRecipeCommentRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Repositories/IRecipeFileRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Repositories/IRecipeLikeRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Repositories/IRecipeRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Repositories/IRecipeRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Services/IBaseService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Services/IIngredientService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Services/IIngredientService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Services/IRecipeService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Interfaces/Services/IRecipeService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Mapping/IngredientMappingProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Mapping/IngredientMappingProfile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Mapping/RecipeMappingProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Mapping/RecipeMappingProfile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Services/BaseService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Services/IngredientService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Services/IngredientService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Application/Services/RecipeService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Application/Services/RecipeService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/Base/BaseEntity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/Base/BaseEntity.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/Base/Comment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/Base/Comment.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/Base/LemonChefFile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/Base/LemonChefFile.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/Base/Like.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/Base/Like.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/CommentFile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/CommentFile.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/CommentLike.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/CommentLike.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/Ingredient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/Ingredient.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/IngredientFile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/IngredientFile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/Recipe.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/Recipe.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/RecipeComment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/RecipeComment.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/RecipeCommentLike.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/RecipeCommentLike.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/RecipeFile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/RecipeFile.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/RecipeLike.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/RecipeLike.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Interfaces/ICommentable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Interfaces/ICommentable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Interfaces/ILikeable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Interfaces/ILikeable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Validations/Primitives/FileFormats.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Validations/Validators/CommentFileValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Validations/Validators/CommentFileValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Validations/Validators/IngredientFileValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Validations/Validators/IngredientFileValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Validations/Validators/LemonChefFileValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Validations/Validators/LemonChefFileValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Validations/Validators/RecipeFileValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Domain/Validations/Validators/RecipeFileValidator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/EntityFramework/Configurations/LemonChefFileConfigurations.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/EntityFramework/Configurations/LemonChefFileConfigurations.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/BaseRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/BaseRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/EntityFramework/Configurations/RecipeCommentConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/EntityFramework/Configurations/RecipeCommentConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/EntityFramework/Configurations/RecipeCommentLikeConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/EntityFramework/Configurations/RecipeCommentLikeConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/EntityFramework/RecipesDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/EntityFramework/RecipesDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/BaseRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/Repository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/CommentFileRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/CommentFileRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/CommentLikeRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/CommentLikeRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/CommentRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/CommentRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/IngredientFileRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/IngredientFileRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/IngredientRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/IngredientRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/LemonChefFileRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/LemonChefFileRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/LikeRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/LikeRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/RecipeCommentLikeRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/RecipeCommentLikeRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/RecipeCommentRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/RecipeCommentRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/RecipeFileRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/RecipeFileRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/RecipeLikeRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/RecipeLikeRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/RecipeRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Dal/Repositories/RecipeRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Migrations/RecipesDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/Infrastructure/Migrations/RecipesDbContextModelSnapshot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/LemonChefApi/Controllers/IngredientController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/LemonChefApi/Controllers/IngredientController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/LemonChefApi/Controllers/RecipeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/LemonChefApi/Controllers/RecipeController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/LemonChefApi/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/RecipeService/LemonChefApi/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Tests/Tests.csproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Tests/Unit/Data/TestDataInvalidGenerator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Tests/Unit/Data/TestDataValidGenerator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Tests/Unit/IngredientTests/Entity/IngredientEntityNegativeTests.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Tests/Unit/IngredientTests/Entity/IngredientEntityPositiveTests.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Tests/Unit/IngredientTests/Mapping/IngredientMappingProfilePositiveTests.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Tests/Unit/IngredientTests/Validation/IngredientValidatorNegativeTests.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Tests/Unit/IngredientTests/Validation/IngredientValidatorPositiveTests.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Tests/Unit/RecipeTests/Entity/RecipeEntityPositiveTests.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Tests/Unit/RecipeTests/Mapping/RecipeMappingProfilePositiveTests.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Tests/Unit/RecipeTests/Validation/RecipeValidatorNegativeTests.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Services/RecipeService/Tests/Unit/RecipeTests/Validation/RecipeValidatorPositiveTests.cs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +201,14 @@
     <setting file="file://$USER_HOME$/AppData/Local/Symbols/src/dotnet/efcore/90d079985f33ae91c05b98ecf65e0ce38270ba55/src/EFCore/Metadata/Internal/Property.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/06c046bf69aa4f768c77e50706275b1b26a820/a7/bb145563/IEntityTypeConfiguration`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/4a5e95709b753d3bbaae5db3f6118e89cc26533d03a8295f2611f9c502a9ded/SelfReferenceEquivalencyAssertionOptions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Like/RecipeCommentLike/BaseRecipeCommentLikeDto.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Like/RecipeCommentLike/Requests/RecipeCommentLikeCreateRequest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Like/RecipeCommentLike/Requests/RecipeCommentLikeUpdateRequest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Services/RecipeService/Application/Dto's/Like/RecipeCommentLike/Responses/RecipeCommentLikeCreateResponse.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Services/RecipeService/Domain/Entities/Base/Comment.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://D:/LemonChef/LemonChef/src/Services/RecipeService/Infrastructure/Dal/EntityFramework/RecipesDbContext.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/LemonChef/LemonChef/src/Services/RecipeService/Tests/Unit/Data/TestDataInvalidGenerator.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://D:/LemonChef/LemonChef/src/Services/RecipeService/Tests/Unit/Data/TestDataValidGenerator.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -133,7 +247,7 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.LemonChefApi: http">
+  <component name="RunManager" selected=".NET Launch Settings Profile.LemonChefApi: https">
     <configuration name="LemonChefApi: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/src/Services/RecipeService/LemonChefApi/LemonChefApi.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net8.0" />
@@ -211,7 +325,12 @@
       <workItem from="1729706540542" duration="682000" />
       <workItem from="1729711822144" duration="5594000" />
       <workItem from="1729850639661" duration="15230000" />
-      <workItem from="1729872931812" duration="6166000" />
+      <workItem from="1729872931812" duration="6239000" />
+      <workItem from="1730463881092" duration="7981000" />
+      <workItem from="1730892682479" duration="6910000" />
+      <workItem from="1730900998375" duration="1807000" />
+      <workItem from="1731061731922" duration="1256000" />
+      <workItem from="1731407198967" duration="7375000" />
     </task>
     <task id="LOCAL-00001" summary="refactor: moved files correctly;">
       <option name="closed" value="true" />
@@ -253,7 +372,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729867438520</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="feat: repositories for entities;">
+      <option name="closed" value="true" />
+      <created>1729879217277</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1729879217277</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -268,7 +395,8 @@
     <MESSAGE value="feat:added Identity provider, some api endpoints for RecipesController;" />
     <MESSAGE value="feat: Domain.csproj added IRateable.cs, new properties in ITrackable.cs;&#10;refactor: fixed code style issues;" />
     <MESSAGE value="test;" />
-    <option name="LAST_COMMIT_MESSAGE" value="test;" />
+    <MESSAGE value="feat: repositories for entities;" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: repositories for entities;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
