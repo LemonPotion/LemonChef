@@ -12,6 +12,7 @@ public class RecipeMappingProfile : Profile
     {
         CreateMap<RecipeCreateRequest, Recipe>()
             .ConstructUsing(dto => new Recipe(
+                dto.UserId,
                 dto.Title,
                 dto.Link,
                 dto.PreparationTime,
@@ -25,6 +26,7 @@ public class RecipeMappingProfile : Profile
 
         CreateMap<RecipeUpdateRequest, Recipe>()
             .ConstructUsing(dto => new Recipe(
+                dto.UserId,
                 dto.Title,
                 dto.Link,
                 dto.PreparationTime,
@@ -38,6 +40,7 @@ public class RecipeMappingProfile : Profile
 
         CreateMap<Recipe, RecipeCreateResponse>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+            .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
             .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
             .ForMember(dest => dest.PreparationTime, opt => opt.MapFrom(src => src.PreparationTime))
             .ForMember(dest => dest.Link, opt => opt.MapFrom(src => src.Link))
@@ -47,6 +50,7 @@ public class RecipeMappingProfile : Profile
 
         CreateMap<Recipe, RecipeUpdateResponse>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+            .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
             .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
             .ForMember(dest => dest.PreparationTime, opt => opt.MapFrom(src => src.PreparationTime))
             .ForMember(dest => dest.Link, opt => opt.MapFrom(src => src.Link))
@@ -57,19 +61,17 @@ public class RecipeMappingProfile : Profile
 
         CreateMap<Recipe, RecipeGetResponse>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+            .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
             .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
             .ForMember(dest => dest.PreparationTime, opt => opt.MapFrom(src => src.PreparationTime))
             .ForMember(dest => dest.Link, opt => opt.MapFrom(src => src.Link))
             .ForMember(dest => dest.Servings, opt => opt.MapFrom(src => src.Servings))
             .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Title))
             .ForMember(dest => dest.Ingredients, opt => opt.MapFrom(src => src.Ingredients))
-            .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId));
-
-        CreateMap<Ingredient, IngredientGetResponse>()
-            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
-            .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
-            .ForMember(dest => dest.Quantity, opt => opt.MapFrom(src => src.Quantity))
-            .ForMember(dest => dest.RecipeId, opt => opt.MapFrom(src => src.RecipeId))
-            .ForMember(dest => dest.Unit, opt => opt.MapFrom(src => src.Unit));
+            .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
+            
+            .ForMember(dest => dest.LikeCount, opt => opt.MapFrom(src => src.LikeCount))
+            
+            .ForMember(dest => dest.ViewCount, opt => opt.MapFrom(src => src.ViewCount));
     }
 }

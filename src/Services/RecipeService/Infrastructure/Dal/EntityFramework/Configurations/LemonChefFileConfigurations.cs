@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Entities.Base;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Dal.EntityFramework.Configurations;
@@ -11,32 +12,19 @@ public class LemonChefFileConfigurations : IEntityTypeConfiguration<LemonChefFil
     {
         builder.HasKey(i => i.Id);
 
-        builder.Property(f => f.FileName)
-            .IsRequired()
-            .HasMaxLength(255)
-            .ValueGeneratedOnAdd();
-
-        builder.Property(f => f.FilePath)
-            .IsRequired()
-            .HasMaxLength(1024)
-            .ValueGeneratedOnAdd();
-
-        builder.Property(f => f.FileFormat)
+        builder.Property(f => f.GoogleDriveName)
             .ValueGeneratedOnAdd()
-            .IsRequired();
-
-        builder.Property(f => f.FileSizeInBytes)
             .IsRequired()
-            .ValueGeneratedOnAdd();
+            .Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
 
-        builder.Property(f => f.Duration)
-            .ValueGeneratedOnAdd();
+        builder.Property(f => f.OriginalName)
+            .IsRequired()
+            .Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);;
 
         builder.HasDiscriminator<string>("file_type_discriminator")
             .HasValue<LemonChefFile>(nameof(LemonChefFile))
             .HasValue<IngredientFile>(nameof(IngredientFile))
-            .HasValue<RecipeFile>(nameof(RecipeFile))
-            .HasValue<CommentFile>(nameof(CommentFile));
+            .HasValue<RecipeFile>(nameof(RecipeFile));
 
         builder.HasOne<User>(f => f.User)
             .WithMany(u => u.UserFiles)

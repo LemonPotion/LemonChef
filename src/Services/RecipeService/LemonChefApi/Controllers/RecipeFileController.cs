@@ -1,4 +1,5 @@
-﻿using Application.Dto_s.LemonChefFile.RecipeFile.Requests;
+﻿using Application.Dto_s.LemonChefFile.FileData;
+using Application.Dto_s.LemonChefFile.RecipeFile.Requests;
 using Application.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,34 +12,45 @@ namespace LemonChefApi.Controllers;
 public class RecipeFilesController : ControllerBase
 {
     [HttpPost]
-    public async Task<IActionResult> CreateAsync([FromBody] RecipeFileCreateRequest request,
-        [FromServices] IRecipeFileService service, CancellationToken cancellationToken)
+    public async Task<IActionResult> CreateAsync(
+        Guid RecipeId,
+        Guid UserId,
+        IFormFile file,
+        [FromServices] IFileService fileService,
+        [FromServices] IRecipeFileService service,
+        CancellationToken cancellationToken = default)
     {
-        var result = await service.CreateAsync(request, cancellationToken);
-        return Ok(result);
+        var fileData = new FileDataDto(file.FileName, file.OpenReadStream(), file.ContentType);
+
+        var request = new RecipeFileCreateRequest(RecipeId, UserId, fileData);
+
+        var response = await service.AddAsync(request, cancellationToken);
+
+        return Ok(response);
     }
 
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> GetByIdAsync(Guid id,
-        [FromServices] IRecipeFileService service, CancellationToken cancellationToken)
+        [FromServices] IRecipeFileService service, CancellationToken cancellationToken = default)
     {
         var result = await service.GetByIdAsync(id, cancellationToken);
-        return Ok(result);
+
+        return File(result.FileData.Stream, result.FileData.ContentType, result.FileData.FileName);
     }
 
     [HttpPut]
-    public async Task<IActionResult> UpdateAsync([FromBody] RecipeFileUpdateRequest request,
-        [FromServices] IRecipeFileService service, CancellationToken cancellationToken)
+    public IActionResult UpdateAsync([FromBody] RecipeFileUpdateRequest request,
+        [FromServices] IRecipeFileService service)
     {
-        var result = await service.UpdateAsync(request, cancellationToken);
+        var result = service.Update(request);
         return Ok(result);
     }
 
     [HttpDelete("{id:guid}")]
     public async Task<IActionResult> DeleteAsync(Guid id, [FromServices] IRecipeFileService service,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken = default)
     {
-        await service.DeleteByIdAsync(id, cancellationToken);
+        await service.RemoveAsync(id, cancellationToken);
         return NoContent();
     }
 }

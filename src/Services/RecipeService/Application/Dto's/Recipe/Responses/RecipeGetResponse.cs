@@ -9,5 +9,7 @@ public record RecipeGetResponse(
     int? PreparationTime,
     int? Servings,
     string Description,
-    Guid? UserId,
+    Guid UserId,
+    long LikeCount,
+    long ViewCount,
     ICollection<IngredientGetResponse>? Ingredients);

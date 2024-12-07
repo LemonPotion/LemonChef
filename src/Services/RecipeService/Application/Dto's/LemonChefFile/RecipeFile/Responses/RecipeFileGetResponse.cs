@@ -1,10 +1,14 @@
-﻿namespace Application.Dto_s.LemonChefFile.RecipeFile.Responses;
+﻿using Application.Dto_s.LemonChefFile.FileData;
+
+namespace Application.Dto_s.LemonChefFile.RecipeFile.Responses;
 
 public record RecipeFileGetResponse(
     Guid Id,
     Guid RecipeId,
     Guid UserId,
-    string FileName,
-    string FileFormat,
-    long FileSizeInBytes,
-    long? Duration);
+    FileDataDto? FileData)
+{
+    public RecipeFileGetResponse() : this(default, default, default, default)
+    {
+    }
+}

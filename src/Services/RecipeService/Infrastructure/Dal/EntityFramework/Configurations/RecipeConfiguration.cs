@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Dal.EntityFramework.Configurations;
@@ -18,18 +19,17 @@ public class RecipeConfiguration : IEntityTypeConfiguration<Recipe>
 
         builder.Property(c => c.CreatedOn)
             .ValueGeneratedOnAdd()
-            .IsRequired();
+            .IsRequired()
+            .Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
 
-        builder.Property(c => c.ModifiedOn)
-            .ValueGeneratedOnUpdate();
+        builder.Property(c => c.ModifiedOn);
 
         builder.Property(r => r.Title)
             .IsRequired();
 
         builder.Property(r => r.Link);
 
-        builder.Property(r => r.Description)
-            .IsRequired();
+        builder.Property(r => r.Description);
 
         builder.Property(r => r.PreparationTime);
 
@@ -53,7 +53,7 @@ public class RecipeConfiguration : IEntityTypeConfiguration<Recipe>
             .WithOne(f => f.Recipe)
             .HasForeignKey(f => f.RecipeId);
 
-        builder.HasMany(r => r.Comments)
+        builder.HasMany(r => r.RecipeComments)
             .WithOne(f => f.Recipe)
             .HasForeignKey(f => f.RecipeId);
 

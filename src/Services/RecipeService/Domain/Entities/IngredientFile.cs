@@ -14,8 +14,7 @@ public class IngredientFile : LemonChefFile
     {
     }
 
-    public IngredientFile(Guid userId, Guid ingredientId, string fileName, string filePath, string fileFormat,
-        int fileSizeInBytes, long? duration) : base(userId, fileName, filePath, fileFormat, fileSizeInBytes, duration)
+    public IngredientFile(Guid userId, Guid ingredientId, string googleDriveName) : base(userId, googleDriveName)
     {
         IngredientId = ingredientId;
 

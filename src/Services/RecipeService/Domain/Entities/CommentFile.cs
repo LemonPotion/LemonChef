@@ -10,16 +10,17 @@ public class CommentFile : LemonChefFile
 
     public Comment Comment { get; set; }
 
+
     public CommentFile()
     {
     }
 
-    public CommentFile(Guid userId, Guid commentId, string fileName, string filePath, string fileFormat,
-        int fileSizeInBytes, long? duration) : base(userId, fileName, filePath, fileFormat, fileSizeInBytes, duration)
+    public CommentFile(Guid userId, Guid commentId, string originalName, string googleDriveName) : base(userId, googleDriveName)
     {
         CommentId = commentId;
+        OriginalName = originalName;
 
-        //TODO: перенести всю валидацию на уровень Application
+        //TODO: перенести всю валидацию на уровень Application, будет меньше конструкторов
         var validator = new CommentFileValidator(nameof(CommentFile));
         validator.ValidateAndThrow(this);
     }

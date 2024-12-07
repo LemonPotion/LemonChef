@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(RecipesDbContext))]
-    [Migration("20241112113439_Initial")]
+    [Migration("20241207095644_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -42,7 +42,6 @@ namespace Infrastructure.Migrations
                         .HasColumnName("like_count");
 
                     b.Property<DateTime?>("ModifiedOn")
-                        .ValueGeneratedOnUpdate()
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("modified_on");
 
@@ -82,39 +81,16 @@ namespace Infrastructure.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
-                    b.Property<long?>("Duration")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("duration");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long?>("Duration"));
-
-                    b.Property<string>("FileFormat")
+                    b.Property<string>("GoogleDriveName")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("text")
-                        .HasColumnName("file_format");
+                        .HasColumnName("google_drive_name");
 
-                    b.Property<string>("FileName")
+                    b.Property<string>("OriginalName")
                         .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)")
-                        .HasColumnName("file_name");
-
-                    b.Property<string>("FilePath")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(1024)
-                        .HasColumnType("character varying(1024)")
-                        .HasColumnName("file_path");
-
-                    b.Property<long>("FileSizeInBytes")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("file_size_in_bytes");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("FileSizeInBytes"));
+                        .HasColumnType("text")
+                        .HasColumnName("original_name");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid")
@@ -182,7 +158,6 @@ namespace Infrastructure.Migrations
                         .HasColumnName("created_on");
 
                     b.Property<DateTime?>("ModifiedOn")
-                        .ValueGeneratedOnUpdate()
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("modified_on");
 
@@ -231,7 +206,6 @@ namespace Infrastructure.Migrations
                         .HasColumnName("created_on");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("description");
 
@@ -244,7 +218,6 @@ namespace Infrastructure.Migrations
                         .HasColumnName("link");
 
                     b.Property<DateTime?>("ModifiedOn")
-                        .ValueGeneratedOnUpdate()
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("modified_on");
 
@@ -321,7 +294,6 @@ namespace Infrastructure.Migrations
                         .HasColumnName("lockout_end");
 
                     b.Property<DateTime?>("ModifiedOn")
-                        .ValueGeneratedOnUpdate()
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("modified_on");
 
@@ -603,7 +575,7 @@ namespace Infrastructure.Migrations
                     b.HasDiscriminator().HasValue("RecipeFile");
                 });
 
-            modelBuilder.Entity("Domain.Entities.CommentLike", b =>
+            modelBuilder.Entity("Domain.Entities.Base.CommentLike", b =>
                 {
                     b.HasBaseType("Domain.Entities.Base.Like");
 
@@ -641,18 +613,11 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.RecipeCommentLike", b =>
                 {
-                    b.HasBaseType("Domain.Entities.CommentLike");
+                    b.HasBaseType("Domain.Entities.Base.CommentLike");
 
-                    b.Property<Guid>("RecipeCommentId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("recipe_comment_id");
-
-                    b.HasIndex("RecipeCommentId")
-                        .HasDatabaseName("ix_likes_recipe_comment_id");
-
-                    b.HasIndex("UserId", "RecipeCommentId")
+                    b.HasIndex("UserId", "CommentId")
                         .IsUnique()
-                        .HasDatabaseName("ix_likes_user_id_recipe_comment_id");
+                        .HasDatabaseName("ix_likes_user_id_comment_id");
 
                     b.ToTable("likes", (string)null);
 
@@ -777,7 +742,7 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entities.RecipeComment", b =>
                 {
                     b.HasOne("Domain.Entities.Recipe", "Recipe")
-                        .WithMany("Comments")
+                        .WithMany("RecipeComments")
                         .HasForeignKey("RecipeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
@@ -822,7 +787,7 @@ namespace Infrastructure.Migrations
                     b.Navigation("Recipe");
                 });
 
-            modelBuilder.Entity("Domain.Entities.CommentLike", b =>
+            modelBuilder.Entity("Domain.Entities.Base.CommentLike", b =>
                 {
                     b.HasOne("Domain.Entities.Base.Comment", "Comment")
                         .WithMany("Likes")
@@ -846,18 +811,6 @@ namespace Infrastructure.Migrations
                     b.Navigation("Recipe");
                 });
 
-            modelBuilder.Entity("Domain.Entities.RecipeCommentLike", b =>
-                {
-                    b.HasOne("Domain.Entities.RecipeComment", "RecipeComment")
-                        .WithMany("RecipeCommentLikes")
-                        .HasForeignKey("RecipeCommentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_likes_comments_recipe_comment_id");
-
-                    b.Navigation("RecipeComment");
-                });
-
             modelBuilder.Entity("Domain.Entities.Base.Comment", b =>
                 {
                     b.Navigation("Files");
@@ -872,13 +825,13 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.Recipe", b =>
                 {
-                    b.Navigation("Comments");
-
                     b.Navigation("Files");
 
                     b.Navigation("Ingredients");
 
                     b.Navigation("Likes");
+
+                    b.Navigation("RecipeComments");
                 });
 
             modelBuilder.Entity("Domain.Entities.User", b =>
@@ -888,11 +841,6 @@ namespace Infrastructure.Migrations
                     b.Navigation("Recipes");
 
                     b.Navigation("UserFiles");
-                });
-
-            modelBuilder.Entity("Domain.Entities.RecipeComment", b =>
-                {
-                    b.Navigation("RecipeCommentLikes");
                 });
 #pragma warning restore 612, 618
         }

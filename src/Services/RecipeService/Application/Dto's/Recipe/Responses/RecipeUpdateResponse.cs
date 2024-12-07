@@ -9,5 +9,5 @@ public record RecipeUpdateResponse(
     int? PreparationTime,
     int? Servings,
     string Description,
-    Guid? UserId,
+    Guid UserId,
     ICollection<IngredientGetResponse>? Ingredients);

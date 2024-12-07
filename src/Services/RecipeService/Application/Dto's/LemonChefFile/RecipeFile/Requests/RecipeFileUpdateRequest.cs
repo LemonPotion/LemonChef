@@ -3,8 +3,4 @@
 public record RecipeFileUpdateRequest(
     Guid Id,
     Guid RecipeId,
-    Guid UserId,
-    string FileName,
-    string FileFormat,
-    long FileSizeInBytes,
-    long? Duration);
+    Guid UserId);

@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Entities.Base;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Dal.EntityFramework.Configurations;
@@ -13,10 +14,10 @@ public class CommentConfiguration : IEntityTypeConfiguration<Comment>
 
         builder.Property(c => c.CreatedOn)
             .ValueGeneratedOnAdd()
-            .IsRequired();
+            .IsRequired()
+            .Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
 
-        builder.Property(c => c.ModifiedOn)
-            .ValueGeneratedOnUpdate();
+        builder.Property(c => c.ModifiedOn);
 
         builder.Property(c => c.Text)
             .HasMaxLength(10000);

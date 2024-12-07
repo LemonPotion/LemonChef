@@ -1,5 +1,10 @@
-﻿using Domain.Validations.Primitives;
+﻿using Domain.Primitives;
 
 namespace Application.Dto_s.Ingredient.Requests;
 
-public record IngredientUpdateRequest(Guid Id, Guid RecipeId, string Name, int? Quantity, UnitsOfMeasure? Unit);
+public record IngredientUpdateRequest(
+    Guid Id, 
+    Guid RecipeId, 
+    string Name, 
+    int? Quantity, 
+    UnitsOfMeasure? Unit);

@@ -1,4 +1,4 @@
-﻿namespace Domain.Entities.Base;
+﻿namespace Domain.Primitives;
 
 /// <summary>
 /// Базовый абстрактный класс сущности.
@@ -17,7 +17,7 @@ public abstract class BaseEntity
     /// <returns>bool</returns>
     public override bool Equals(object? obj)
     {
-        if (obj == null)
+        if (obj is null)
             return false;
         else if (obj is not BaseEntity entity)
             return false;

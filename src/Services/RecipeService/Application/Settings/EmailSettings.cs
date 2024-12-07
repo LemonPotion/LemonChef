@@ -1,4 +1,4 @@
-﻿namespace LemonChefApi.Settings;
+﻿namespace Application.Settings;
 
 public class EmailSettings
 {

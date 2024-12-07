@@ -11,69 +11,70 @@ namespace Application.Services;
 
 public class RecipeService : IRecipeService
 {
-    private readonly IRecipeRepository _recipeRepository;
+    private readonly IRecipeRepository _repository;
     private readonly IMapper _mapper;
 
-    public RecipeService(IRecipeRepository recipeRepository, IMapper mapper)
+    public RecipeService(IRecipeRepository repository, IMapper mapper)
     {
-        _recipeRepository = recipeRepository;
+        _repository = repository;
         _mapper = mapper;
     }
 
-    public async Task<RecipeCreateResponse> CreateAsync(RecipeCreateRequest request, Guid userId,
-        CancellationToken cancellationToken)
+    public async Task<RecipeCreateResponse> AddAsync(RecipeCreateRequest request,
+        CancellationToken cancellationToken = default)
     {
         var recipeEntity = _mapper.Map<Recipe>(request);
 
-        recipeEntity.UserId = userId;
-
-        var createdRecipe = await _recipeRepository.CreateAsync(recipeEntity, cancellationToken);
+        var createdRecipe = await _repository.AddAsync(recipeEntity, cancellationToken);
+        await _repository.SaveChangesAsync(cancellationToken);
         return _mapper.Map<RecipeCreateResponse>(createdRecipe);
     }
 
-    public async Task<RecipeGetResponse> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+    public async Task<RecipeGetResponse?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        var recipe = await _recipeRepository.GetByIdAsync(id, cancellationToken);
-        return _mapper.Map<RecipeGetResponse>(recipe);
+        var recipe = await _repository.GetByIdAsync(id, cancellationToken);
+        
+        return recipe is null ? null : _mapper.Map<RecipeGetResponse>(recipe);
     }
 
-    public async Task<List<RecipeGetResponse>> GetAllPagedAsync(
+    public async Task<List<RecipeGetResponse>> GetAsync(
         int pageNumber,
         int pageSize,
         Expression<Func<Recipe, bool>> filter,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken = default)
     {
-        var recipes = await _recipeRepository.GetAllListPagedAsync(pageNumber, pageSize, filter, cancellationToken);
+        var recipes = await _repository.GetAsync(pageNumber, pageSize, filter, cancellationToken);
         return _mapper.Map<List<RecipeGetResponse>>(recipes);
     }
 
-    public async Task<RecipeUpdateResponse> UpdateAsync(RecipeUpdateRequest request, Guid userId,
-        CancellationToken cancellationToken)
+    public RecipeUpdateResponse Update(RecipeUpdateRequest request)
     {
         var recipeToUpdate = _mapper.Map<Recipe>(request);
-        
-        recipeToUpdate.UserId = userId;
-        
-        var updatedRecipe = await _recipeRepository.UpdateAsync(recipeToUpdate, cancellationToken);
+
+        var updatedRecipe = _repository.Update(recipeToUpdate);
+        _repository.SaveChanges();
         return _mapper.Map<RecipeUpdateResponse>(updatedRecipe);
     }
 
 
-    public async Task<List<RecipeGetResponse>> GetAllByUserIdAsync(Guid id, CancellationToken cancellationToken)
+    public async Task<List<RecipeGetResponse>> GetAllByUserIdAsync(Guid id,
+        CancellationToken cancellationToken = default)
     {
-        var recipes = await _recipeRepository.GetAllByUserIdAsync(id, cancellationToken);
+        var recipes = await _repository.GetAllByUserIdAsync(id, cancellationToken);
         return _mapper.Map<List<RecipeGetResponse>>(recipes);
     }
 
     public async Task<List<IngredientGetResponse>> GetRecipeIngredientsByRecipeId(Guid recipeId,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken = default)
     {
-        var ingredients = await _recipeRepository.GetRecipeIngredientsByRecipeId(recipeId, cancellationToken);
+        var ingredients = await _repository.GetRecipeIngredientsByRecipeId(recipeId, cancellationToken);
         return _mapper.Map<List<IngredientGetResponse>>(ingredients);
     }
 
-    public async Task DeleteByIdAsync(Guid id, CancellationToken cancellationToken)
+    public async Task RemoveAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        await _recipeRepository.DeleteByIdAsync(id, cancellationToken);
+        await _repository.RemoveAsync(id, cancellationToken);
+
+        await _repository.SaveChangesAsync(cancellationToken);
     }
 }

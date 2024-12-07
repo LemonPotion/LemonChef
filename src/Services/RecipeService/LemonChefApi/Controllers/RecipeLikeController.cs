@@ -12,33 +12,33 @@ public class RecipeLikesController : ControllerBase
 {
     [HttpPost]
     public async Task<IActionResult> CreateAsync([FromBody] RecipeLikeCreateRequest request,
-        [FromServices] IRecipeLikeService service, CancellationToken cancellationToken)
+        [FromServices] IRecipeLikeService service, CancellationToken cancellationToken = default)
     {
-        var result = await service.CreateAsync(request, cancellationToken);
+        var result = await service.AddAsync(request, cancellationToken);
         return Ok(result);
     }
 
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> GetByIdAsync(Guid id,
-        [FromServices] IRecipeLikeService service, CancellationToken cancellationToken)
+        [FromServices] IRecipeLikeService service, CancellationToken cancellationToken = default)
     {
         var result = await service.GetByIdAsync(id, cancellationToken);
         return Ok(result);
     }
 
     [HttpPut]
-    public async Task<IActionResult> UpdateAsync([FromBody] RecipeLikeUpdateRequest request,
-        [FromServices] IRecipeLikeService service, CancellationToken cancellationToken)
+    public IActionResult Update([FromBody] RecipeLikeUpdateRequest request,
+        [FromServices] IRecipeLikeService service)
     {
-        var result = await service.UpdateAsync(request, cancellationToken);
+        var result = service.Update(request);
         return Ok(result);
     }
 
     [HttpDelete("{id:guid}")]
     public async Task<IActionResult> DeleteAsync(Guid id, [FromServices] IRecipeLikeService service,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken = default)
     {
-        await service.DeleteByIdAsync(id, cancellationToken);
+        await service.RemoveAsync(id, cancellationToken);
         return NoContent();
     }
 }

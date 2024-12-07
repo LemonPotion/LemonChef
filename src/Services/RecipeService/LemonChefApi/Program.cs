@@ -1,14 +1,16 @@
 using Application.Interfaces.Repositories;
 using Application.Interfaces.Services;
 using Application.Services;
+using Application.Settings;
 using Domain.Entities;
+using Google.Cloud.Storage.V1;
 using Infrastructure.Dal.EntityFramework;
 using Infrastructure.Dal.Repositories;
 using LemonChefApi.Identity;
-using LemonChefApi.Settings;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 
 namespace LemonChefApi;
@@ -19,14 +21,19 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
+        builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection(nameof(EmailSettings)));
+
+        builder.Services.Configure<GoogleSettings>(builder.Configuration.GetSection(nameof(GoogleSettings)));
+
         builder.Services.AddAuthentication();
+
         builder.Services.AddAuthorization();
 
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddControllers();
         builder.Services.Configure<IdentityOptions>(options =>
         {
-            options.Password.RequireNonAlphanumeric = false;
+            options.Password.RequireNonAlphanumeric = false;    
             options.Password.RequireUppercase = true;
             options.Password.RequireDigit = true;
             options.Password.RequiredLength = 6;
@@ -66,8 +73,6 @@ public class Program
             });
         });
 
-        builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection(nameof(EmailSettings)));
-
         builder.Services.AddTransient<IIngredientService, IngredientService>();
         builder.Services.AddTransient<IRepository<Ingredient>, IngredientRepository>();
 
@@ -92,7 +97,20 @@ public class Program
         builder.Services.AddTransient<IRecipeService, RecipeService>();
         builder.Services.AddTransient<IRecipeRepository, RecipeRepository>();
 
+        builder.Services.AddTransient<IFileService, FileService>();
+
         builder.Services.AddTransient<IEmailSender, EmailSender>();
+
+        builder.Services.AddTransient<StorageClient>(provider =>
+        {
+            var settings = provider.GetRequiredService<IOptions<GoogleSettings>>().Value;
+
+            var googleCredential =
+                Google.Apis.Auth.OAuth2.GoogleCredential.FromFile(Path.Combine(Directory.GetCurrentDirectory(),
+                    settings.FileName));
+
+            return StorageClient.Create(googleCredential);
+        });
 
         builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
@@ -112,8 +130,6 @@ public class Program
             app.UseSwagger();
             app.UseSwaggerUI();
         }
-
-        app.UseHttpsRedirection();
 
         app.UseAuthentication();
         app.UseAuthorization();

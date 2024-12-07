@@ -14,42 +14,31 @@ public class CommentFileMappingProfile : Profile
             {
                 UserId = dto.UserId,
                 CommentId = dto.CommentId,
-                Duration = dto.Duration,
-                FileFormat = dto.FileFormat,
-                FileName = dto.FileName,
-                FileSizeInBytes = dto.FileSizeInBytes
+                OriginalName = dto.FileData.FileName
             });
 
         CreateMap<CommentFileUpdateRequest, CommentFile>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
             .ForMember(dest => dest.CommentId, opt => opt.MapFrom(src => src.CommentId))
-            .ForMember(dest => dest.Duration, opt => opt.MapFrom(src => src.Duration))
-            .ForMember(dest => dest.FileFormat, opt => opt.MapFrom(src => src.FileFormat))
-            .ForMember(dest => dest.FileName, opt => opt.MapFrom(src => src.FileName))
-            .ForMember(dest => dest.FileSizeInBytes, opt => opt.MapFrom(src => src.FileSizeInBytes));
+            .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
+            .ForMember(dest => dest.OriginalName, opt => opt.Ignore());
 
         CreateMap<CommentFile, CommentFileCreateResponse>()
-            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
-            .ForMember(dest => dest.CommentId, opt => opt.MapFrom(src => src.CommentId))
-            .ForMember(dest => dest.Duration, opt => opt.MapFrom(src => src.Duration))
-            .ForMember(dest => dest.FileFormat, opt => opt.MapFrom(src => src.FileFormat))
-            .ForMember(dest => dest.FileName, opt => opt.MapFrom(src => src.FileName))
-            .ForMember(dest => dest.FileSizeInBytes, opt => opt.MapFrom(src => src.FileSizeInBytes));
-
+            .ConstructUsing(file => new CommentFileCreateResponse(
+                file.Id,
+                file.CommentId,
+                file.UserId, 
+                file.GoogleDriveName));
+        
         CreateMap<CommentFile, CommentFileUpdateResponse>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
-            .ForMember(dest => dest.CommentId, opt => opt.MapFrom(src => src.CommentId))
-            .ForMember(dest => dest.Duration, opt => opt.MapFrom(src => src.Duration))
-            .ForMember(dest => dest.FileFormat, opt => opt.MapFrom(src => src.FileFormat))
-            .ForMember(dest => dest.FileName, opt => opt.MapFrom(src => src.FileName))
-            .ForMember(dest => dest.FileSizeInBytes, opt => opt.MapFrom(src => src.FileSizeInBytes));
+            .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
+            .ForMember(dest => dest.CommentId, opt => opt.MapFrom(src => src.CommentId));
 
         CreateMap<CommentFile, CommentFileGetResponse>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+            .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
             .ForMember(dest => dest.CommentId, opt => opt.MapFrom(src => src.CommentId))
-            .ForMember(dest => dest.Duration, opt => opt.MapFrom(src => src.Duration))
-            .ForMember(dest => dest.FileFormat, opt => opt.MapFrom(src => src.FileFormat))
-            .ForMember(dest => dest.FileName, opt => opt.MapFrom(src => src.FileName))
-            .ForMember(dest => dest.FileSizeInBytes, opt => opt.MapFrom(src => src.FileSizeInBytes));
+            .ForMember(dest => dest.FileData, opt => opt.Ignore());
     }
 }

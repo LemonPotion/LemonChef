@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Dal.EntityFramework.Configurations;
@@ -12,10 +13,10 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 
         builder.Property(c => c.CreatedOn)
             .ValueGeneratedOnAdd()
-            .IsRequired();
+            .IsRequired()
+            .Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
 
-        builder.Property(c => c.ModifiedOn)
-            .ValueGeneratedOnUpdate();
+        builder.Property(c => c.ModifiedOn);
 
         builder.Property(u => u.ViewCount);
 

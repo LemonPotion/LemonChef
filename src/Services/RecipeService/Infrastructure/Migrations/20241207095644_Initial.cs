@@ -84,7 +84,7 @@ namespace Infrastructure.Migrations
                     link = table.Column<string>(type: "text", nullable: true),
                     preparation_time = table.Column<int>(type: "integer", nullable: true),
                     servings = table.Column<int>(type: "integer", nullable: true),
-                    description = table.Column<string>(type: "text", nullable: false),
+                    description = table.Column<string>(type: "text", nullable: true),
                     user_id = table.Column<Guid>(type: "uuid", nullable: true),
                     created_on = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     modified_on = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
@@ -248,7 +248,6 @@ namespace Infrastructure.Migrations
                     user_id = table.Column<Guid>(type: "uuid", nullable: false),
                     like_type_discriminator = table.Column<string>(type: "character varying(21)", maxLength: 21, nullable: false),
                     comment_id = table.Column<Guid>(type: "uuid", nullable: true),
-                    recipe_comment_id = table.Column<Guid>(type: "uuid", nullable: true),
                     recipe_id = table.Column<Guid>(type: "uuid", nullable: true)
                 },
                 constraints: table =>
@@ -257,12 +256,6 @@ namespace Infrastructure.Migrations
                     table.ForeignKey(
                         name: "fk_likes_comments_comment_id",
                         column: x => x.comment_id,
-                        principalTable: "comments",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "fk_likes_comments_recipe_comment_id",
-                        column: x => x.recipe_comment_id,
                         principalTable: "comments",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
@@ -286,13 +279,8 @@ namespace Infrastructure.Migrations
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
                     user_id = table.Column<Guid>(type: "uuid", nullable: false),
-                    file_name = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    file_path = table.Column<string>(type: "character varying(1024)", maxLength: 1024, nullable: false),
-                    file_format = table.Column<string>(type: "text", nullable: false),
-                    file_size_in_bytes = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    duration = table.Column<long>(type: "bigint", nullable: true)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    google_drive_name = table.Column<string>(type: "text", nullable: false),
+                    original_name = table.Column<string>(type: "text", nullable: false),
                     file_type_discriminator = table.Column<string>(type: "character varying(21)", maxLength: 21, nullable: false),
                     comment_id = table.Column<Guid>(type: "uuid", nullable: true),
                     ingredient_id = table.Column<Guid>(type: "uuid", nullable: true),
@@ -368,11 +356,6 @@ namespace Infrastructure.Migrations
                 column: "comment_id");
 
             migrationBuilder.CreateIndex(
-                name: "ix_likes_recipe_comment_id",
-                table: "likes",
-                column: "recipe_comment_id");
-
-            migrationBuilder.CreateIndex(
                 name: "ix_likes_recipe_id",
                 table: "likes",
                 column: "recipe_id");
@@ -383,9 +366,9 @@ namespace Infrastructure.Migrations
                 column: "user_id");
 
             migrationBuilder.CreateIndex(
-                name: "ix_likes_user_id_recipe_comment_id",
+                name: "ix_likes_user_id_comment_id",
                 table: "likes",
-                columns: new[] { "user_id", "recipe_comment_id" },
+                columns: new[] { "user_id", "comment_id" },
                 unique: true);
 
             migrationBuilder.CreateIndex(

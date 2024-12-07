@@ -11,7 +11,7 @@ public class RecipeCommentConfiguration : IEntityTypeConfiguration<RecipeComment
         builder.Property(c => c.LikeCount);
 
         builder.HasOne(c => c.Recipe)
-            .WithMany(r => r.Comments)
+            .WithMany(r => r.RecipeComments)
             .HasForeignKey(c => c.RecipeId);
     }
 }

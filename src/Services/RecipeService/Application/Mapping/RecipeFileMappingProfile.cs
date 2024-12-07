@@ -14,42 +14,31 @@ public class RecipeFileMappingProfile : Profile
             {
                 UserId = dto.UserId,
                 RecipeId = dto.RecipeId,
-                Duration = dto.Duration,
-                FileFormat = dto.FileFormat,
-                FileName = dto.FileName,
-                FileSizeInBytes = dto.FileSizeInBytes
+                OriginalName = dto.FileData.FileName
             });
 
         CreateMap<RecipeFileUpdateRequest, RecipeFile>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+            .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
             .ForMember(dest => dest.RecipeId, opt => opt.MapFrom(src => src.RecipeId))
-            .ForMember(dest => dest.Duration, opt => opt.MapFrom(src => src.Duration))
-            .ForMember(dest => dest.FileFormat, opt => opt.MapFrom(src => src.FileFormat))
-            .ForMember(dest => dest.FileName, opt => opt.MapFrom(src => src.FileName))
-            .ForMember(dest => dest.FileSizeInBytes, opt => opt.MapFrom(src => src.FileSizeInBytes));
-
-        CreateMap<RecipeFile, RecipeFileCreateResponse>()
-            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
-            .ForMember(dest => dest.RecipeId, opt => opt.MapFrom(src => src.RecipeId))
-            .ForMember(dest => dest.Duration, opt => opt.MapFrom(src => src.Duration))
-            .ForMember(dest => dest.FileFormat, opt => opt.MapFrom(src => src.FileFormat))
-            .ForMember(dest => dest.FileName, opt => opt.MapFrom(src => src.FileName))
-            .ForMember(dest => dest.FileSizeInBytes, opt => opt.MapFrom(src => src.FileSizeInBytes));
+            .ForMember(dest => dest.GoogleDriveName, opt => opt.Ignore());
 
         CreateMap<RecipeFile, RecipeFileUpdateResponse>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
-            .ForMember(dest => dest.RecipeId, opt => opt.MapFrom(src => src.RecipeId))
-            .ForMember(dest => dest.Duration, opt => opt.MapFrom(src => src.Duration))
-            .ForMember(dest => dest.FileFormat, opt => opt.MapFrom(src => src.FileFormat))
-            .ForMember(dest => dest.FileName, opt => opt.MapFrom(src => src.FileName))
-            .ForMember(dest => dest.FileSizeInBytes, opt => opt.MapFrom(src => src.FileSizeInBytes));
+            .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
+            .ForMember(dest => dest.RecipeId, opt => opt.MapFrom(src => src.RecipeId));
+
+        CreateMap<RecipeFile, RecipeFileCreateResponse>()
+            .ConstructUsing(file => new RecipeFileCreateResponse(
+                file.Id,
+                file.RecipeId,
+                file.UserId, 
+                file.GoogleDriveName));
 
         CreateMap<RecipeFile, RecipeFileGetResponse>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+            .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
             .ForMember(dest => dest.RecipeId, opt => opt.MapFrom(src => src.RecipeId))
-            .ForMember(dest => dest.Duration, opt => opt.MapFrom(src => src.Duration))
-            .ForMember(dest => dest.FileFormat, opt => opt.MapFrom(src => src.FileFormat))
-            .ForMember(dest => dest.FileName, opt => opt.MapFrom(src => src.FileName))
-            .ForMember(dest => dest.FileSizeInBytes, opt => opt.MapFrom(src => src.FileSizeInBytes));
+            .ForMember(dest => dest.FileData, opt => opt.Ignore());
     }
 }

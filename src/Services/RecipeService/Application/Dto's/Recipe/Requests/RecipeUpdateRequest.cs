@@ -2,6 +2,7 @@
 
 public record RecipeUpdateRequest(
     Guid Id,
+    Guid UserId,
     string Title,
     string? Link,
     int? PreparationTime,

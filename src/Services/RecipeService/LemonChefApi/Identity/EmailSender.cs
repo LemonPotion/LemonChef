@@ -1,11 +1,12 @@
 ﻿using System.Net;
 using System.Net.Mail;
-using LemonChefApi.Settings;
+using Application.Settings;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Options;
 
 namespace LemonChefApi.Identity;
 
+//TODO: перенести в application??
 public class EmailSender : IEmailSender
 {
     private readonly SmtpClient _smtpClient;

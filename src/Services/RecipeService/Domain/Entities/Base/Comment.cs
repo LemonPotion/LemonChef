@@ -1,4 +1,5 @@
 ﻿using Domain.Interfaces;
+using Domain.Primitives;
 using Domain.Validations.Validators;
 using FluentValidation;
 
@@ -18,7 +19,7 @@ public class Comment : BaseEntity, ITrackable
 
     public long LikeCount { get; set; }
     public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
-    public DateTime? ModifiedOn { get; set; }
+    public DateTime? ModifiedOn { get; set; } = DateTime.UtcNow;
 
     public Comment()
     {

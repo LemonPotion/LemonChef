@@ -7,16 +7,15 @@ namespace Application.Interfaces.Services;
 
 public interface IRecipeCommentLikeService
 {
-    Task<RecipeCommentLikeCreateResponse> CreateAsync(RecipeCommentLikeCreateRequest request,
-        CancellationToken cancellationToken);
+    Task<RecipeCommentLikeCreateResponse> AddAsync(RecipeCommentLikeCreateRequest request,
+        CancellationToken cancellationToken = default);
 
-    Task<RecipeCommentLikeGetResponse?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
+    Task<RecipeCommentLikeGetResponse?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
 
-    Task<List<RecipeCommentLikeGetResponse>> GetAllPagedAsync(int pageNumber, int pageSize,
-        Expression<Func<RecipeCommentLike, bool>> filter, CancellationToken cancellationToken);
+    Task<List<RecipeCommentLikeGetResponse>> GetAsync(int pageNumber, int pageSize,
+        Expression<Func<RecipeCommentLike, bool>> filter, CancellationToken cancellationToken = default);
 
-    Task<RecipeCommentLikeUpdateResponse> UpdateAsync(RecipeCommentLikeUpdateRequest request,
-        CancellationToken cancellationToken);
+    RecipeCommentLikeUpdateResponse Update(RecipeCommentLikeUpdateRequest request);
 
-    Task DeleteByIdAsync(Guid id, CancellationToken cancellationToken);
+    Task RemoveAsync(Guid id, CancellationToken cancellationToken = default);
 }

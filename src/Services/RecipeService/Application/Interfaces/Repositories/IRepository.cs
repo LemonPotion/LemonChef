@@ -4,14 +4,18 @@ namespace Application.Interfaces.Repositories;
 
 public interface IRepository<TEntity>
 {
-    public Task<TEntity> CreateAsync(TEntity entity, CancellationToken cancellationToken);
+    public Task<TEntity> AddAsync(TEntity entity, CancellationToken cancellationToken = default);
 
-    public Task<TEntity?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
+    public Task<TEntity?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
 
-    public Task<TEntity> UpdateAsync(TEntity entity, CancellationToken cancellationToken);
+    public TEntity Update(TEntity entity);
 
-    public Task DeleteByIdAsync(Guid id, CancellationToken cancellationToken);
+    public Task RemoveAsync(Guid id, CancellationToken cancellationToken = default);
 
-    public Task<List<TEntity>> GetAllListPagedAsync(int pageNumber, int pageSize,
-        Expression<Func<TEntity, bool>> filter, CancellationToken cancellationToken);
+    public Task<List<TEntity>> GetAsync(int pageNumber, int pageSize,
+        Expression<Func<TEntity, bool>> filter, CancellationToken cancellationToken = default);
+
+    public Task SaveChangesAsync(CancellationToken cancellationToken = default);
+
+    public void SaveChanges();
 }

@@ -7,14 +7,14 @@ namespace Application.Interfaces.Services;
 
 public interface IIngredientService
 {
-    Task<IngredientCreateResponse> CreateAsync(IngredientCreateRequest request, CancellationToken cancellationToken);
+    Task<IngredientCreateResponse> AddAsync(IngredientCreateRequest request, CancellationToken cancellationToken = default);
 
-    Task<IngredientGetResponse> GetByIdAsync(Guid id, CancellationToken cancellationToken);
+    Task<IngredientGetResponse?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
 
-    Task<List<IngredientGetResponse>> GetAllPagedAsync(int pageNumber, int pageSize,
-        Expression<Func<Ingredient, bool>> filter, CancellationToken cancellationToken);
+    Task<List<IngredientGetResponse>> GetAsync(int pageNumber, int pageSize,
+        Expression<Func<Ingredient, bool>> filter, CancellationToken cancellationToken = default);
 
-    Task<IngredientUpdateResponse> UpdateAsync(IngredientUpdateRequest request, CancellationToken cancellationToken);
+    IngredientUpdateResponse Update(IngredientUpdateRequest request);
 
-    Task DeleteByIdAsync(Guid id, CancellationToken cancellationToken);
+    Task RemoveAsync(Guid id, CancellationToken cancellationToken = default);
 }

@@ -8,24 +8,18 @@ namespace Application.Interfaces.Services;
 
 public interface IRecipeService
 {
-    Task<RecipeCreateResponse> CreateAsync(RecipeCreateRequest request, Guid userId,
-        CancellationToken cancellationToken);
+    Task<RecipeCreateResponse> AddAsync(RecipeCreateRequest request, CancellationToken cancellationToken = default);
 
-    Task<RecipeGetResponse> GetByIdAsync(Guid id, CancellationToken cancellationToken);
+    Task<RecipeGetResponse?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
 
-    Task<List<RecipeGetResponse>> GetAllPagedAsync(
-        int pageNumber,
-        int pageSize,
-        Expression<Func<Recipe, bool>> filter,
-        CancellationToken cancellationToken);
+    Task<List<RecipeGetResponse>> GetAsync(int pageNumber, int pageSize,
+        Expression<Func<Recipe, bool>> filter, CancellationToken cancellationToken = default);
 
-    Task<RecipeUpdateResponse> UpdateAsync(RecipeUpdateRequest request, Guid userId, CancellationToken cancellationToken);
+    RecipeUpdateResponse Update(RecipeUpdateRequest request);
 
-    Task DeleteByIdAsync(Guid id, CancellationToken cancellationToken);
+    Task RemoveAsync(Guid id, CancellationToken cancellationToken = default);
 
-    Task<List<RecipeGetResponse>> GetAllByUserIdAsync(Guid id, CancellationToken cancellationToken);
+    Task<List<RecipeGetResponse>> GetAllByUserIdAsync(Guid id, CancellationToken cancellationToken = default);
 
-    Task<List<IngredientGetResponse>> GetRecipeIngredientsByRecipeId(
-        Guid recipeId,
-        CancellationToken cancellationToken);
+    Task<List<IngredientGetResponse>> GetRecipeIngredientsByRecipeId(Guid recipeId, CancellationToken cancellationToken = default);
 }

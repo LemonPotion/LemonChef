@@ -10,8 +10,6 @@ public class RecipeComment : Comment
 
     public Recipe Recipe { get; set; }
 
-    public ICollection<RecipeCommentLike> RecipeCommentLikes { get; set; }
-
     public long LikeCount { get; set; }
 
     public RecipeComment()

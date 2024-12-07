@@ -10,12 +10,8 @@ public class RecipeCommentLikeConfiguration : IEntityTypeConfiguration<RecipeCom
     {
         builder.HasIndex(l => new
             {
-                l.UserId, l.RecipeCommentId
+                l.UserId, l.CommentId
             })
             .IsUnique();
-
-        builder.HasOne(l => l.RecipeComment)
-            .WithMany(c => c.RecipeCommentLikes)
-            .HasForeignKey(c => c.RecipeCommentId);
     }
 }

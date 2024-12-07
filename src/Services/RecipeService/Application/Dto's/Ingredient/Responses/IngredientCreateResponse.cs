@@ -1,5 +1,10 @@
-﻿using Domain.Validations.Primitives;
+﻿using Domain.Primitives;
 
 namespace Application.Dto_s.Ingredient.Responses;
 
-public record IngredientCreateResponse(Guid Id, Guid RecipeId, string Name, int? Quantity, UnitsOfMeasure? Unit);
+public record IngredientCreateResponse(
+    Guid Id, 
+    Guid RecipeId, 
+    string Name, 
+    int? Quantity, 
+    UnitsOfMeasure? Unit);

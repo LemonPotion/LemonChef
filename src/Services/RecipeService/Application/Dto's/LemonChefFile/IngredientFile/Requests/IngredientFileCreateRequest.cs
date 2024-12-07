@@ -1,10 +1,8 @@
-﻿namespace Application.Dto_s.LemonChefFile.IngredientFile.Requests;
+﻿using Application.Dto_s.LemonChefFile.FileData;
+
+namespace Application.Dto_s.LemonChefFile.IngredientFile.Requests;
 
 public record IngredientFileCreateRequest(
-    Guid Id,
     Guid IngredientId,
     Guid UserId,
-    string FileName,
-    string FileFormat,
-    long FileSizeInBytes,
-    long? Duration);
+    FileDataDto FileData);

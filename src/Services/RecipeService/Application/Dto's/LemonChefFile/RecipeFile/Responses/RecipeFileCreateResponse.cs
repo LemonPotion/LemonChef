@@ -4,7 +4,4 @@ public record RecipeFileCreateResponse(
     Guid Id,
     Guid RecipeId,
     Guid UserId,
-    string FileName,
-    string FileFormat,
-    long FileSizeInBytes,
-    long? Duration);
+    string GoogleDriveId);

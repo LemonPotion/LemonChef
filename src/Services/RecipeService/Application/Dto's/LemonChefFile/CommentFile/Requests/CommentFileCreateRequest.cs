@@ -1,9 +1,8 @@
-﻿namespace Application.Dto_s.LemonChefFile.CommentFile.Requests;
+﻿using Application.Dto_s.LemonChefFile.FileData;
+
+namespace Application.Dto_s.LemonChefFile.CommentFile.Requests;
 
 public record CommentFileCreateRequest(
     Guid CommentId,
     Guid UserId,
-    string FileName,
-    string FileFormat,
-    long FileSizeInBytes,
-    long? Duration);
+    FileDataDto FileData);

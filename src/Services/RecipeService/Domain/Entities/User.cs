@@ -14,7 +14,7 @@ public class User : IdentityUser<Guid>, ITrackable, IViewable
 
     public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
 
-    public DateTime? ModifiedOn { get; set; }
+    public DateTime? ModifiedOn { get; set; } = DateTime.UtcNow;
 
     public long ViewCount { get; set; }
 }

@@ -19,42 +19,40 @@ public class IngredientService : IIngredientService
         _mapper = mapper;
     }
 
-    public async Task<IngredientCreateResponse> CreateAsync(IngredientCreateRequest request,
-        CancellationToken cancellationToken)
+    public async Task<IngredientCreateResponse> AddAsync(IngredientCreateRequest request, CancellationToken cancellationToken = default)
     {
         var ingredient = _mapper.Map<Ingredient>(request);
-        var createdIngredient = await _repository.CreateAsync(ingredient, cancellationToken);
+        var createdIngredient = await _repository.AddAsync(ingredient, cancellationToken);
+        await _repository.SaveChangesAsync(cancellationToken);
         return _mapper.Map<IngredientCreateResponse>(createdIngredient);
     }
 
-    public async Task<IngredientGetResponse> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+    public async Task<IngredientGetResponse?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
         var ingredient = await _repository.GetByIdAsync(id, cancellationToken);
-        if (ingredient == null)
-        {
-            return null;
-        }
-
-        return _mapper.Map<IngredientGetResponse>(ingredient);
+        
+        return ingredient is null ? null : _mapper.Map<IngredientGetResponse>(ingredient);
     }
 
-    public async Task<List<IngredientGetResponse>> GetAllPagedAsync(int pageNumber, int pageSize,
-        Expression<Func<Ingredient, bool>> filter, CancellationToken cancellationToken)
+    public async Task<List<IngredientGetResponse>> GetAsync(int pageNumber, int pageSize,
+        Expression<Func<Ingredient, bool>> filter, CancellationToken cancellationToken = default)
     {
-        var ingredients = await _repository.GetAllListPagedAsync(pageNumber, pageSize, filter, cancellationToken);
+        var ingredients = await _repository.GetAsync(pageNumber, pageSize, filter, cancellationToken);
         return _mapper.Map<List<IngredientGetResponse>>(ingredients);
     }
 
-    public async Task<IngredientUpdateResponse> UpdateAsync(IngredientUpdateRequest request,
-        CancellationToken cancellationToken)
+    public IngredientUpdateResponse Update(IngredientUpdateRequest request)
     {
         var ingredientToUpdate = _mapper.Map<Ingredient>(request);
-        var updatedIngredient = await _repository.UpdateAsync(ingredientToUpdate, cancellationToken);
+        var updatedIngredient = _repository.Update(ingredientToUpdate);
+        _repository.SaveChanges();
         return _mapper.Map<IngredientUpdateResponse>(updatedIngredient);
     }
 
-    public async Task DeleteByIdAsync(Guid id, CancellationToken cancellationToken)
+    public async Task RemoveAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        await _repository.DeleteByIdAsync(id, cancellationToken);
+        await _repository.RemoveAsync(id, cancellationToken);
+
+        await _repository.SaveChangesAsync(cancellationToken);
     }
 }

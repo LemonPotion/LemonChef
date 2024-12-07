@@ -19,37 +19,40 @@ public class RecipeCommentService : IRecipeCommentService
         _mapper = mapper;
     }
 
-    public async Task<RecipeCommentCreateResponse> CreateAsync(RecipeCommentCreateRequest request,
-        CancellationToken cancellationToken)
+    public async Task<RecipeCommentCreateResponse> AddAsync(RecipeCommentCreateRequest request,
+        CancellationToken cancellationToken = default)
     {
         var recipeComment = _mapper.Map<RecipeComment>(request);
-        var createdRecipeComment = await _repository.CreateAsync(recipeComment, cancellationToken);
+        var createdRecipeComment = await _repository.AddAsync(recipeComment, cancellationToken);
+        await _repository.SaveChangesAsync(cancellationToken);
         return _mapper.Map<RecipeCommentCreateResponse>(createdRecipeComment);
     }
 
-    public async Task<RecipeCommentGetResponse?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+    public async Task<RecipeCommentGetResponse?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
         var recipeComment = await _repository.GetByIdAsync(id, cancellationToken);
-        return recipeComment == null ? null : _mapper.Map<RecipeCommentGetResponse>(recipeComment);
+        
+        return recipeComment is null ? null : _mapper.Map<RecipeCommentGetResponse>(recipeComment);
     }
 
-    public async Task<List<RecipeCommentGetResponse>> GetAllPagedAsync(int pageNumber, int pageSize,
-        Expression<Func<RecipeComment, bool>> filter, CancellationToken cancellationToken)
+    public async Task<List<RecipeCommentGetResponse>> GetAsync(int pageNumber, int pageSize,
+        Expression<Func<RecipeComment, bool>> filter, CancellationToken cancellationToken = default)
     {
-        var recipeComments = await _repository.GetAllListPagedAsync(pageNumber, pageSize, filter, cancellationToken);
+        var recipeComments = await _repository.GetAsync(pageNumber, pageSize, filter, cancellationToken);
         return _mapper.Map<List<RecipeCommentGetResponse>>(recipeComments);
     }
 
-    public async Task<RecipeCommentUpdateResponse> UpdateAsync(RecipeCommentUpdateRequest request,
-        CancellationToken cancellationToken)
+    public RecipeCommentUpdateResponse Update(RecipeCommentUpdateRequest request)
     {
         var recipeCommentToUpdate = _mapper.Map<RecipeComment>(request);
-        var updatedRecipeComment = await _repository.UpdateAsync(recipeCommentToUpdate, cancellationToken);
+        var updatedRecipeComment = _repository.Update(recipeCommentToUpdate);
+        _repository.SaveChanges();
         return _mapper.Map<RecipeCommentUpdateResponse>(updatedRecipeComment);
     }
 
-    public async Task DeleteByIdAsync(Guid id, CancellationToken cancellationToken)
+    public async Task RemoveAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        await _repository.DeleteByIdAsync(id, cancellationToken);
+        await _repository.RemoveAsync(id, cancellationToken);
+        await _repository.SaveChangesAsync(cancellationToken);
     }
 }

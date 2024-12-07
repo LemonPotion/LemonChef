@@ -7,16 +7,15 @@ namespace Application.Interfaces.Services;
 
 public interface IIngredientFileService
 {
-    Task<IngredientFileCreateResponse> CreateAsync(IngredientFileCreateRequest request,
-        CancellationToken cancellationToken);
+    Task<IngredientFileCreateResponse> AddAsync(IngredientFileCreateRequest request,
+        CancellationToken cancellationToken = default);
 
-    Task<IngredientFileGetResponse?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
+    Task<IngredientFileGetResponse?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
 
-    Task<List<IngredientFileGetResponse>> GetAllPagedAsync(int pageNumber, int pageSize,
-        Expression<Func<IngredientFile, bool>> filter, CancellationToken cancellationToken);
+    Task<List<IngredientFileGetResponse>> GetAsync(int pageNumber, int pageSize,
+        Expression<Func<IngredientFile, bool>> filter, CancellationToken cancellationToken = default);
 
-    Task<IngredientFileUpdateResponse> UpdateAsync(IngredientFileUpdateRequest request,
-        CancellationToken cancellationToken);
+    IngredientFileUpdateResponse Update(IngredientFileUpdateRequest request);
 
-    Task DeleteByIdAsync(Guid id, CancellationToken cancellationToken);
+    Task RemoveAsync(Guid id, CancellationToken cancellationToken = default);
 }

@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain.Entities.Base;
 using FluentValidation;
 
 namespace Domain.Validations.Validators;

@@ -3,8 +3,4 @@
 public record CommentFileUpdateResponse(
     Guid Id,
     Guid CommentId,
-    Guid UserId,
-    string FileName,
-    string FileFormat,
-    long FileSizeInBytes,
-    long? Duration);
+    Guid UserId);

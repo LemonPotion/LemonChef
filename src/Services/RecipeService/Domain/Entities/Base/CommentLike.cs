@@ -1,8 +1,7 @@
-﻿using Domain.Entities.Base;
-using Domain.Validations.Validators;
+﻿using Domain.Validations.Validators;
 using FluentValidation;
 
-namespace Domain.Entities;
+namespace Domain.Entities.Base;
 
 public class CommentLike : Like
 {

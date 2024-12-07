@@ -1,6 +1,5 @@
-﻿using Domain.Entities.Base;
-using Domain.Interfaces;
-using Domain.Validations.Primitives;
+﻿using Domain.Interfaces;
+using Domain.Primitives;
 using Domain.Validations.Validators;
 using FluentValidation;
 

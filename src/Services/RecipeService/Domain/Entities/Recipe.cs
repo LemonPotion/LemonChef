@@ -1,5 +1,5 @@
-﻿using Domain.Entities.Base;
-using Domain.Interfaces;
+﻿using Domain.Interfaces;
+using Domain.Primitives;
 using Domain.Validations.Validators;
 using FluentValidation;
 
@@ -18,23 +18,24 @@ public class Recipe : BaseEntity, ITrackable, ILikeable, IViewable, ICommentable
 
     public int? Servings { get; set; }
 
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     public User? User { get; set; }
     public Guid? UserId { get; set; }
 
     public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
 
-    public DateTime? ModifiedOn { get; set; }
+    public DateTime? ModifiedOn { get; set; } = DateTime.UtcNow;
 
     public ICollection<Ingredient>? Ingredients { get; set; }
 
     public ICollection<RecipeLike>? Likes { get; set; }
 
-    public ICollection<RecipeComment>? Comments { get; set; }
+    public ICollection<RecipeComment>? RecipeComments { get; set; }
 
     public ICollection<RecipeFile>? Files { get; set; }
 
+    //TODO: сделать так чтобы они отображались в ответе, конфигурацию добавить
     public long ViewCount { get; set; }
 
     public long LikeCount { get; set; }
@@ -45,9 +46,10 @@ public class Recipe : BaseEntity, ITrackable, ILikeable, IViewable, ICommentable
     {
     }
 
-    public Recipe(string title, string? link, int? preparationTime,
+    public Recipe(Guid userId, string title, string? link, int? preparationTime,
         int? servings, string description)
     {
+        UserId = userId;
         Title = title;
         Link = link;
         PreparationTime = preparationTime;

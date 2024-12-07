@@ -14,29 +14,28 @@ public class RecipeCommentLikeMappingProfile : Profile
             .ConstructUsing(dto => new RecipeCommentLike()
             {
                 UserId = dto.UserId,
-                RecipeCommentId = dto.RecipeCommentId
             });
 
         CreateMap<RecipeCommentLikeUpdateRequest, RecipeCommentLike>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
             .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
-            .ForMember(dest => dest.RecipeCommentId, opt => opt.MapFrom(src => src.RecipeCommentId));
+            .ForMember(dest => dest.CommentId, opt => opt.MapFrom(src => src.CommentId));
 
         CreateMap<RecipeCommentLike, RecipeCommentLikeCreateResponse>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
             .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
-            .ForMember(dest => dest.RecipeCommentId, opt => opt.MapFrom(src => src.RecipeCommentId));
+            .ForMember(dest => dest.CommentId, opt => opt.MapFrom(src => src.CommentId));
 
 
         CreateMap<RecipeCommentLike, RecipeCommentLikeUpdateResponse>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
             .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
-            .ForMember(dest => dest.RecipeCommentId, opt => opt.MapFrom(src => src.RecipeCommentId));
+            .ForMember(dest => dest.CommentId, opt => opt.MapFrom(src => src.CommentId));
 
 
         CreateMap<RecipeCommentLike, RecipeCommentLikeGetResponse>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
             .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
-            .ForMember(dest => dest.RecipeCommentId, opt => opt.MapFrom(src => src.RecipeCommentId));
+            .ForMember(dest => dest.CommentId, opt => opt.MapFrom(src => src.CommentId));
     }
 }

@@ -7,14 +7,14 @@ namespace Application.Interfaces.Services;
 
 public interface ICommentFileService
 {
-    Task<CommentFileCreateResponse> CreateAsync(CommentFileCreateRequest request, CancellationToken cancellationToken);
+    Task<CommentFileCreateResponse> AddAsync(CommentFileCreateRequest request, CancellationToken cancellationToken = default);
 
-    Task<CommentFileGetResponse?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
+    Task<CommentFileGetResponse?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
 
-    Task<List<CommentFileGetResponse>> GetAllPagedAsync(int pageNumber, int pageSize,
-        Expression<Func<CommentFile, bool>> filter, CancellationToken cancellationToken);
+    Task<List<CommentFileGetResponse>> GetAsync(int pageNumber, int pageSize,
+        Expression<Func<CommentFile, bool>> filter, CancellationToken cancellationToken = default);
 
-    Task<CommentFileUpdateResponse> UpdateAsync(CommentFileUpdateRequest request, CancellationToken cancellationToken);
+    CommentFileUpdateResponse Update(CommentFileUpdateRequest request);
 
-    Task DeleteByIdAsync(Guid id, CancellationToken cancellationToken);
+    Task RemoveAsync(Guid id, CancellationToken cancellationToken = default);
 }

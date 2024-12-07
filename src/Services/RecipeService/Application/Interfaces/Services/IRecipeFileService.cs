@@ -7,14 +7,14 @@ namespace Application.Interfaces.Services;
 
 public interface IRecipeFileService
 {
-    Task<RecipeFileCreateResponse> CreateAsync(RecipeFileCreateRequest request, CancellationToken cancellationToken);
+    Task<RecipeFileCreateResponse> AddAsync(RecipeFileCreateRequest request, CancellationToken cancellationToken = default);
 
-    Task<RecipeFileGetResponse?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
+    Task<RecipeFileGetResponse?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
 
-    Task<List<RecipeFileGetResponse>> GetAllPagedAsync(int pageNumber, int pageSize,
-        Expression<Func<RecipeFile, bool>> filter, CancellationToken cancellationToken);
+    Task<List<RecipeFileGetResponse>> GetAsync(int pageNumber, int pageSize,
+        Expression<Func<RecipeFile, bool>> filter, CancellationToken cancellationToken = default);
 
-    Task<RecipeFileUpdateResponse> UpdateAsync(RecipeFileUpdateRequest request, CancellationToken cancellationToken);
+    RecipeFileUpdateResponse Update(RecipeFileUpdateRequest request);
 
-    Task DeleteByIdAsync(Guid id, CancellationToken cancellationToken);
+    Task RemoveAsync(Guid id, CancellationToken cancellationToken = default);
 }

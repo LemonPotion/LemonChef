@@ -19,37 +19,40 @@ public class RecipeLikeService : IRecipeLikeService
         _mapper = mapper;
     }
 
-    public async Task<RecipeLikeCreateResponse> CreateAsync(RecipeLikeCreateRequest request,
-        CancellationToken cancellationToken)
+    public async Task<RecipeLikeCreateResponse> AddAsync(RecipeLikeCreateRequest request,
+        CancellationToken cancellationToken = default)
     {
         var recipeLike = _mapper.Map<RecipeLike>(request);
-        var createdRecipeLike = await _repository.CreateAsync(recipeLike, cancellationToken);
+        var createdRecipeLike = await _repository.AddAsync(recipeLike, cancellationToken);
+        await _repository.SaveChangesAsync(cancellationToken);
         return _mapper.Map<RecipeLikeCreateResponse>(createdRecipeLike);
     }
 
-    public async Task<RecipeLikeGetResponse?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+    public async Task<RecipeLikeGetResponse?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
         var recipeLike = await _repository.GetByIdAsync(id, cancellationToken);
-        return recipeLike == null ? null : _mapper.Map<RecipeLikeGetResponse>(recipeLike);
+        return recipeLike is null ? null : _mapper.Map<RecipeLikeGetResponse>(recipeLike);
     }
 
-    public async Task<List<RecipeLikeGetResponse>> GetAllPagedAsync(int pageNumber, int pageSize,
-        Expression<Func<RecipeLike, bool>> filter, CancellationToken cancellationToken)
+    public async Task<List<RecipeLikeGetResponse>> GetAsync(int pageNumber, int pageSize,
+        Expression<Func<RecipeLike, bool>> filter, CancellationToken cancellationToken = default)
     {
-        var recipeLikes = await _repository.GetAllListPagedAsync(pageNumber, pageSize, filter, cancellationToken);
+        var recipeLikes = await _repository.GetAsync(pageNumber, pageSize, filter, cancellationToken);
         return _mapper.Map<List<RecipeLikeGetResponse>>(recipeLikes);
     }
 
-    public async Task<RecipeLikeUpdateResponse> UpdateAsync(RecipeLikeUpdateRequest request,
-        CancellationToken cancellationToken)
+    public RecipeLikeUpdateResponse Update(RecipeLikeUpdateRequest request)
     {
         var recipeLikeToUpdate = _mapper.Map<RecipeLike>(request);
-        var updatedRecipeLike = await _repository.UpdateAsync(recipeLikeToUpdate, cancellationToken);
+        var updatedRecipeLike = _repository.Update(recipeLikeToUpdate);
+        _repository.SaveChanges();
         return _mapper.Map<RecipeLikeUpdateResponse>(updatedRecipeLike);
     }
 
-    public async Task DeleteByIdAsync(Guid id, CancellationToken cancellationToken)
+    public async Task RemoveAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        await _repository.DeleteByIdAsync(id, cancellationToken);
+        await _repository.RemoveAsync(id, cancellationToken);
+
+        await _repository.SaveChangesAsync(cancellationToken);
     }
 }
